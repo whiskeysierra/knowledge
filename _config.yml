@@ -1,0 +1,53 @@
+# Site
+name: "Knowledge"
+title: "Knowledge"
+description: "Personal knowledge base - coding principles, patterns and practices"
+logo: 'assets/images/logo.png'
+include: ["_pages"]
+permalink: /:title/
+
+# Authors
+authors:
+  willi:
+    name: Willi
+    display_name: Willi
+    gravatar: b54b450a335cb2d2ff15b31c7b04e727
+    email: w.schoenborn@gmail.com
+    web: https://github.com/whiskeysierra
+    twitter: https://twitter.com/whiskeysierra84
+    description: "Author of..."
+
+# Plugins
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-archives
+    
+# Archives
+jekyll-archives:
+  enabled:
+    - categories
+  layout: archive
+  permalinks:
+    category: '/category/:name/'
+    
+# Pagination 
+paginate: 6
+paginate_path: /page:num/
+    
+# Other
+markdown: kramdown
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: true
+
+# Lazy Images ("enabled" or "disabled")
+lazyimages: "disabled"
+
+exclude: [LICENSE.txt, README.md, Gemfile, Gemfile.lock]
