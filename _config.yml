@@ -1,7 +1,7 @@
 # Site
 name: "Knowledge"
 title: "Knowledge"
-description: "Personal knowledge base - coding principles, patterns and practices"
+description: "My principles, practices, patterns, experiences and learnings."
 logo: 'assets/images/logo.png'
 include: ["_pages"]
 permalink: /:title/
@@ -15,7 +15,7 @@ authors:
     email: w.schoenborn@gmail.com
     web: https://github.com/whiskeysierra
     twitter: https://twitter.com/whiskeysierra84
-    description: "Author of..."
+    description: "Self-proclaimed Clean Code Enthusiast"
 
 # Plugins
 plugins:
