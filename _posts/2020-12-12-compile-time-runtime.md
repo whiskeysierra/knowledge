@@ -90,7 +90,7 @@ This is especially easy to do with Kotlin, but also Java with Lombok helps:
 class UserId(private val value: String)
 class Age(private val value: Int) : Comparable<Age> {
     operator fun plus(age: Age) = Age(value + age.value)
-    override fun compareTo(other: Age): Int = value.compareto(other.value)
+    override fun compareTo(other: Age): Int = value.compareTo(other.value)
 }
 ```
 
