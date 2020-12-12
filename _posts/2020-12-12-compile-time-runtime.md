@@ -2,7 +2,7 @@
 layout: post
 title:  Compile time > runtime
 author: willi
-categories: [Practice, Principle]
+categories: [Principle, Pattern]
 tags: []
 image: assets/images/programming_code_screen_java_of_technology_developer_computer_design-1165593.jpg
 featured: true
@@ -77,6 +77,26 @@ private T compute(final Something something) {
 }
 
 ```
+
+## Primitive Obsession
+
+There is a certain, well-known anti-pattern or smell, the [Primitive Obsession](https://refactoring.guru/smells/primitive-obsession).
+The pattern to solve that also helps to push runtime errors towards compile time validation:
+
+Instead of low level primitives like `int`, `boolean` and `String` one should strive towards typed, immutable value objects.
+This is especially easy to do with Kotlin, but also Java with Lombok helps:
+
+```kotlin
+class UserId(private val value: String)
+class Age(private val value: Int) : Comparable<Age> {
+    operator fun plus(age: Age) = Age(value + age.value)
+    override fun compareTo(other: Age): Int = value.compareto(other.value)
+}
+```
+
+## Staged Builders
+
+See also [Staged Builders](2020-12-12-staged-builders.md) which is another pattern that shifts runtime validation towards compile time.
 
 ## Runtime
 
