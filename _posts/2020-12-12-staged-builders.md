@@ -5,7 +5,6 @@ author: willi
 categories: [Pattern]
 tags: []
 image: assets/images/flowchart-311347_1280.png
-featured: true
 ---
 
 > [..] often referred to as a wizard for building objects.
