@@ -3,8 +3,8 @@ layout: post
 title:  Staged Builders
 author: willi
 categories: [Pattern]
-tags: []
-image: assets/images/flowchart-311347_1280.png
+tags: [compile time > runtime]
+image: assets/images/mark-516279_1280.jpg
 ---
 
 > [..] often referred to as a wizard for building objects.
@@ -12,7 +12,7 @@ image: assets/images/flowchart-311347_1280.png
 Another pattern that I like to use a lot is *Staged Builder*.
 The traditional implementation of the [Builder pattern](https://en.wikipedia.org/wiki/Builder_pattern) is usually not very safe against misuse.
 
-It's a pattern that helps with [Compile time > runtime](2020-12-12-compile-time-runtime.md).
+It's a pattern that helps with [Compile time > runtime](2020-12-12-compile-time-runtime.md) because it shifts validation from runtime to compile time.
 
 Let's say there is a builder that produces a User.
 
@@ -29,15 +29,15 @@ The staged builder pattern introduces a proper interface, multiple in fact, with
 Apart from the fact that it should be package private then.
 
 ```java
-interface FirstName {
-    LastName withFirstName(String firstName);
+interface FirstNameStage {
+    LastNameStage withFirstName(String firstName);
 }
 
-interface LastName {
-    Build withLastName(String lastName);
+interface LastNameStage {
+    BuildStage withLastName(String lastName);
 }
 
-interface Build {
+interface BuildStage {
     User build();
 }
 ```

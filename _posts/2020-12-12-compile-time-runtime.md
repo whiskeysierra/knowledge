@@ -3,7 +3,7 @@ layout: post
 title:  Compile time > runtime
 author: willi
 categories: [Principle, Pattern]
-tags: []
+tags: [compile time > runtime]
 image: assets/images/programming_code_screen_java_of_technology_developer_computer_design-1165593.jpg
 featured: true
 ---
@@ -94,10 +94,6 @@ class Age(private val value: Int) : Comparable<Age> {
 }
 ```
 
-## Staged Builders
-
-See also [Staged Builders](2020-12-12-staged-builders.md) which is another pattern that shifts runtime validation towards compile time.
-
 ## Runtime
 
 The underlying idea (*Try to do things early and once.*) is also applicable during runtime.
@@ -109,7 +105,12 @@ That is done at construction time of the object (graph) and no longer when it's 
 
 (*Polymorphism vs. conditionals* deserves a post on its own.)
 
+## Related
+
+ * [Staged Builders](2020-12-12-staged-builders.md)
+ * [Primitive Obsession](2020-12-13-primitive-obsession.md)
+
 ## References
 
-* [Effective Java (Second Edition), Chapter 4 – Classes and Interfaces, Joshua Bloch, 2008](https://www.oreilly.com/library/view/effective-java-2nd/9780137150021/ch04.html)
-* [Hardcore Java, Chapter 2 – The Final Story, Robert Simmons jr., 2004](https://www.oreilly.com/library/view/hardcore-java/0596005687/ch02.html)
+ * [Effective Java (Second Edition), Chapter 4 – Classes and Interfaces, Joshua Bloch, 2008](https://www.oreilly.com/library/view/effective-java-2nd/9780137150021/ch04.html)
+ * [Hardcore Java, Chapter 2 – The Final Story, Robert Simmons jr., 2004](https://www.oreilly.com/library/view/hardcore-java/0596005687/ch02.html)

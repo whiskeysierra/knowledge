@@ -5,7 +5,6 @@ author: willi
 categories: [Principle]
 tags: [composition]
 image: assets/images/puzzle-1713170_1280.jpg
-featured: true
 ---
 
 *noun*: **composition**, the action of putting things together; formation or construction.
