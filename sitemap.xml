@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url>
+     <loc>https://whiskeysierra.github.io/knowledge/2020-12-12-compile-time-runtime/</loc>
+     <lastmod>2021-03-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://whiskeysierra.github.io/knowledge/2020-12-12-composition/</loc>
+     <lastmod>2021-03-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://whiskeysierra.github.io/knowledge/2020-12-12-staged-builders/</loc>
+     <lastmod>2021-03-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://whiskeysierra.github.io/knowledge/2020-12-13-primitive-obsession/</loc>
+     <lastmod>2021-03-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://whiskeysierra.github.io/knowledge/2020-12-13-time-as-a-dependency/</loc>
+     <lastmod>2021-03-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+</urlset>
