@@ -1,8 +1,18 @@
-/.idea
-*.iml
+/node_modules/
+/site/
 
-_site
-.DS_Store
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+# virtualenv
+.venv
+venv/
+ENV/
+
+/package-lock.json
 *.swp
-.sass-cache
-*~
+.DS_Store
+

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+set -euo pipefail
+
+brew install \
+  plantuml \
+  graphviz
+
+pip3 install --user \
+    --global-option=build_ext \
+    --global-option="-I/usr/local/include/" \
+    --global-option="-L/usr/local/lib/" \
+    pygraphviz
+
+pip3 install --user --upgrade --requirement requirements.txt
+
