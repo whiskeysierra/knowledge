@@ -1,14 +1,10 @@
 ---
-layout: post
-title:  Time as a dependency
-author: willi
-categories: [Pattern]
-tags: [testing]
-image: assets/images/clock-1274699_1280.jpg
-featured: true
+title:  Time-dependent
 ---
 
-Dependency injection doesn't end `now()`.
+![](img/clock-1274699_1280.jpg)
+
+> Dependency injection doesn't end `now()`.
 
 There are certain constructs and expressions that immediately raise a red flag, whenever I see them:
 

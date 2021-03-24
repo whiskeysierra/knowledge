@@ -1,13 +1,10 @@
 ---
-layout: post
 title:  Composition
-author: willi
-categories: [Principle]
-tags: [composition]
-image: assets/images/puzzle-1713170_1280.jpg
 ---
 
-*noun*: **composition**, the action of putting things together; formation or construction.
+![](img/puzzle-1713170_1280.jpg)
+
+> *noun*: **composition**, the action of putting things together; formation or construction.
 
 ## Composition everywhere
 

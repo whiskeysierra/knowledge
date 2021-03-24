@@ -1,11 +1,8 @@
 ---
-layout: post
-title:  Compile time > runtime
-author: willi
-categories: [Principle, Pattern]
-tags: [compile time > runtime]
-image: assets/images/programming_code_screen_java_of_technology_developer_computer_design-1165593.jpg
+title: Compile time > runtime
 ---
+
+![](img/programming_code_screen_java_of_technology_developer_computer_design-1165593.jpg)
 
 The compiler is a very powerful tool, if being used right.
 

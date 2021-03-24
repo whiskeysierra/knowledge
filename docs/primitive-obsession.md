@@ -1,12 +1,8 @@
 ---
-layout: post
 title:  Primitive Obsession
-author: willi
-categories: [Pattern]
-tags: [compile time > runtime]
-image: assets/images/tool-1314070_1280.jpg
-featured: true
 ---
+
+![](img/tool-1314070_1280.jpg)
 
 Primitives have their use, but they shouldn't be our first choice.
 

@@ -1,11 +1,8 @@
 ---
-layout: post
 title:  Staged Builders
-author: willi
-categories: [Pattern]
-tags: [compile time > runtime]
-image: assets/images/mark-516279_1280.jpg
 ---
+
+![](../img/mark-516279_1280.jpg)
 
 > [..] often referred to as a wizard for building objects.
 
