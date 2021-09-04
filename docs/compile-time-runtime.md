@@ -103,8 +103,8 @@ That is done at construction time of the object (graph) and no longer when it's 
 
 ## Related
 
- * [Staged Builders](2020-12-12-staged-builders.md)
- * [Primitive Obsession](2020-12-13-primitive-obsession.md)
+ * [Staged Builders](patterns/staged-builders.md)
+ * [Primitive Obsession](primitive-obsession.md)
 
 ## References
 

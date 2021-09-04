@@ -2,7 +2,7 @@
 title:  Time-dependent
 ---
 
-![](img/clock-1274699_1280.jpg)
+![](../img/clock-1274699_1280.jpg)
 
 > Dependency injection doesn't end `now()`.
 
