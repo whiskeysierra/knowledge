@@ -2,10 +2,8 @@
 /site/
 
 ### IntelliJ IDEA ###
-.idea
-*.iws
+/.idea
 *.iml
-*.ipr
 
 # virtualenv
 .venv
@@ -15,4 +13,8 @@ ENV/
 /package-lock.json
 *.swp
 .DS_Store
+
+### Maven ###
+/target
+/.mvn/wrapper/*.jar
 

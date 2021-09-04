@@ -1,11 +1,8 @@
-markdown>=3.2,<3.3
-mkdocs
-mkdocs-material
-# XXX: some Jinja2 versions, such as 2.10.1 on Ubuntu, have bugs, but mkdocs doesn't enforce 2.11 yet
-Jinja2>=2.11.1
-mkdocs-merge
-plantuml-markdown>=3.1.0
-pymdown-extensions
 Pygments
-markdown-include
-
+markdown
+mkdocs
+mkdocs-git-revision-date-localized-plugin
+mkdocs-include-markdown-plugin
+mkdocs-material
+plantuml-markdown
+pymdown-extensions

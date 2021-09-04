@@ -15,9 +15,9 @@ The idea is that I do as much work as possible before the software is running in
 Compile time is a simplification here.
 Depending on the technology it might include things like:
 
- * Source code validation
- * Compilation
- * Building artifacts (archives, images, executables, etc.)
+* Source code validation
+* Compilation
+* Building artifacts (archives, images, executables, etc.)
 
 ## Use `final`, a lot
 
@@ -41,8 +41,8 @@ switch (something) {
 
 When I'm reading this, there are some issues that I'm able to spot immediately.
 
- 1. Lack of explicit default case
- 2. `result` might still be null afterwards
+1. Lack of explicit default case
+2. `result` might still be null afterwards
 
 If I now change the declaration to:
 
@@ -103,10 +103,10 @@ That is done at construction time of the object (graph) and no longer when it's 
 
 ## Related
 
- * [Staged Builders](patterns/staged-builders.md)
- * [Primitive Obsession](primitive-obsession.md)
+* [Staged Builders](patterns/staged-builders.md)
+* [Primitive Obsession](primitive-obsession.md)
 
 ## References
 
- * [Effective Java (Second Edition), Chapter 4 – Classes and Interfaces, Joshua Bloch, 2008](https://www.oreilly.com/library/view/effective-java-2nd/9780137150021/ch04.html)
- * [Hardcore Java, Chapter 2 – The Final Story, Robert Simmons jr., 2004](https://www.oreilly.com/library/view/hardcore-java/0596005687/ch02.html)
+* [Effective Java (Second Edition), Chapter 4 – Classes and Interfaces, Joshua Bloch, 2008](https://www.oreilly.com/library/view/effective-java-2nd/9780137150021/ch04.html)
+* [Hardcore Java, Chapter 2 – The Final Story, Robert Simmons jr., 2004](https://www.oreilly.com/library/view/hardcore-java/0596005687/ch02.html)

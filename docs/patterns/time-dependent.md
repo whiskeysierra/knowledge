@@ -21,12 +21,12 @@ Now I'd like to have an easy way to tell whether it's currently active:
 
 ```kotlin
 class Campaign(private val start: Instant, private val end: Instant) {
-    
+
     fun isActive(): Boolean {
         val now = Instant.now()
         return start <= now && now <= end
     }
-    
+
 }
 ```
 
@@ -49,7 +49,7 @@ fun `campaign is active`() {
     val start = Instant.parse("2020-12-13T11:00:00.00Z")
     val end = Instant.parse("2020-12-25T11:00:00.00Z")
     val unit = Campaign(start, end)
-    
+
     assertTrue(unit.isActive())
 }
 ```
@@ -143,7 +143,6 @@ The benefits of doing that are huge:
  * Production code is **more powerful** than before:
    I can now find *active* logins at an arbitrary point in time, if I want to.
 
-
 ## References
 
- * [Test Clock](https://github.com/Mercateo/test-clock), a great small library to have a mutable `Clock` implementation
+* [Test Clock](https://github.com/Mercateo/test-clock), a great small library to have a mutable `Clock` implementation

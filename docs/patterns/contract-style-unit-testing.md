@@ -41,13 +41,13 @@ interface UserRepositoryContract : TestFixtures {
         val actual = unit.find(user.id)
         assertThat(actual).isEqualTo(expected)
     }
-    
+
     @Test
     fun `won't find absent user`() {
         val user = unit.create(randomUserId())
         assertThat(user).isNull
     }
-    
+
     // more tests here...
 }
 ```

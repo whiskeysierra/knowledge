@@ -10,11 +10,11 @@ title:  Composition
 
 What I like about composition is, that it applies to all scales:
 
- * Functions and methods
- * Classes
- * Components
- * Applications
- * Systems
+* Functions and methods
+* Classes
+* Components
+* Applications
+* Systems
 
 The idea is always the same.
 I try to break up (decompose) a problem into smaller sub-problems and solve them individually (*Divide and conquer*).
@@ -22,12 +22,13 @@ Then I'm taking those pieces and compose them to form a solution to the overall 
 
 What I get in return is:
 
- * **Focus**  
-   I can take one component, work with it and not have to burden myself with the rest.
- * **Reusability**  
-   I can reuse components whenever I have the same problem again.
- * **Isolation**  
-   Clean interfaces between components allow me to safely refactor within a component, without the risk of breaking the rest.
+* **Focus**  
+  I can take one component, work with it and not have to burden myself with the rest.
+* **Reusability**  
+  I can reuse components whenever I have the same problem again.
+* **Isolation**  
+  Clean interfaces between components allow me to safely refactor within a component, without the risk of breaking the
+  rest.
 
 ## Inheritance
 
@@ -59,5 +60,5 @@ Yet they still hurt, because I need to understand them in order to successfully 
 
 ## References
 
- * [Composition over inheritance](https://en.wikipedia.org/wiki/Composition_over_inheritance)
- * [Rich Hickey - Simple Made Easy](https://www.youtube.com/watch?v=oytL881p-nQ)
+* [Composition over inheritance](https://en.wikipedia.org/wiki/Composition_over_inheritance)
+* [Rich Hickey - Simple Made Easy](https://www.youtube.com/watch?v=oytL881p-nQ)
