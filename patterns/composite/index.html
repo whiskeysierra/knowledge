@@ -574,21 +574,25 @@ No principle would be violated:</p>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
+</code></pre></div>
+  <div class="highlight"><pre><span></span><code><span class="kd">interface</span> <span class="nc">ErrorHandler</span> <span class="p">{</span>
+    <span class="kd">fun</span> <span class="nf">handle</span><span class="p">(</span><span class="n">listener</span><span class="p">:</span> <span class="n">Listener</span><span class="p">,</span> <span class="n">exception</span><span class="p">:</span> <span class="n">Exception</span><span class="p">):</span> <span class="kt">Boolean</span>
+<span class="p">}</span>
 </code></pre></div></li>
 <li>✅ Concurrency
   <div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">ConcurrentCompositeListener</span><span class="p">(</span>
-    <span class="kd">private</span> <span class="kd">val</span> <span class="nv">listeners</span><span class="p">:</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Listener</span><span class="o">&gt;</span>
+    <span class="kd">private</span> <span class="kd">val</span> <span class="nv">listeners</span><span class="p">:</span> <span class="n">Collection</span><span class="o">&lt;</span><span class="n">Listener</span><span class="o">&gt;</span>
 <span class="p">)</span> <span class="p">:</span> <span class="n">Listener</span> <span class="p">{</span>
     <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onCreated</span><span class="p">(</span><span class="n">user</span><span class="p">:</span> <span class="n">User</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">runBlocking</span> <span class="p">{</span>
-            <span class="kd">val</span> <span class="nv">asyncListeners</span> <span class="o">=</span> <span class="n">listeners</span><span class="p">.</span><span class="na">map</span> <span class="p">{</span> <span class="n">Async</span><span class="p">(</span><span class="nb">it</span><span class="p">,</span> <span class="k">this</span><span class="p">)</span> <span class="p">}</span>
-            <span class="n">Composite</span><span class="p">(</span><span class="n">asyncListeners</span><span class="p">).</span><span class="na">onCreated</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+            <span class="kd">val</span> <span class="nv">async</span> <span class="o">=</span> <span class="n">listeners</span><span class="p">.</span><span class="na">map</span> <span class="p">{</span> <span class="n">AsyncListener</span><span class="p">(</span><span class="nb">it</span><span class="p">,</span> <span class="k">this</span><span class="p">)</span> <span class="p">}</span>
+            <span class="n">CompositeListener</span><span class="p">(</span><span class="n">async</span><span class="p">).</span><span class="na">onCreated</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></li>
 <li>✅ Asynchrony
-  <div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">AsynchronousListener</span><span class="p">(</span>
+  <div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">AsyncListener</span><span class="p">(</span>
     <span class="kd">private</span> <span class="kd">val</span> <span class="nv">listener</span><span class="p">:</span> <span class="n">Listener</span><span class="p">,</span>
     <span class="kd">private</span> <span class="kd">val</span> <span class="nv">scope</span><span class="p">:</span> <span class="n">CoroutineScope</span><span class="p">,</span>
 <span class="p">)</span> <span class="p">:</span> <span class="n">Listener</span> <span class="p">{</span>
