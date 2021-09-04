@@ -77,6 +77,9 @@ The other concerns could (as needed) all addressed with separate classes
 * ✅ Error handling  
   ```kotlin
   {% include "../../src/main/kotlin/patterns/composite/v3/ErrorHandlingListener.kt" start="start" %}
+  ```  
+  ```kotlin
+  {% include "../../src/main/kotlin/patterns/composite/v3/ErrorHandler.kt" start="start" %}
   ```
 * ✅ Concurrency
   ```kotlin
@@ -84,7 +87,7 @@ The other concerns could (as needed) all addressed with separate classes
   ```
 * ✅ Asynchrony
   ```kotlin
-  {% include "../../src/main/kotlin/patterns/composite/v3/AsynchronousListener.kt" start="start" %}
+  {% include "../../src/main/kotlin/patterns/composite/v3/AsyncListener.kt" start="start" %}
   ```
 * ✅ Dynamic listener de/registration  
   Just pass a `CopyOnWriteArrayList` to `CompositeListener` and modify it as needed.

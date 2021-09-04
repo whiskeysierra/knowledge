@@ -4,7 +4,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 // start
-class AsynchronousListener(
+class AsyncListener(
     private val listener: Listener,
     private val scope: CoroutineScope,
 ) : Listener {
