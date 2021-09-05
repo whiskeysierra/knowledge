@@ -2,6 +2,10 @@
 
 set -euo pipefail
 
-JAVA_TOOL_OPTIONS="-Dplantuml.include.path=$PWD/plantuml" \
-  mkdocs build --verbose --strict
+PLANTUML_DIR="$(git rev-parse --show-toplevel)/plantuml"
+export PLANTUML_DIR
 
+PATH="$PLANTUML_DIR/bin:$PATH"
+export PATH
+
+mkdocs build --verbose --strict

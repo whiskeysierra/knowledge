@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="121px" preserveAspectRatio="none" style="width:210px;height:121px;background:#000000;" version="1.1" viewBox="0 0 210 121" width="210px" zoomAndPan="magnify"><defs/><g><rect fill="#181915" height="1" style="stroke:#181915;stroke-width:1.0;" width="1" x="0" y="0"/><text fill="#33FF02" font-family="sans-serif" font-size="12" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="124" x="5" y="17">PlantUML 1.2021.10</text><rect fill="#33FF02" height="21.4883" style="stroke:#33FF02;stroke-width:1.0;" width="158" x="5" y="27.1328"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="156" x="6" y="42.1328">[From string (line 2) ]</text><text fill="#33FF02" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="0" x="10" y="62.6211"/><text fill="#33FF02" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="74" x="5" y="79.1094">@startuml</text><text fill="#33FF02" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" text-decoration="wavy underline" textLength="198" x="5" y="95.5977">interface Component : run()</text><text fill="#FF0000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="94" x="10" y="112.0859">Syntax Error?</text><!--MD5=[cc5eeb3edb2e02a2b1b81f6119efb4c5]
+@startuml
+interface Component : run()
+class CompositeComponent {
+  -elements: Collection<Component>
+  run()
+}
+
+Client - -> Component: use
+X o- - CompositeComponent
+CompositeComponent .up.|> Component
+SomeComponent .up.|> Component
+@enduml
+
+PlantUML version 1.2021.10(Mon Aug 30 15:43:48 CEST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: de
+Country: DE
+--></g></svg>

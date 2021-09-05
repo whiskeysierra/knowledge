@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# ensure the directory exists
+mkdir -p "$PLANTUML_DIR/cache"
+
+/usr/bin/java \
+    -Dplantuml.include.path="$PLANTUML_DIR" \
+    -DRELATIVE_INCLUDE="." \
+    -Djava.awt.headless=true \
+    -jar "$PLANTUML_DIR/plantuml.jar" \
+    -verbose -failfast "$@"

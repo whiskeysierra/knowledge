@@ -1,3 +1,7 @@
+## 💬 Intent
+
+See [Refactoring Guru: Composite](https://refactoring.guru/design-patterns/composite)
+
 ## ☹️ Problem
 
 I often stumble upon the following problem.
@@ -14,9 +18,6 @@ Could be a listener, notifier or anything along those lines:
 ```
 
 More often than not, I have the need to add support for multiple of callbacks.
-
-## 😕 Naive Solution
-
 The straightforward and somewhat compelling implementation looks like this: 
 
 ```kotlin
@@ -52,7 +53,54 @@ just to name a few:
 Adding support for any of them is not rocket science, but it would increase
 the complexity of `UserService` quite a bit.
 
-## 🙂 Solution
+## 😊 Solution
+
+## Structure
+
+```plantuml
+hide empty members
+
+interface Component
+Component : +run()
+class CompositeComponent {
+  -elements: Collection<Component>
+  +run()
+}
+class SomeComponent
+SomeComponent : +run()
+
+Client --> Component: use
+Component o-- CompositeComponent
+CompositeComponent .up.|> Component
+SomeComponent .up.|> Component
+```
+
+## Pseudocode
+
+
+```plantuml
+hide empty members
+
+interface Listener {
+  +run()
+}
+class CompositeListener {
+  -listeners: Collection<Listener>
+  +run()
+}
+class LoggingListener {
+  +run()
+}
+class MetricsListener {
+  +run()
+}
+
+UserService --> Listener: use
+Listener o-- CompositeListener
+CompositeListener .up.|> Listener
+LoggingListener .up.|> Listener
+MetricsListener .up.|> Listener
+```
 
 The ideal solution addresses all concerns above.
 
@@ -73,6 +121,7 @@ We create a new class instead:
 ```
 
 The other concerns could (as needed) all addressed with separate classes
+using the *Decorator* pattern:
 
 * ✅ Error handling  
   ```kotlin
@@ -92,6 +141,17 @@ The other concerns could (as needed) all addressed with separate classes
 * ✅ Dynamic listener de/registration  
   Just pass a `CopyOnWriteArrayList` to `CompositeListener` and modify it as needed.
 
+```kotlin
+{% include "../../src/main/kotlin/patterns/composite/v3/Usage.kt" start="start" %}
+```
+
+## 💡Applicability
+
+## 📝 How to implement
+
+## ⚖︎ Pros and Cons
+
 ## References
 
 * [Refactoring Guru: Composite](https://refactoring.guru/design-patterns/composite)
+* [SourceMaking: Composite](https://sourcemaking.com/design_patterns/composite)

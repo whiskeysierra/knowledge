@@ -23,7 +23,7 @@ markdown_extensions:
   - footnotes
   - plantuml_markdown:
       format: svg_inline
-      cachedir: plantuml/cache
+      cachedir: plantuml/.cache
   - pymdownx.arithmatex
   - pymdownx.betterem:
       smart_enable: all
