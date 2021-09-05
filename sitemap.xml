@@ -2,42 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://whiskeysierra.github.io/knowledge/</loc>
-         <lastmod>2021-09-04</lastmod>
+         <lastmod>2021-09-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://whiskeysierra.github.io/knowledge/compile-time-runtime/</loc>
-         <lastmod>2021-09-04</lastmod>
+         <lastmod>2021-09-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://whiskeysierra.github.io/knowledge/composition/</loc>
-         <lastmod>2021-09-04</lastmod>
+         <lastmod>2021-09-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://whiskeysierra.github.io/knowledge/primitive-obsession/</loc>
-         <lastmod>2021-09-04</lastmod>
+         <lastmod>2021-09-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://whiskeysierra.github.io/knowledge/patterns/composite/</loc>
-         <lastmod>2021-09-04</lastmod>
+         <lastmod>2021-09-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://whiskeysierra.github.io/knowledge/patterns/contract-style-unit-testing/</loc>
-         <lastmod>2021-09-04</lastmod>
+         <lastmod>2021-09-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://whiskeysierra.github.io/knowledge/patterns/staged-builders/</loc>
-         <lastmod>2021-09-04</lastmod>
+         <lastmod>2021-09-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://whiskeysierra.github.io/knowledge/patterns/time-dependent/</loc>
-         <lastmod>2021-09-04</lastmod>
+         <lastmod>2021-09-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
