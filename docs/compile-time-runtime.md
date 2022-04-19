@@ -110,6 +110,7 @@ That is done at construction time of the object (graph) and no longer when it's 
 
 * [Effective Java (Second Edition), Chapter 4 – Classes and Interfaces, Joshua Bloch, 2008](https://www.oreilly.com/library/view/effective-java-2nd/9780137150021/ch04.html)
 * [Hardcore Java, Chapter 2 – The Final Story, Robert Simmons jr., 2004](https://www.oreilly.com/library/view/hardcore-java/0596005687/ch02.html)
+* [The Clean Code Talks -- Inheritance, Polymorphism, & Testing](https://www.youtube.com/watch?v=4F72VULWFvc)
 * [The Anti-IF Campaign](https://francescocirillo.com/products/the-anti-if-campaign)
 * [Replace Conditional with Polymorphism](https://www.refactoring.com/catalog/replaceConditionalWithPolymorphism.html)
 * [Unconditional Programming](https://michaelfeathers.typepad.com/michael_feathers_blog/2013/11/unconditional-programming.html)
