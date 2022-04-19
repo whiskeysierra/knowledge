@@ -12,7 +12,7 @@
         <link rel="canonical" href="https://whiskeysierra.github.io/knowledge/compile-time-runtime/">
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.6">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
     
       
@@ -20,7 +20,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.802231af.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.db9e7362.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.3f5d1f46.min.css">
@@ -72,7 +72,9 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+      
+
+<header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="Knowledge" class="md-header__button md-logo" aria-label="Knowledge" data-md-component="logo">
       
@@ -151,11 +153,14 @@
       </div>
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -261,8 +266,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#runtime" class="md-nav__link">
-    Runtime
+  <a href="#polymorphism" class="md-nav__link">
+    Polymorphism
   </a>
   
 </li>
@@ -334,10 +339,14 @@
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
       
-      <label class="md-nav__link" for="__nav_5">
-        Patterns
-        <span class="md-nav__icon md-icon"></span>
-      </label>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Patterns
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <nav class="md-nav" aria-label="Patterns" data-md-level="1">
         <label class="md-nav__title" for="__nav_5">
           <span class="md-nav__icon md-icon"></span>
@@ -346,6 +355,7 @@
         <ul class="md-nav__list" data-md-scrollfix>
           
             
+              
   
   
   
@@ -356,8 +366,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -368,8 +380,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -380,8 +394,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -392,6 +408,7 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
@@ -437,8 +454,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#runtime" class="md-nav__link">
-    Runtime
+  <a href="#polymorphism" class="md-nav__link">
+    Polymorphism
   </a>
   
 </li>
@@ -532,7 +549,7 @@ The way I see it, there is no harm in having both, good unit tests and a useful 
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<h2 id="primitive-obsession">Primitive Obsession<a class="headerlink" href="#primitive-obsession" title="Permanent link">&para;</a></h2>
+<h2 id="primitive-obsession"><a href="../primitive-obsession/">Primitive Obsession</a><a class="headerlink" href="#primitive-obsession" title="Permanent link">&para;</a></h2>
 <p>There is a certain, well-known anti-pattern or smell, the <a href="https://refactoring.guru/smells/primitive-obsession">Primitive Obsession</a>.
 The pattern to solve that also helps to push runtime errors towards compile time validation:</p>
 <p>Instead of low level primitives like <code>int</code>, <code>boolean</code> and <code>String</code> one should strive towards typed, immutable value objects.
@@ -543,11 +560,11 @@ This is especially easy to do with Kotlin, but also Java with Lombok helps:</p>
     <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">compareTo</span><span class="p">(</span><span class="n">other</span><span class="p">:</span> <span class="n">Age</span><span class="p">):</span> <span class="kt">Int</span> <span class="o">=</span> <span class="n">value</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="na">value</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
-<h2 id="runtime">Runtime<a class="headerlink" href="#runtime" title="Permanent link">&para;</a></h2>
+<h2 id="polymorphism">Polymorphism<a class="headerlink" href="#polymorphism" title="Permanent link">&para;</a></h2>
 <p>The underlying idea (<em>Try to do things early and once.</em>) is also applicable during runtime.
-I often prefer polymorphic constructs over conditionals.
+I often prefer the use of polymorphic constructs over conditionals.
 One side effect that I&rsquo;ve seen a lot is that it pushes conditionals into construction.
-Usually we&rsquo;d evaluating conditionals during the whole lifecycle of an object, often repeatedly.
+Usually we&rsquo;d evaluate conditionals during the whole lifecycle of an object, often repeatedly.
 By using polymorphism there is often one conditional to decide which implementation to create and compose.
 That is done at construction time of the object (graph) and no longer when it&rsquo;s being used.</p>
 <p>(<em>Polymorphism vs. conditionals</em> deserves a post on its own.)</p>
@@ -560,6 +577,9 @@ That is done at construction time of the object (graph) and no longer when it&rs
 <ul>
 <li><a href="https://www.oreilly.com/library/view/effective-java-2nd/9780137150021/ch04.html">Effective Java (Second Edition), Chapter 4 – Classes and Interfaces, Joshua Bloch, 2008</a></li>
 <li><a href="https://www.oreilly.com/library/view/hardcore-java/0596005687/ch02.html">Hardcore Java, Chapter 2 – The Final Story, Robert Simmons jr., 2004</a></li>
+<li><a href="https://francescocirillo.com/products/the-anti-if-campaign">The Anti-IF Campaign</a></li>
+<li><a href="https://www.refactoring.com/catalog/replaceConditionalWithPolymorphism.html">Replace Conditional with Polymorphism</a></li>
+<li><a href="https://michaelfeathers.typepad.com/michael_feathers_blog/2013/11/unconditional-programming.html">Unconditional Programming</a></li>
 </ul>
                 
                   
@@ -569,7 +589,7 @@ That is done at construction time of the object (graph) and no longer when it&rs
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 4, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 19, 2022</span>
       
     
   </small>
@@ -630,10 +650,12 @@ That is done at construction time of the object (graph) and no longer when it&rs
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
         
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
         
       </div>
       
@@ -645,10 +667,10 @@ That is done at construction time of the object (graph) and no longer when it&rs
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.sections"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.409db549.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.sections"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.756773cc.min.js"></script>
+      <script src="../assets/javascripts/bundle.1e84347e.min.js"></script>
       
     
   </body>
