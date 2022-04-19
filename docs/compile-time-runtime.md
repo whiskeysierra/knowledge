@@ -74,7 +74,7 @@ private T compute(final Something something) {
 
 ```
 
-## Primitive Obsession
+## [Primitive Obsession](primitive-obsession.md)
 
 There is a certain, well-known anti-pattern or smell, the [Primitive Obsession](https://refactoring.guru/smells/primitive-obsession).
 The pattern to solve that also helps to push runtime errors towards compile time validation:
@@ -90,12 +90,12 @@ class Age(private val value: Int) : Comparable<Age> {
 }
 ```
 
-## Runtime
+## Polymorphism
 
 The underlying idea (*Try to do things early and once.*) is also applicable during runtime.
-I often prefer polymorphic constructs over conditionals.
+I often prefer the use of polymorphic constructs over conditionals.
 One side effect that I've seen a lot is that it pushes conditionals into construction.
-Usually we'd evaluating conditionals during the whole lifecycle of an object, often repeatedly.
+Usually we'd evaluate conditionals during the whole lifecycle of an object, often repeatedly.
 By using polymorphism there is often one conditional to decide which implementation to create and compose.
 That is done at construction time of the object (graph) and no longer when it's being used.
 
@@ -110,3 +110,6 @@ That is done at construction time of the object (graph) and no longer when it's 
 
 * [Effective Java (Second Edition), Chapter 4 – Classes and Interfaces, Joshua Bloch, 2008](https://www.oreilly.com/library/view/effective-java-2nd/9780137150021/ch04.html)
 * [Hardcore Java, Chapter 2 – The Final Story, Robert Simmons jr., 2004](https://www.oreilly.com/library/view/hardcore-java/0596005687/ch02.html)
+* [The Anti-IF Campaign](https://francescocirillo.com/products/the-anti-if-campaign)
+* [Replace Conditional with Polymorphism](https://www.refactoring.com/catalog/replaceConditionalWithPolymorphism.html)
+* [Unconditional Programming](https://michaelfeathers.typepad.com/michael_feathers_blog/2013/11/unconditional-programming.html)
