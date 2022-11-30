@@ -71,12 +71,42 @@ I can now:
  * Properly test the boundaries without running into race conditions.
  * Check whether a campaign was active in the past or will be active in the future, just by passing in a different reference timestamp.
 
+## Clock
+
 There are cases where I can't or don't want to pass in an `Instant` directly.
 The next best thing is to introduce an indirect dependency onto a `Clock`.
 That clock is then passed in as a constructor argument.
 
 That dependency can be replaced by a fixed clock or a fake clock during tests.
-In production it would then be `Clock.systemUTC()`.
+In production, it would then be `Clock.systemUTC()`.
+
+```xml
+<dependency>
+  <groupId>com.mercateo</groupId>
+  <artifactId>test-clock</artifactId>
+  <version>1.0.2</version>
+  <scope>test</scope>
+</dependency>
+```
+
+## Spring Scheduling
+
+Passing a clock explicitly as a dependency also works with the latest version of Spring Scheduling:
+
+```kotlin
+@EnableScheduling
+class SchedulingConfiguration {
+
+    @Bean
+    fun taskScheduler(clock: Clock): TaskScheduler {
+        val scheduler = ThreadPoolTaskScheduler()
+        scheduler.clock = clock
+        scheduler.poolSize = 5
+        scheduler.threadNamePrefix = "ThreadPoolTaskScheduler"
+        return scheduler
+    }
+}
+```
 
 ## Database
 
