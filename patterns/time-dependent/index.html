@@ -8,11 +8,10 @@
       
       
       
-      
         <link rel="canonical" href="https://whiskeysierra.github.io/knowledge/patterns/time-dependent/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
     
     
       
@@ -20,28 +19,31 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.db9e7362.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.472b142f.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.08040f6c.min.css">
         
       
+      
+
     
     
     
       
+        
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
-        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
     
-    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
-
+    
     
     
   </head>
@@ -52,10 +54,9 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="None" data-md-color-accent="None">
   
     
-    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -63,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#database" class="md-skip">
+        <a href="#clock" class="md-skip">
           Skip to content
         </a>
       
@@ -72,6 +73,7 @@
       
     </div>
     
+    
       
 
 <header class="md-header" data-md-component="header">
@@ -79,11 +81,11 @@
     <a href="../.." title="Knowledge" class="md-header__button md-logo" aria-label="Knowledge" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -105,22 +107,21 @@
     
     
       <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
       </label>
-      
-<div class="md-search" data-md-component="search" role="dialog">
+      <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
       <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
       </label>
       <nav class="md-search__options" aria-label="Search">
         
-        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
         </button>
       </nav>
       
@@ -140,11 +141,10 @@
     
     
       <div class="md-header__source">
-        
-<a href="https://github.com/whiskeysierra/knowledge" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/whiskeysierra/knowledge" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     Edit on Github
@@ -179,18 +179,17 @@
     <a href="../.." title="Knowledge" class="md-nav__button md-logo" aria-label="Knowledge" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
 
     </a>
     Knowledge
   </label>
   
     <div class="md-nav__source">
-      
-<a href="https://github.com/whiskeysierra/knowledge" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/whiskeysierra/knowledge" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     Edit on Github
@@ -357,6 +356,7 @@
       </a>
       
         
+
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
@@ -367,6 +367,20 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#clock" class="md-nav__link">
+    Clock
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spring-scheduling" class="md-nav__link">
+    Spring Scheduling
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#database" class="md-nav__link">
@@ -409,6 +423,7 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
+
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
@@ -419,6 +434,20 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#clock" class="md-nav__link">
+    Clock
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spring-scheduling" class="md-nav__link">
+    Spring Scheduling
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#database" class="md-nav__link">
@@ -442,18 +471,21 @@
               </div>
             
           
-          <div class="md-content" data-md-component="content">
-            <article class="md-content__inner md-typeset">
-              
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
                 
-                  <a href="https://github.com/whiskeysierra/knowledge?path=/docs/patterns/time-dependent.md" title="Edit this page" class="md-content__button md-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
-                  </a>
-                
-                
-                  <h1>Time-dependent</h1>
-                
-                <p><img alt="" src="../../img/clock-1274699_1280.jpg" /></p>
+                  
+
+  <a href="https://github.com/whiskeysierra/knowledge?path=/docs/patterns/time-dependent.md" title="Edit this page" class="md-content__button md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+  <h1>Time-dependent</h1>
+
+<p><img alt="" src="../../img/clock-1274699_1280.jpg" /></p>
 <blockquote>
 <p>Dependency injection doesn&rsquo;t end <code>now()</code>.</p>
 </blockquote>
@@ -468,15 +500,16 @@ My main concern is that it makes the code hard to test, slow to test or both.</p
 <p>Let&rsquo;s say I have this campaign class.
 A campaign has a start and end date.
 Now I&rsquo;d like to have an easy way to tell whether it&rsquo;s currently active:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">Campaign</span><span class="p">(</span><span class="kd">private</span> <span class="kd">val</span> <span class="nv">start</span><span class="p">:</span> <span class="n">Instant</span><span class="p">,</span> <span class="kd">private</span> <span class="kd">val</span> <span class="nv">end</span><span class="p">:</span> <span class="n">Instant</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">Campaign</span><span class="p">(</span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">start</span><span class="p">:</span><span class="w"> </span><span class="n">Instant</span><span class="p">,</span><span class="w"> </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">end</span><span class="p">:</span><span class="w"> </span><span class="n">Instant</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
-    <span class="kd">fun</span> <span class="nf">isActive</span><span class="p">():</span> <span class="kt">Boolean</span> <span class="p">{</span>
-        <span class="kd">val</span> <span class="nv">now</span> <span class="o">=</span> <span class="n">Instant</span><span class="p">.</span><span class="na">now</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">start</span> <span class="o">&lt;=</span> <span class="n">now</span> <span class="o">&amp;&amp;</span> <span class="n">now</span> <span class="o">&lt;=</span> <span class="n">end</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">isActive</span><span class="p">():</span><span class="w"> </span><span class="kt">Boolean</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Instant</span><span class="p">.</span><span class="na">now</span><span class="p">()</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">now</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">now</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">end</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-<span class="p">}</span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
+
 <p>The code is relatively easy to understand, but it&rsquo;s almost impossible to test, unless I:</p>
 <ul>
 <li>Mock the static <code>Instant.now()</code> method</li>
@@ -490,75 +523,107 @@ I&rsquo;d rather have a test that:</p>
 <li>Is independent of the system&rsquo;s clock it&rsquo;s running on</li>
 <li>Is fast, i.e. not waiting or sleeping</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="nd">@Test</span>
-<span class="kd">fun</span> <span class="nf">`campaign is active`</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">val</span> <span class="nv">start</span> <span class="o">=</span> <span class="n">Instant</span><span class="p">.</span><span class="na">parse</span><span class="p">(</span><span class="s">&quot;2020-12-13T11:00:00.00Z&quot;</span><span class="p">)</span>
-    <span class="kd">val</span> <span class="nv">end</span> <span class="o">=</span> <span class="n">Instant</span><span class="p">.</span><span class="na">parse</span><span class="p">(</span><span class="s">&quot;2020-12-25T11:00:00.00Z&quot;</span><span class="p">)</span>
-    <span class="kd">val</span> <span class="nv">unit</span> <span class="o">=</span> <span class="n">Campaign</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="nd">@Test</span><span class="w"></span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">`campaign is active`</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Instant</span><span class="p">.</span><span class="na">parse</span><span class="p">(</span><span class="s">&quot;2020-12-13T11:00:00.00Z&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Instant</span><span class="p">.</span><span class="na">parse</span><span class="p">(</span><span class="s">&quot;2020-12-25T11:00:00.00Z&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">unit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Campaign</span><span class="p">(</span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">end</span><span class="p">)</span><span class="w"></span>
 
-    <span class="n">assertTrue</span><span class="p">(</span><span class="n">unit</span><span class="p">.</span><span class="na">isActive</span><span class="p">())</span>
-<span class="p">}</span>
+<span class="w">    </span><span class="n">assertTrue</span><span class="p">(</span><span class="n">unit</span><span class="p">.</span><span class="na">isActive</span><span class="p">())</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
+
 <p>In order to make that pass, I&rsquo;d change the code and test to:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">fun</span> <span class="nf">isActive</span><span class="p">(</span><span class="n">now</span><span class="p">:</span> <span class="n">Instant</span><span class="p">):</span> <span class="kt">Boolean</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">start</span> <span class="o">&lt;=</span> <span class="n">now</span> <span class="o">&amp;&amp;</span> <span class="n">now</span> <span class="o">&lt;=</span> <span class="n">end</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="nf">isActive</span><span class="p">(</span><span class="n">now</span><span class="p">:</span><span class="w"> </span><span class="n">Instant</span><span class="p">):</span><span class="w"> </span><span class="kt">Boolean</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">now</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">now</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">end</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kd">val</span> <span class="nv">now</span> <span class="o">=</span> <span class="n">Instant</span><span class="p">.</span><span class="na">parse</span><span class="p">(</span><span class="s">&quot;2020-12-19T09:32:17.00Z&quot;</span><span class="p">)</span>
-<span class="n">assertTrue</span><span class="p">(</span><span class="n">unit</span><span class="p">.</span><span class="na">isActive</span><span class="p">(</span><span class="n">now</span><span class="p">))</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Instant</span><span class="p">.</span><span class="na">parse</span><span class="p">(</span><span class="s">&quot;2020-12-19T09:32:17.00Z&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="n">assertTrue</span><span class="p">(</span><span class="n">unit</span><span class="p">.</span><span class="na">isActive</span><span class="p">(</span><span class="n">now</span><span class="p">))</span><span class="w"></span>
 </code></pre></div>
+
 <p>I can now:</p>
 <ul>
 <li>Have as many of those tests as I want.</li>
 <li>Properly test the boundaries without running into race conditions.</li>
 <li>Check whether a campaign was active in the past or will be active in the future, just by passing in a different reference timestamp.</li>
 </ul>
+<h2 id="clock">Clock<a class="headerlink" href="#clock" title="Permanent link">&para;</a></h2>
 <p>There are cases where I can&rsquo;t or don&rsquo;t want to pass in an <code>Instant</code> directly.
 The next best thing is to introduce an indirect dependency onto a <code>Clock</code>.
 That clock is then passed in as a constructor argument.</p>
 <p>That dependency can be replaced by a fixed clock or a fake clock during tests.
-In production it would then be <code>Clock.systemUTC()</code>.</p>
+In production, it would then be <code>Clock.systemUTC()</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.mercateo<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>test-clock<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.0.2<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>
+
+<h2 id="spring-scheduling">Spring Scheduling<a class="headerlink" href="#spring-scheduling" title="Permanent link">&para;</a></h2>
+<p>Passing a clock explicitly as a dependency also works with the latest version of Spring Scheduling:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@EnableScheduling</span><span class="w"></span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">SchedulingConfiguration</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="nd">@Bean</span><span class="w"></span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">taskScheduler</span><span class="p">(</span><span class="n">clock</span><span class="p">:</span><span class="w"> </span><span class="n">Clock</span><span class="p">):</span><span class="w"> </span><span class="n">TaskScheduler</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">scheduler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ThreadPoolTaskScheduler</span><span class="p">()</span><span class="w"></span>
+<span class="w">        </span><span class="n">scheduler</span><span class="p">.</span><span class="na">clock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">clock</span><span class="w"></span>
+<span class="w">        </span><span class="n">scheduler</span><span class="p">.</span><span class="na">poolSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="w"></span>
+<span class="w">        </span><span class="n">scheduler</span><span class="p">.</span><span class="na">threadNamePrefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ThreadPoolTaskScheduler&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">scheduler</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+
 <h2 id="database">Database<a class="headerlink" href="#database" title="Permanent link">&para;</a></h2>
 <p>Eliminating time dependency is not limited to traditional programming languages.
 Especially within the database queries, e.g. SQL, it applies in exactly the same way.</p>
 <p>Assuming I have this query to find <em>active</em> logins (not older than 5 minutes):</p>
-<div class="highlight"><pre><span></span><code><span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-  <span class="k">FROM</span> <span class="n">logins</span>
- <span class="k">WHERE</span> <span class="n">AGE</span><span class="p">(</span><span class="n">created_at</span><span class="p">,</span> <span class="k">current_timestamp</span><span class="p">)</span> <span class="o">&lt;</span> <span class="s1">&#39;5 minutes&#39;</span><span class="p">::</span><span class="nb">INTERVAL</span> 
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">logins</span><span class="w"></span>
+<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">AGE</span><span class="p">(</span><span class="n">created_at</span><span class="p">,</span><span class="w"> </span><span class="k">current_timestamp</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="s1">&#39;5 minutes&#39;</span><span class="p">::</span><span class="nb">INTERVAL</span><span class="w"> </span>
 </code></pre></div>
+
 <p>The query is pretty straightforward to write, but it&rsquo;s very hard to test.
 I can either execute an additional statement, exclusive to my test:</p>
-<div class="highlight"><pre><span></span><code><span class="nd">@Test</span>
-<span class="kd">fun</span> <span class="nf">`only finds logins that are five minutes old or less`</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">val</span> <span class="nv">login</span> <span class="o">=</span> <span class="n">login</span><span class="p">()</span>
-    <span class="n">execute</span><span class="p">(</span><span class="s">&quot;UPDATE logins SET created_at = created_at - &#39;5 Minutes&#39;::INTERVAL WHERE id = </span><span class="si">${</span><span class="n">login</span><span class="p">.</span><span class="na">id</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
-    <span class="n">assertThat</span><span class="p">(</span><span class="n">findLoginsLastFiveMinutes</span><span class="p">()).</span><span class="na">isEmpty</span><span class="p">()</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="nd">@Test</span><span class="w"></span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">`only finds logins that are five minutes old or less`</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">login</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">login</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="n">execute</span><span class="p">(</span><span class="s">&quot;UPDATE logins SET created_at = created_at - &#39;5 Minutes&#39;::INTERVAL WHERE id = </span><span class="si">${</span><span class="n">login</span><span class="p">.</span><span class="na">id</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">assertThat</span><span class="p">(</span><span class="n">findLoginsLastFiveMinutes</span><span class="p">()).</span><span class="na">isEmpty</span><span class="p">()</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
-<p>Or I can actually wait for 5 minutes. (Don&rsquo;t do that!)</p>
-<div class="highlight"><pre><span></span><code><span class="nd">@Test</span>
-<span class="kd">fun</span> <span class="nf">`only finds logins that are five minutes old or less`</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">val</span> <span class="nv">login</span> <span class="o">=</span> <span class="n">login</span><span class="p">()</span>
-    <span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="n">Duration</span><span class="p">.</span><span class="na">ofMinutes</span><span class="p">(</span><span class="m">5</span><span class="p">).</span><span class="na">toMillis</span><span class="p">())</span>
-    <span class="n">assertThat</span><span class="p">(</span><span class="n">findLoginsLastFiveMinutes</span><span class="p">()).</span><span class="na">isEmpty</span><span class="p">()</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>If I rewrite the statement instead and depend on <em>now</em> being passed in:</p>
-<div class="highlight"><pre><span></span><code><span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-  <span class="k">FROM</span> <span class="n">logins</span>
- <span class="k">WHERE</span> <span class="n">AGE</span><span class="p">(</span><span class="n">created_at</span><span class="p">,</span> <span class="p">:</span><span class="n">now</span><span class="p">)</span> <span class="o">&lt;</span> <span class="s1">&#39;5 minutes&#39;</span><span class="p">::</span><span class="nb">INTERVAL</span> 
-</code></pre></div>
-<p>Then I can change my test to:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">val</span> <span class="nv">clock</span> <span class="o">=</span> <span class="n">TestClock</span><span class="p">()</span>
-<span class="kd">val</span> <span class="nv">unit</span> <span class="o">=</span> <span class="n">UserRepository</span><span class="p">(</span><span class="n">clock</span><span class="p">)</span>
 
-<span class="nd">@Test</span>
-<span class="kd">fun</span> <span class="nf">`only finds logins that are five minutes old or less`</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">val</span> <span class="nv">login</span> <span class="o">=</span> <span class="n">login</span><span class="p">()</span>
-    <span class="n">clock</span><span class="p">.</span><span class="na">fastForward</span><span class="p">(</span><span class="n">Duration</span><span class="p">.</span><span class="na">ofMinutes</span><span class="p">(</span><span class="m">5</span><span class="p">))</span>
-    <span class="n">assertThat</span><span class="p">(</span><span class="n">findLoginsLastFiveMinutes</span><span class="p">()).</span><span class="na">isEmpty</span><span class="p">()</span>
-<span class="p">}</span>
+<p>Or I can actually wait for 5 minutes. (Don&rsquo;t do that!)</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Test</span><span class="w"></span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">`only finds logins that are five minutes old or less`</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">login</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">login</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="n">Duration</span><span class="p">.</span><span class="na">ofMinutes</span><span class="p">(</span><span class="m">5</span><span class="p">).</span><span class="na">toMillis</span><span class="p">())</span><span class="w"></span>
+<span class="w">    </span><span class="n">assertThat</span><span class="p">(</span><span class="n">findLoginsLastFiveMinutes</span><span class="p">()).</span><span class="na">isEmpty</span><span class="p">()</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
+
+<p>If I rewrite the statement instead and depend on <em>now</em> being passed in:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">logins</span><span class="w"></span>
+<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">AGE</span><span class="p">(</span><span class="n">created_at</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">now</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="s1">&#39;5 minutes&#39;</span><span class="p">::</span><span class="nb">INTERVAL</span><span class="w"> </span>
+</code></pre></div>
+
+<p>Then I can change my test to:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">clock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TestClock</span><span class="p">()</span><span class="w"></span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">unit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UserRepository</span><span class="p">(</span><span class="n">clock</span><span class="p">)</span><span class="w"></span>
+
+<span class="nd">@Test</span><span class="w"></span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">`only finds logins that are five minutes old or less`</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">login</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">login</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="n">clock</span><span class="p">.</span><span class="na">fastForward</span><span class="p">(</span><span class="n">Duration</span><span class="p">.</span><span class="na">ofMinutes</span><span class="p">(</span><span class="m">5</span><span class="p">))</span><span class="w"></span>
+<span class="w">    </span><span class="n">assertThat</span><span class="p">(</span><span class="n">findLoginsLastFiveMinutes</span><span class="p">()).</span><span class="na">isEmpty</span><span class="p">()</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+
 <p>The benefits of doing that are huge:</p>
 <ul>
 <li>Test no longer needs to execute a custom SQL statement</li>
@@ -570,42 +635,40 @@ I can either execute an additional statement, exclusive to my test:</p>
 <ul>
 <li><a href="https://github.com/Mercateo/test-clock">Test Clock</a>, a great small library to have a mutable <code>Clock</code> implementation</li>
 </ul>
-                
-                  
-                    
 
-<hr>
-<div class="md-source-date">
+  <hr>
+<div class="md-source-file">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 4, 2021</span>
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 30, 2022</span>
       
     
   </small>
 </div>
-                  
-                
-              
-              
-                
 
 
-              
-            </article>
-          </div>
+
+
+
+                
+              </article>
+            </div>
+          
+          
         </div>
         
       </main>
       
-        
-<footer class="md-footer">
+        <footer class="md-footer">
   
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
         <a href="../staged-builders/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Staged Builders" rel="prev">
           <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
           <div class="md-footer__title">
             <div class="md-ellipsis">
@@ -622,16 +685,15 @@ I can either execute an additional statement, exclusive to my test:</p>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
-      <div class="md-footer-copyright">
-        
-        
-          Made with
-          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-            Material for MkDocs
-          </a>
-        
-        
-      </div>
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
       
     </div>
   </div>
@@ -641,10 +703,11 @@ I can either execute an additional statement, exclusive to my test:</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.sections"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.sections"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.1e84347e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d6c3db9e.min.js"></script>
       
     
   </body>

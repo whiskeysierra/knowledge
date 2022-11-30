@@ -8,11 +8,10 @@
       
       
       
-      
         <link rel="canonical" href="https://whiskeysierra.github.io/knowledge/patterns/composite/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
     
     
       
@@ -20,28 +19,31 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.db9e7362.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.472b142f.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.08040f6c.min.css">
         
       
+      
+
     
     
     
       
+        
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
-        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
     
-    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
-
+    
     
     
   </head>
@@ -52,10 +54,9 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="None" data-md-color-accent="None">
   
     
-    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -72,6 +73,7 @@
       
     </div>
     
+    
       
 
 <header class="md-header" data-md-component="header">
@@ -79,11 +81,11 @@
     <a href="../.." title="Knowledge" class="md-header__button md-logo" aria-label="Knowledge" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -105,22 +107,21 @@
     
     
       <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
       </label>
-      
-<div class="md-search" data-md-component="search" role="dialog">
+      <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
       <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
       </label>
       <nav class="md-search__options" aria-label="Search">
         
-        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
         </button>
       </nav>
       
@@ -140,11 +141,10 @@
     
     
       <div class="md-header__source">
-        
-<a href="https://github.com/whiskeysierra/knowledge" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/whiskeysierra/knowledge" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     Edit on Github
@@ -179,18 +179,17 @@
     <a href="../.." title="Knowledge" class="md-nav__button md-logo" aria-label="Knowledge" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
 
     </a>
     Knowledge
   </label>
   
     <div class="md-nav__source">
-      
-<a href="https://github.com/whiskeysierra/knowledge" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/whiskeysierra/knowledge" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     Edit on Github
@@ -315,6 +314,7 @@
       </a>
       
         
+
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
@@ -458,6 +458,7 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
+
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
@@ -540,53 +541,59 @@
               </div>
             
           
-          <div class="md-content" data-md-component="content">
-            <article class="md-content__inner md-typeset">
-              
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
                 
-                  <a href="https://github.com/whiskeysierra/knowledge?path=/docs/patterns/composite.md" title="Edit this page" class="md-content__button md-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
-                  </a>
-                
-                
-                  <h1>Composite</h1>
-                
-                <h2 id="intent">💬 Intent<a class="headerlink" href="#intent" title="Permanent link">&para;</a></h2>
+                  
+
+  <a href="https://github.com/whiskeysierra/knowledge?path=/docs/patterns/composite.md" title="Edit this page" class="md-content__button md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+  <h1>Composite</h1>
+
+<h2 id="intent">💬 Intent<a class="headerlink" href="#intent" title="Permanent link">&para;</a></h2>
 <p>See <a href="https://refactoring.guru/design-patterns/composite">Refactoring Guru: Composite</a></p>
 <h2 id="problem">☹️ Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>I often stumble upon the following problem.
 Starting off with a class that accepts a callback of some kind.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">UserService</span><span class="p">(</span>
-    <span class="kd">private</span> <span class="kd">val</span> <span class="nv">repository</span><span class="p">:</span> <span class="n">UserRepository</span><span class="p">,</span>
-    <span class="kd">private</span> <span class="kd">val</span> <span class="nv">listener</span><span class="p">:</span> <span class="n">Listener</span>
-<span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">UserService</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">repository</span><span class="p">:</span><span class="w"> </span><span class="n">UserRepository</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">listener</span><span class="p">:</span><span class="w"> </span><span class="n">Listener</span><span class="w"></span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
-    <span class="kd">fun</span> <span class="nf">create</span><span class="p">(</span><span class="n">user</span><span class="p">:</span> <span class="n">User</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">require</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="na">isValid</span><span class="p">())</span>
-        <span class="kd">val</span> <span class="nv">created</span> <span class="o">=</span> <span class="n">repository</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
-        <span class="n">listener</span><span class="p">.</span><span class="na">onCreated</span><span class="p">(</span><span class="n">created</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="n">user</span><span class="p">:</span><span class="w"> </span><span class="n">User</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">require</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="na">isValid</span><span class="p">())</span><span class="w"></span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">created</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">repository</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="n">user</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">listener</span><span class="p">.</span><span class="na">onCreated</span><span class="p">(</span><span class="n">created</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
+
 <p>Could be a listener, notifier or anything along those lines:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">interface</span> <span class="nc">Listener</span> <span class="p">{</span>
-    <span class="kd">fun</span> <span class="nf">onCreated</span><span class="p">(</span><span class="n">user</span><span class="p">:</span> <span class="n">User</span><span class="p">)</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nc">Listener</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreated</span><span class="p">(</span><span class="n">user</span><span class="p">:</span><span class="w"> </span><span class="n">User</span><span class="p">)</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
+
 <p>More often than not, I have the need to add support for multiple of callbacks.
 The straightforward and somewhat compelling implementation looks like this: </p>
-<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">UserService</span><span class="p">(</span>
-    <span class="kd">private</span> <span class="kd">val</span> <span class="nv">repository</span><span class="p">:</span> <span class="n">UserRepository</span><span class="p">,</span>
-    <span class="kd">private</span> <span class="kd">val</span> <span class="nv">listeners</span><span class="p">:</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Listener</span><span class="o">&gt;</span>
-<span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">UserService</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">repository</span><span class="p">:</span><span class="w"> </span><span class="n">UserRepository</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">listeners</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Listener</span><span class="o">&gt;</span><span class="w"></span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
-    <span class="kd">fun</span> <span class="nf">create</span><span class="p">(</span><span class="n">user</span><span class="p">:</span> <span class="n">User</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">require</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="na">isValid</span><span class="p">())</span>
-        <span class="kd">val</span> <span class="nv">created</span> <span class="o">=</span> <span class="n">repository</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
-        <span class="n">listeners</span><span class="p">.</span><span class="na">forEach</span> <span class="p">{</span> <span class="nb">it</span><span class="p">.</span><span class="na">onCreated</span><span class="p">(</span><span class="n">created</span><span class="p">)</span> <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="n">user</span><span class="p">:</span><span class="w"> </span><span class="n">User</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">require</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="na">isValid</span><span class="p">())</span><span class="w"></span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">created</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">repository</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="n">user</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">listeners</span><span class="p">.</span><span class="na">forEach</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">onCreated</span><span class="p">(</span><span class="n">created</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
+
 <p>It does have a few aspects in its favor:</p>
 <ul>
 <li>✅ Easy to understand</li>
@@ -625,17 +632,18 @@ the complexity of <code>UserService</code> quite a bit.</p>
 <h2 id="pseudocode">Pseudocode<a class="headerlink" href="#pseudocode" title="Permanent link">&para;</a></h2>
 <p><svg contentScriptType="application/ecmascript" contentStyleType="text/css" preserveAspectRatio="none" style="background:#FFFFFF" version="1.1" viewBox="0 0 523 317" width="100%" zoomAndPan="magnify" class="uml" alt="uml diagram" title=""><defs><filter height="300%" id="f1g2xovcmjt45a" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0" /><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0" /><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3" /><feBlend in="SourceGraphic" in2="blurOut3" mode="normal" /></filter></defs><g><rect codeLine="3" fill="#FEFECE" filter="url(#f1g2xovcmjt45a)" height="52.9551" id="Listener" style="stroke:#A80036;stroke-width:1.5;" width="77" x="161" y="116" /><ellipse cx="176" cy="132" fill="#B4A7E5" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" /><path d="M172.4277,128.2651 L172.4277,126.1069 L179.8071,126.1069 L179.8071,128.2651 L177.3418,128.2651 L177.3418,136.3418 L179.8071,136.3418 L179.8071,138.5 L172.4277,138.5 L172.4277,136.3418 L174.8931,136.3418 L174.8931,128.2651 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="45" x="190" y="136.5352">Listener</text><line style="stroke:#A80036;stroke-width:1.5;" x1="162" x2="237" y1="148" y2="148" /><ellipse cx="172" cy="159" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="27" x="181" y="162.6348">run()</text><rect codeLine="6" fill="#FEFECE" filter="url(#f1g2xovcmjt45a)" height="73.9102" id="CompositeListener" style="stroke:#A80036;stroke-width:1.5;" width="193" x="7" y="230" /><ellipse cx="46.75" cy="246" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" /><path d="M49.2231,252.1431 Q48.6421,252.4419 48.0029,252.5913 Q47.3638,252.7407 46.6582,252.7407 Q44.1514,252.7407 42.8315,251.0889 Q41.5117,249.437 41.5117,246.3159 Q41.5117,243.1865 42.8315,241.5347 Q44.1514,239.8828 46.6582,239.8828 Q47.3638,239.8828 48.0112,240.0322 Q48.6587,240.1816 49.2231,240.4805 L49.2231,243.2031 Q48.5923,242.6221 47.9988,242.3523 Q47.4053,242.0825 46.7744,242.0825 Q45.4297,242.0825 44.7449,243.1492 Q44.0601,244.2158 44.0601,246.3159 Q44.0601,248.4077 44.7449,249.4744 Q45.4297,250.541 46.7744,250.541 Q47.4053,250.541 47.9988,250.2712 Q48.5923,250.0015 49.2231,249.4204 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="106" x="66.25" y="250.5352">CompositeListener</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="199" y1="262" y2="262" /><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="15" y="270" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="167" x="27" y="276.6348">listeners: Collection&lt;Listener&gt;</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="199" y1="282.9551" y2="282.9551" /><ellipse cx="18" cy="293.9551" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="27" x="27" y="297.5898">run()</text><rect codeLine="10" fill="#FEFECE" filter="url(#f1g2xovcmjt45a)" height="52.9551" id="LoggingListener" style="stroke:#A80036;stroke-width:1.5;" width="121" x="235" y="240.5" /><ellipse cx="250" cy="256.5" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" /><path d="M252.4731,262.6431 Q251.8921,262.9419 251.2529,263.0913 Q250.6138,263.2407 249.9082,263.2407 Q247.4014,263.2407 246.0815,261.5889 Q244.7617,259.937 244.7617,256.8159 Q244.7617,253.6865 246.0815,252.0347 Q247.4014,250.3828 249.9082,250.3828 Q250.6138,250.3828 251.2612,250.5322 Q251.9087,250.6816 252.4731,250.9805 L252.4731,253.7031 Q251.8423,253.1221 251.2488,252.8523 Q250.6553,252.5825 250.0244,252.5825 Q248.6797,252.5825 247.9949,253.6492 Q247.3101,254.7158 247.3101,256.8159 Q247.3101,258.9077 247.9949,259.9744 Q248.6797,261.041 250.0244,261.041 Q250.6553,261.041 251.2488,260.7712 Q251.8423,260.5015 252.4731,259.9204 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="89" x="264" y="261.0352">LoggingListener</text><line style="stroke:#A80036;stroke-width:1.5;" x1="236" x2="355" y1="272.5" y2="272.5" /><ellipse cx="246" cy="283.5" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="27" x="255" y="287.1348">run()</text><rect codeLine="13" fill="#FEFECE" filter="url(#f1g2xovcmjt45a)" height="52.9551" id="MetricsListener" style="stroke:#A80036;stroke-width:1.5;" width="118" x="391.5" y="240.5" /><ellipse cx="406.5" cy="256.5" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" /><path d="M408.9731,262.6431 Q408.3921,262.9419 407.7529,263.0913 Q407.1138,263.2407 406.4082,263.2407 Q403.9014,263.2407 402.5815,261.5889 Q401.2617,259.937 401.2617,256.8159 Q401.2617,253.6865 402.5815,252.0347 Q403.9014,250.3828 406.4082,250.3828 Q407.1138,250.3828 407.7612,250.5322 Q408.4087,250.6816 408.9731,250.9805 L408.9731,253.7031 Q408.3423,253.1221 407.7488,252.8523 Q407.1553,252.5825 406.5244,252.5825 Q405.1797,252.5825 404.4949,253.6492 Q403.8101,254.7158 403.8101,256.8159 Q403.8101,258.9077 404.4949,259.9744 Q405.1797,261.041 406.5244,261.041 Q407.1553,261.041 407.7488,260.7712 Q408.3423,260.5015 408.9731,259.9204 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="86" x="420.5" y="261.0352">MetricsListener</text><line style="stroke:#A80036;stroke-width:1.5;" x1="392.5" x2="508.5" y1="272.5" y2="272.5" /><ellipse cx="402.5" cy="283.5" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="27" x="411.5" y="287.1348">run()</text><rect fill="#FEFECE" filter="url(#f1g2xovcmjt45a)" height="32" id="UserService" style="stroke:#A80036;stroke-width:1.5;" width="98" x="150.5" y="7" /><ellipse cx="165.5" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" /><path d="M167.9731,29.1431 Q167.3921,29.4419 166.7529,29.5913 Q166.1138,29.7407 165.4082,29.7407 Q162.9014,29.7407 161.5815,28.0889 Q160.2617,26.437 160.2617,23.3159 Q160.2617,20.1865 161.5815,18.5347 Q162.9014,16.8828 165.4082,16.8828 Q166.1138,16.8828 166.7612,17.0322 Q167.4087,17.1816 167.9731,17.4805 L167.9731,20.2031 Q167.3423,19.6221 166.7488,19.3523 Q166.1553,19.0825 165.5244,19.0825 Q164.1797,19.0825 163.4949,20.1492 Q162.8101,21.2158 162.8101,23.3159 Q162.8101,25.4077 163.4949,26.4744 Q164.1797,27.541 165.5244,27.541 Q166.1553,27.541 166.7488,27.2712 Q167.3423,27.0015 167.9731,26.4204 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="66" x="179.5" y="27.5352">UserService</text><path codeLine="17" d="M199.5,39.36 C199.5,57.4 199.5,87.79 199.5,110.73 " fill="none" id="UserService-to-Listener" style="stroke:#A80036;stroke-width:1.0;" /><polygon fill="#A80036" points="199.5,115.8,203.5,106.8,199.5,110.8,195.5,106.8,199.5,115.8" style="stroke:#A80036;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="22" x="200.5" y="82.5684">use</text><path codeLine="18" d="M159.86,179.15 C146.04,195.03 131.38,213.71 120.21,229.67 " fill="none" id="Listener-backto-CompositeListener" style="stroke:#A80036;stroke-width:1.0;" /><polygon fill="#FFFFFF" points="168.77,169.18,161.7905,170.993,160.7796,178.1329,167.7591,176.3199,168.77,169.18" style="stroke:#A80036;stroke-width:1.0;" /><path codeLine="19" d="M179.03,186.11 C168.8,200.31 156.36,215.99 144.43,229.67 " fill="none" id="Listener-backto-CompositeListener-1" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;" /><polygon fill="none" points="173.54,181.74,190.6,169.18,185.1,189.64,173.54,181.74" style="stroke:#A80036;stroke-width:1.0;" /><path codeLine="20" d="M232.07,185.06 C246.43,203.39 262.86,224.35 275.4,240.35 " fill="none" id="Listener-backto-LoggingListener" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;" /><polygon fill="none" points="226.45,189.24,219.62,169.18,237.47,180.6,226.45,189.24" style="stroke:#A80036;stroke-width:1.0;" /><path codeLine="21" d="M256.21,171.18 C298.67,191.9 356.33,220.04 397.79,240.28 " fill="none" id="Listener-backto-MetricsListener" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;" /><polygon fill="none" points="253.07,177.43,238.17,162.37,259.21,164.85,253.07,177.43" style="stroke:#A80036;stroke-width:1.0;" /></g></svg></p>
 <p>The ideal solution addresses all concerns above.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">UserService</span><span class="p">(</span>
-    <span class="kd">private</span> <span class="kd">val</span> <span class="nv">repository</span><span class="p">:</span> <span class="n">UserRepository</span><span class="p">,</span>
-    <span class="kd">private</span> <span class="kd">val</span> <span class="nv">listener</span><span class="p">:</span> <span class="n">Listener</span>
-<span class="p">)</span> <span class="p">{</span>
-    <span class="kd">fun</span> <span class="nf">create</span><span class="p">(</span><span class="n">user</span><span class="p">:</span> <span class="n">User</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">require</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="na">isValid</span><span class="p">())</span>
-        <span class="kd">val</span> <span class="nv">created</span> <span class="o">=</span> <span class="n">repository</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
-        <span class="n">listener</span><span class="p">.</span><span class="na">onCreated</span><span class="p">(</span><span class="n">created</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">UserService</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">repository</span><span class="p">:</span><span class="w"> </span><span class="n">UserRepository</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">listener</span><span class="p">:</span><span class="w"> </span><span class="n">Listener</span><span class="w"></span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="n">user</span><span class="p">:</span><span class="w"> </span><span class="n">User</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">require</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="na">isValid</span><span class="p">())</span><span class="w"></span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">created</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">repository</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="n">user</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">listener</span><span class="p">.</span><span class="na">onCreated</span><span class="p">(</span><span class="n">created</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
+
 <p>The <code>UserService</code> didn&rsquo;t need to change compared to the original design.
 No principle would be violated:</p>
 <ul>
@@ -643,77 +651,79 @@ No principle would be violated:</p>
 <li>✅ <a href="https://en.wikipedia.org/wiki/Open%E2%80%93closed_principle">Open-closed principle</a></li>
 </ul>
 <p>We create a new class instead:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">CompositeListener</span><span class="p">(</span>
-    <span class="kd">internal</span> <span class="kd">val</span> <span class="nv">listeners</span><span class="p">:</span> <span class="n">Collection</span><span class="o">&lt;</span><span class="n">Listener</span><span class="o">&gt;</span><span class="p">,</span>
-<span class="p">)</span> <span class="p">:</span> <span class="n">Listener</span> <span class="p">{</span>
-    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onCreated</span><span class="p">(</span><span class="n">user</span><span class="p">:</span> <span class="n">User</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">listeners</span><span class="p">.</span><span class="na">forEach</span> <span class="p">{</span> <span class="nb">it</span><span class="p">.</span><span class="na">onCreated</span><span class="p">(</span><span class="n">user</span><span class="p">)</span> <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">CompositeListener</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="kd">internal</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">listeners</span><span class="p">:</span><span class="w"> </span><span class="n">Collection</span><span class="o">&lt;</span><span class="n">Listener</span><span class="o">&gt;</span><span class="p">,</span><span class="w"></span>
+<span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Listener</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreated</span><span class="p">(</span><span class="n">user</span><span class="p">:</span><span class="w"> </span><span class="n">User</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">listeners</span><span class="p">.</span><span class="na">forEach</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">onCreated</span><span class="p">(</span><span class="n">user</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
+
 <p>The other concerns could (as needed) all addressed with separate classes
 using the <em>Decorator</em> pattern:</p>
 <ul>
 <li>✅ Error handling<br />
-  <div class="highlight"><pre><span></span><code><span class="kd">fun</span> <span class="n">Listener</span><span class="p">.</span><span class="nf">onError</span><span class="p">(</span><span class="n">handler</span><span class="p">:</span> <span class="n">ErrorHandler</span><span class="p">)</span> <span class="o">=</span>
-    <span class="k">object</span> <span class="p">:</span> <span class="nc">Listener</span> <span class="p">{</span>
-        <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onCreated</span><span class="p">(</span><span class="n">user</span><span class="p">:</span> <span class="n">User</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">try</span> <span class="p">{</span>
-                <span class="k">this</span><span class="nd">@onError.onCreated</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
-            <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">e</span><span class="p">:</span> <span class="n">Exception</span><span class="p">)</span> <span class="p">{</span>
-                <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">handler</span><span class="p">.</span><span class="na">handle</span><span class="p">(</span><span class="k">this</span><span class="nd">@onError</span><span class="p">,</span> <span class="n">e</span><span class="p">))</span> <span class="k">return</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
+  <div class="highlight"><pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="n">Listener</span><span class="p">.</span><span class="nf">onError</span><span class="p">(</span><span class="n">handler</span><span class="p">:</span><span class="w"> </span><span class="n">ErrorHandler</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">    </span><span class="k">object</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nc">Listener</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreated</span><span class="p">(</span><span class="n">user</span><span class="p">:</span><span class="w"> </span><span class="n">User</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="k">this</span><span class="nd">@onError.onCreated</span><span class="p">(</span><span class="n">user</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">:</span><span class="w"> </span><span class="n">Exception</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">handler</span><span class="p">.</span><span class="na">handle</span><span class="p">(</span><span class="k">this</span><span class="nd">@onError</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">))</span><span class="w"> </span><span class="k">return</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
-  <div class="highlight"><pre><span></span><code><span class="kd">interface</span> <span class="nc">ErrorHandler</span> <span class="p">{</span>
-    <span class="kd">fun</span> <span class="nf">handle</span><span class="p">(</span><span class="n">listener</span><span class="p">:</span> <span class="n">Listener</span><span class="p">,</span> <span class="n">exception</span><span class="p">:</span> <span class="n">Exception</span><span class="p">):</span> <span class="kt">Boolean</span>
-<span class="p">}</span>
+  <div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nc">ErrorHandler</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">handle</span><span class="p">(</span><span class="n">listener</span><span class="p">:</span><span class="w"> </span><span class="n">Listener</span><span class="p">,</span><span class="w"> </span><span class="n">exception</span><span class="p">:</span><span class="w"> </span><span class="n">Exception</span><span class="p">):</span><span class="w"> </span><span class="kt">Boolean</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kd">object</span> <span class="nc">Log</span> <span class="p">:</span> <span class="n">ErrorHandler</span> <span class="p">{</span>
-    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">handle</span><span class="p">(</span><span class="n">listener</span><span class="p">:</span> <span class="n">Listener</span><span class="p">,</span> <span class="n">exception</span><span class="p">:</span> <span class="n">Exception</span><span class="p">):</span> <span class="kt">Boolean</span> <span class="p">{</span>
-        <span class="n">TODO</span><span class="p">(</span><span class="s">&quot;Not yet implemented&quot;</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<span class="kd">object</span><span class="w"> </span><span class="nc">Log</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ErrorHandler</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">handle</span><span class="p">(</span><span class="n">listener</span><span class="p">:</span><span class="w"> </span><span class="n">Listener</span><span class="p">,</span><span class="w"> </span><span class="n">exception</span><span class="p">:</span><span class="w"> </span><span class="n">Exception</span><span class="p">):</span><span class="w"> </span><span class="kt">Boolean</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">TODO</span><span class="p">(</span><span class="s">&quot;Not yet implemented&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kd">object</span> <span class="nc">Ignore</span> <span class="p">:</span> <span class="n">ErrorHandler</span> <span class="p">{</span>
-    <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">handle</span><span class="p">(</span><span class="n">listener</span><span class="p">:</span> <span class="n">Listener</span><span class="p">,</span> <span class="n">exception</span><span class="p">:</span> <span class="n">Exception</span><span class="p">):</span> <span class="kt">Boolean</span> <span class="o">=</span> <span class="kc">true</span>
-<span class="p">}</span>
+<span class="kd">object</span><span class="w"> </span><span class="nc">Ignore</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ErrorHandler</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">handle</span><span class="p">(</span><span class="n">listener</span><span class="p">:</span><span class="w"> </span><span class="n">Listener</span><span class="p">,</span><span class="w"> </span><span class="n">exception</span><span class="p">:</span><span class="w"> </span><span class="n">Exception</span><span class="p">):</span><span class="w"> </span><span class="kt">Boolean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div></li>
 <li>✅ Concurrency
-  <div class="highlight"><pre><span></span><code><span class="kd">fun</span> <span class="n">CompositeListener</span><span class="p">.</span><span class="nf">concurrent</span><span class="p">()</span> <span class="o">=</span>
-    <span class="k">object</span> <span class="p">:</span> <span class="nc">Listener</span> <span class="p">{</span>
-        <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onCreated</span><span class="p">(</span><span class="n">user</span><span class="p">:</span> <span class="n">User</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">runBlocking</span> <span class="p">{</span>
-                <span class="kd">val</span> <span class="nv">async</span> <span class="o">=</span> <span class="n">listeners</span><span class="p">.</span><span class="na">map</span> <span class="p">{</span> <span class="nb">it</span><span class="p">.</span><span class="na">async</span><span class="p">(</span><span class="k">this</span><span class="p">)</span> <span class="p">}</span>
-                <span class="n">CompositeListener</span><span class="p">(</span><span class="n">async</span><span class="p">).</span><span class="na">onCreated</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
+  <div class="highlight"><pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="n">CompositeListener</span><span class="p">.</span><span class="nf">concurrent</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">    </span><span class="k">object</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nc">Listener</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreated</span><span class="p">(</span><span class="n">user</span><span class="p">:</span><span class="w"> </span><span class="n">User</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">runBlocking</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="kd">val</span><span class="w"> </span><span class="nv">async</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">listeners</span><span class="p">.</span><span class="na">map</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">async</span><span class="p">(</span><span class="k">this</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">                </span><span class="n">CompositeListener</span><span class="p">(</span><span class="n">async</span><span class="p">).</span><span class="na">onCreated</span><span class="p">(</span><span class="n">user</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 </code></pre></div></li>
 <li>✅ Asynchrony
-  <div class="highlight"><pre><span></span><code><span class="kd">fun</span> <span class="n">Listener</span><span class="p">.</span><span class="nf">async</span><span class="p">(</span><span class="n">scope</span><span class="p">:</span> <span class="n">CoroutineScope</span><span class="p">):</span> <span class="n">Listener</span> <span class="o">=</span>
-    <span class="k">object</span> <span class="p">:</span> <span class="nc">Listener</span> <span class="p">{</span>
-        <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onCreated</span><span class="p">(</span><span class="n">user</span><span class="p">:</span> <span class="n">User</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">scope</span><span class="p">.</span><span class="na">launch</span> <span class="p">{</span> <span class="k">this</span><span class="nd">@async.onCreated</span><span class="p">(</span><span class="n">user</span><span class="p">)</span> <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
+  <div class="highlight"><pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="n">Listener</span><span class="p">.</span><span class="nf">async</span><span class="p">(</span><span class="n">scope</span><span class="p">:</span><span class="w"> </span><span class="n">CoroutineScope</span><span class="p">):</span><span class="w"> </span><span class="n">Listener</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">    </span><span class="k">object</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nc">Listener</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreated</span><span class="p">(</span><span class="n">user</span><span class="p">:</span><span class="w"> </span><span class="n">User</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">scope</span><span class="p">.</span><span class="na">launch</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">this</span><span class="nd">@async.onCreated</span><span class="p">(</span><span class="n">user</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 </code></pre></div></li>
 <li>✅ Dynamic listener de/registration<br />
   Just pass a <code>CopyOnWriteArrayList</code> to <code>CompositeListener</code> and modify it as needed.</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">Usage</span> <span class="p">{</span>
-    <span class="kd">fun</span> <span class="nf">userService</span><span class="p">(</span><span class="n">repository</span><span class="p">:</span> <span class="n">UserRepository</span><span class="p">):</span> <span class="n">UserService</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">UserService</span><span class="p">(</span>
-            <span class="n">repository</span><span class="p">,</span>
-            <span class="n">CompositeListener</span><span class="p">(</span><span class="n">listOf</span><span class="p">(</span>
-                <span class="n">LoggingListener</span><span class="p">().</span><span class="na">onError</span><span class="p">(</span><span class="n">Log</span><span class="p">),</span>
-                <span class="n">MetricsListener</span><span class="p">().</span><span class="na">onError</span><span class="p">(</span><span class="n">Ignore</span><span class="p">),</span>
-            <span class="p">)).</span><span class="na">concurrent</span><span class="p">()</span>
-        <span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">Usage</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">userService</span><span class="p">(</span><span class="n">repository</span><span class="p">:</span><span class="w"> </span><span class="n">UserRepository</span><span class="p">):</span><span class="w"> </span><span class="n">UserService</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">UserService</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="n">repository</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="n">CompositeListener</span><span class="p">(</span><span class="n">listOf</span><span class="p">(</span><span class="w"></span>
+<span class="w">                </span><span class="n">LoggingListener</span><span class="p">().</span><span class="na">onError</span><span class="p">(</span><span class="n">Log</span><span class="p">),</span><span class="w"></span>
+<span class="w">                </span><span class="n">MetricsListener</span><span class="p">().</span><span class="na">onError</span><span class="p">(</span><span class="n">Ignore</span><span class="p">),</span><span class="w"></span>
+<span class="w">            </span><span class="p">)).</span><span class="na">concurrent</span><span class="p">()</span><span class="w"></span>
+<span class="w">        </span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
+
 <h2 id="applicability">💡Applicability<a class="headerlink" href="#applicability" title="Permanent link">&para;</a></h2>
 <h2 id="how-to-implement">📝 How to implement<a class="headerlink" href="#how-to-implement" title="Permanent link">&para;</a></h2>
 <h2 id="pros-and-cons">⚖︎ Pros and Cons<a class="headerlink" href="#pros-and-cons" title="Permanent link">&para;</a></h2>
@@ -722,42 +732,40 @@ using the <em>Decorator</em> pattern:</p>
 <li><a href="https://refactoring.guru/design-patterns/composite">Refactoring Guru: Composite</a></li>
 <li><a href="https://sourcemaking.com/design_patterns/composite">SourceMaking: Composite</a></li>
 </ul>
-                
-                  
-                    
 
-<hr>
-<div class="md-source-date">
+  <hr>
+<div class="md-source-file">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 5, 2021</span>
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 5, 2021</span>
       
     
   </small>
 </div>
-                  
-                
-              
-              
-                
 
 
-              
-            </article>
-          </div>
+
+
+
+                
+              </article>
+            </div>
+          
+          
         </div>
         
       </main>
       
-        
-<footer class="md-footer">
+        <footer class="md-footer">
   
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
         <a href="../../primitive-obsession/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Primitive Obsession" rel="prev">
           <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
           <div class="md-footer__title">
             <div class="md-ellipsis">
@@ -781,7 +789,7 @@ using the <em>Decorator</em> pattern:</p>
             </div>
           </div>
           <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
           </div>
         </a>
       
@@ -789,16 +797,15 @@ using the <em>Decorator</em> pattern:</p>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
-      <div class="md-footer-copyright">
-        
-        
-          Made with
-          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-            Material for MkDocs
-          </a>
-        
-        
-      </div>
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
       
     </div>
   </div>
@@ -808,10 +815,11 @@ using the <em>Decorator</em> pattern:</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.sections"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.sections"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.1e84347e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d6c3db9e.min.js"></script>
       
     
   </body>
