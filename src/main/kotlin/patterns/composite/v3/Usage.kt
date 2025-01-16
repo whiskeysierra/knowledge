@@ -1,6 +1,6 @@
 package patterns.composite.v3
 
-// start
+//
 class Usage {
     fun userService(repository: UserRepository): UserService {
         return UserService(

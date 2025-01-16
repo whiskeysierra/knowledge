@@ -8,4 +8,4 @@ export PLANTUML_DIR
 PATH="$PLANTUML_DIR/bin:$PATH"
 export PATH
 
-mkdocs build --verbose --strict
+venv/bin/mkdocs build --verbose --strict

@@ -18,3 +18,4 @@ ENV/
 /target
 /.mvn/wrapper/*.jar
 
+/plantuml/.cache

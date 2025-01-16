@@ -40,7 +40,8 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.tasklist:
       custom_checkbox: true
-  - pymdownx.tabbed
+  - pymdownx.tabbed:
+      alternate_style: true
   - pymdownx.tilde
   - smarty
   - tables
@@ -49,5 +50,6 @@ markdown_extensions:
 
 plugins:
   - git-revision-date-localized
-  - include-markdown
+  - include-markdown:
+      start: "//"
   - search

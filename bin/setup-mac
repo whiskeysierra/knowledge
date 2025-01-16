@@ -2,11 +2,14 @@
 
 set -euo pipefail
 
-brew install \
-  graphviz
+brew install graphviz
 
-pip3 install --user \
+python3 -m venv venv
+
+venv/bin/pip install \
+    --config-settings="--global-option=build_ext" \
+    --config-settings="--global-option=-I$(brew --prefix graphviz)/include/" \
+    --config-settings="--global-option=-L$(brew --prefix graphviz)/lib/" \
     pygraphviz
 
-pip3 install --user --upgrade --requirement requirements.txt
-
+venv/bin/pip install --upgrade --requirement requirements.txt

@@ -8,20 +8,20 @@ I often stumble upon the following problem.
 Starting off with a class that accepts a callback of some kind.
 
 ```kotlin
-{% include "../../src/main/kotlin/patterns/composite/v1/UserService.kt" start="start" %}
+{% include "../../src/main/kotlin/patterns/composite/v1/UserService.kt" %}
 ```
 
 Could be a listener, notifier or anything along those lines:
 
 ```kotlin
-{% include "../../src/main/kotlin/patterns/composite/v1/Listener.kt" start="start" %}
+{% include "../../src/main/kotlin/patterns/composite/v1/Listener.kt" %}
 ```
 
 More often than not, I have the need to add support for multiple of callbacks.
 The straightforward and somewhat compelling implementation looks like this: 
 
 ```kotlin
-{% include "../../src/main/kotlin/patterns/composite/v2/UserService.kt" start="start" %}
+{% include "../../src/main/kotlin/patterns/composite/v2/UserService.kt" %}
 ```
 
 It does have a few aspects in its favor:
@@ -105,7 +105,7 @@ MetricsListener .up.|> Listener
 The ideal solution addresses all concerns above.
 
 ```kotlin
-{% include "../../src/main/kotlin/patterns/composite/v3/UserService.kt" start="start" %}
+{% include "../../src/main/kotlin/patterns/composite/v3/UserService.kt" %}
 ```
 
 The `UserService` didn't need to change compared to the original design.
@@ -117,7 +117,7 @@ No principle would be violated:
 We create a new class instead:
 
 ```kotlin
-{% include "../../src/main/kotlin/patterns/composite/v3/CompositeListener.kt" start="start" %}
+{% include "../../src/main/kotlin/patterns/composite/v3/CompositeListener.kt" %}
 ```
 
 The other concerns could (as needed) all addressed with separate classes
@@ -125,24 +125,24 @@ using the *Decorator* pattern:
 
 * ✅ Error handling  
   ```kotlin
-  {% include "../../src/main/kotlin/patterns/composite/v3/ErrorHandlingListener.kt" start="start" %}
+  {% include "../../src/main/kotlin/patterns/composite/v3/ErrorHandlingListener.kt" %}
   ```  
   ```kotlin
-  {% include "../../src/main/kotlin/patterns/composite/v3/ErrorHandler.kt" start="start" %}
+  {% include "../../src/main/kotlin/patterns/composite/v3/ErrorHandler.kt" %}
   ```
 * ✅ Concurrency
   ```kotlin
-  {% include "../../src/main/kotlin/patterns/composite/v3/ConcurrentCompositeListener.kt" start="start" %}
+  {% include "../../src/main/kotlin/patterns/composite/v3/ConcurrentCompositeListener.kt" %}
   ```
 * ✅ Asynchrony
   ```kotlin
-  {% include "../../src/main/kotlin/patterns/composite/v3/AsyncListener.kt" start="start" %}
+  {% include "../../src/main/kotlin/patterns/composite/v3/AsyncListener.kt" %}
   ```
 * ✅ Dynamic listener de/registration  
   Just pass a `CopyOnWriteArrayList` to `CompositeListener` and modify it as needed.
 
 ```kotlin
-{% include "../../src/main/kotlin/patterns/composite/v3/Usage.kt" start="start" %}
+{% include "../../src/main/kotlin/patterns/composite/v3/Usage.kt" %}
 ```
 
 ## 💡Applicability

@@ -1,6 +1,6 @@
 package patterns.composite.v3
 
-// start
+//
 fun Listener.onError(handler: ErrorHandler) =
     object : Listener {
         override fun onCreated(user: User) {

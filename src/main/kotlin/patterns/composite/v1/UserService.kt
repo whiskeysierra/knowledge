@@ -1,6 +1,6 @@
 package patterns.composite.v1
 
-// start
+//
 class UserService(
     private val repository: UserRepository,
     private val listener: Listener

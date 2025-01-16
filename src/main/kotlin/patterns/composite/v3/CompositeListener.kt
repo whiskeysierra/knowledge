@@ -1,6 +1,6 @@
 package patterns.composite.v3
 
-// start
+//
 class CompositeListener(
     internal val listeners: Collection<Listener>,
 ) : Listener {
