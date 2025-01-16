@@ -1,0 +1,1022 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://whiskeysierra.github.io/knowledge/patterns/test-contract/">
+      
+      
+        <link rel="prev" href="../staged-builders/">
+      
+      
+        <link rel="next" href="../time-dependent/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>Test contract - Knowledge</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#intent" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Knowledge" class="md-header__button md-logo" aria-label="Knowledge" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Knowledge
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Test contract
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/whiskeysierra/knowledge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Edit on Github
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Knowledge" class="md-nav__button md-logo" aria-label="Knowledge" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Knowledge
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/whiskeysierra/knowledge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Edit on Github
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../compile-time-runtime/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Compile time > runtime
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../composition/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Composition
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../primitive-obsession/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Primitive Obsession
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Patterns
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Patterns
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../composite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Composite
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../staged-builders/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Staged Builders
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Test contract
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Test contract
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#intent" class="md-nav__link">
+    <span class="md-ellipsis">
+      💬 Intent
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      ☹️ Problem
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      😊 Solution
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pseudocode" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pseudocode
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pseudocode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transfer-of-confidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      Transfer of confidence
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alternatives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Alternatives
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Alternatives">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#abstract-test-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      Abstract test class
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameterizedtest" class="md-nav__link">
+    <span class="md-ellipsis">
+      @ParameterizedTest
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      References
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../time-dependent/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Time-dependent
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Practices
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Practices
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practices/either-stub-or-verify-not-both/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Either stub or verify, not both
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practices/hand-roll-test-doubles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hand-roll test doubles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#intent" class="md-nav__link">
+    <span class="md-ellipsis">
+      💬 Intent
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      ☹️ Problem
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      😊 Solution
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pseudocode" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pseudocode
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pseudocode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transfer-of-confidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      Transfer of confidence
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alternatives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Alternatives
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Alternatives">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#abstract-test-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      Abstract test class
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameterizedtest" class="md-nav__link">
+    <span class="md-ellipsis">
+      @ParameterizedTest
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      References
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+  <h1>Test contract</h1>
+
+<h2 id="intent">💬 Intent<a class="headerlink" href="#intent" title="Permanent link">&para;</a></h2>
+<p><strong>Test contract</strong> or <em>Contract-style unit test</em> is a structural test design pattern that lets you define a contract for an interface and enforce
+it for every concrete implementation.</p>
+<h2 id="problem">☹️ Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
+<p>Whenever you have an interface, you usually end up with multiple implementations.
+While these implementations have distinct characteristics that make them different,
+they should also share a common behavior as specified by the interface.
+This specification is normally expressed just by the required method signatures and types.
+But, of course, there are aspects of the specification you can&rsquo;t describe using the type system alone.</p>
+<p>That&rsquo;s when tests come in.
+A set of tests provides as an executable verification and acts as a guarantee that the system under test
+actually adheres to the specification or <em>contract</em>.</p>
+<p>The problem is though, that with multiple implementations, how do you ensure that they all adhere
+to the same specification?</p>
+<h2 id="solution">😊 Solution<a class="headerlink" href="#solution" title="Permanent link">&para;</a></h2>
+<p>The solution is to formulate the specification as a set of tests, coded against the interface itself,
+in a single place, to be reused for each and every single implementation.</p>
+<p>The approach that I like to use is based on test interfaces using default methods:</p>
+<blockquote>
+<p>JUnit Jupiter allows <code>@Test</code>, <code>@RepeatedTest</code>, &hellip; to be declared on interface default methods.</p>
+<p><a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-test-interfaces-and-default-methods">JUnit 5 User Guide: 2.13. Test Interfaces and Default Methods</a></p>
+</blockquote>
+<p>You basically create an interface with all the tests you need, defined as default methods.
+That interface is the <em>test contract</em> and can now be easily re-used for different concrete tests for your
+different implementations.</p>
+<h2 id="structure">Structure<a class="headerlink" href="#structure" title="Permanent link">&para;</a></h2>
+<p><svg xmlns="http://www.w3.org/2000/svg" contentScriptType="application/ecmascript" contentStyleType="text/css" preserveAspectRatio="xMaxYMax meet" style="background:#FFFFFF;max-width:60%" version="1.1" viewBox="0 0 384 291" width="100%" zoomAndPan="magnify" class="uml" alt="uml diagram" title=""><defs><filter height="300%" id="f1cbjlwjuwcli2" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0" /><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0" /><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3" /><feBlend in="SourceGraphic" in2="blurOut3" mode="normal" /></filter></defs><g><rect codeLine="3" fill="#FEFECE" filter="url(#f1cbjlwjuwcli2)" height="52.9551" id="Thing" style="stroke:#A80036;stroke-width:1.5;" width="98" x="138.5" y="7" /><ellipse cx="168.8" cy="23" fill="#B4A7E5" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" /><path d="M165.2277,19.2651 L165.2277,17.1069 L172.6071,17.1069 L172.6071,19.2651 L170.1418,19.2651 L170.1418,27.3418 L172.6071,27.3418 L172.6071,29.5 L165.2277,29.5 L165.2277,27.3418 L167.6931,27.3418 L167.6931,19.2651 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="32" x="186.2" y="27.5352">Thing</text><line style="stroke:#A80036;stroke-width:1.5;" x1="139.5" x2="235.5" y1="39" y2="39" /><ellipse cx="149.5" cy="50" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="72" x="158.5" y="53.6348">perform(T): R</text><rect codeLine="7" fill="#FEFECE" filter="url(#f1cbjlwjuwcli2)" height="32" id="ThingContract" style="stroke:#A80036;stroke-width:1.5;" width="112" x="131.5" y="136.95" /><ellipse cx="146.5" cy="152.95" fill="#B4A7E5" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" /><path d="M142.9277,149.2151 L142.9277,147.0569 L150.3071,147.0569 L150.3071,149.2151 L147.8418,149.2151 L147.8418,157.2918 L150.3071,157.2918 L150.3071,159.45 L142.9277,159.45 L142.9277,157.2918 L145.3931,157.2918 L145.3931,149.2151 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="80" x="160.5" y="157.4852">ThingContract</text><rect codeLine="11" fill="#FEFECE" filter="url(#f1cbjlwjuwcli2)" height="32" id="FakeThing" style="stroke:#A80036;stroke-width:1.5;" width="91" x="279" y="136.95" /><ellipse cx="294" cy="152.95" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" /><path d="M296.4731,159.0931 Q295.8921,159.3919 295.2529,159.5413 Q294.6138,159.6907 293.9082,159.6907 Q291.4014,159.6907 290.0815,158.0389 Q288.7617,156.387 288.7617,153.2659 Q288.7617,150.1365 290.0815,148.4847 Q291.4014,146.8328 293.9082,146.8328 Q294.6138,146.8328 295.2612,146.9822 Q295.9087,147.1316 296.4731,147.4305 L296.4731,150.1531 Q295.8423,149.5721 295.2488,149.3023 Q294.6553,149.0325 294.0244,149.0325 Q292.6797,149.0325 291.9949,150.0992 Q291.3101,151.1658 291.3101,153.2659 Q291.3101,155.3577 291.9949,156.4244 Q292.6797,157.491 294.0244,157.491 Q294.6553,157.491 295.2488,157.2212 Q295.8423,156.9515 296.4731,156.3704 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="59" x="308" y="157.4852">FakeThing</text><rect codeLine="12" fill="#FEFECE" filter="url(#f1cbjlwjuwcli2)" height="32" id="FakeThingTest" style="stroke:#A80036;stroke-width:1.5;" width="116" x="176.5" y="245.95" /><ellipse cx="191.5" cy="261.95" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" /><path d="M193.9731,268.0931 Q193.3921,268.3919 192.7529,268.5413 Q192.1138,268.6907 191.4082,268.6907 Q188.9014,268.6907 187.5815,267.0389 Q186.2617,265.387 186.2617,262.2659 Q186.2617,259.1365 187.5815,257.4847 Q188.9014,255.8328 191.4082,255.8328 Q192.1138,255.8328 192.7612,255.9822 Q193.4087,256.1316 193.9731,256.4305 L193.9731,259.1531 Q193.3423,258.5721 192.7488,258.3023 Q192.1553,258.0325 191.5244,258.0325 Q190.1797,258.0325 189.4949,259.0992 Q188.8101,260.1658 188.8101,262.2659 Q188.8101,264.3577 189.4949,265.4244 Q190.1797,266.491 191.5244,266.491 Q192.1553,266.491 192.7488,266.2212 Q193.3423,265.9515 193.9731,265.3704 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="84" x="205.5" y="266.4852">FakeThingTest</text><rect codeLine="15" fill="#FEFECE" filter="url(#f1cbjlwjuwcli2)" height="32" id="RealThing" style="stroke:#A80036;stroke-width:1.5;" width="89" x="7" y="136.95" /><ellipse cx="22" cy="152.95" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" /><path d="M24.4731,159.0931 Q23.8921,159.3919 23.2529,159.5413 Q22.6138,159.6907 21.9082,159.6907 Q19.4014,159.6907 18.0815,158.0389 Q16.7617,156.387 16.7617,153.2659 Q16.7617,150.1365 18.0815,148.4847 Q19.4014,146.8328 21.9082,146.8328 Q22.6138,146.8328 23.2612,146.9822 Q23.9087,147.1316 24.4731,147.4305 L24.4731,150.1531 Q23.8423,149.5721 23.2488,149.3023 Q22.6553,149.0325 22.0244,149.0325 Q20.6797,149.0325 19.9949,150.0992 Q19.3101,151.1658 19.3101,153.2659 Q19.3101,155.3577 19.9949,156.4244 Q20.6797,157.491 22.0244,157.491 Q22.6553,157.491 23.2488,157.2212 Q23.8423,156.9515 24.4731,156.3704 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="57" x="36" y="157.4852">RealThing</text><rect codeLine="16" fill="#FEFECE" filter="url(#f1cbjlwjuwcli2)" height="32" id="RealThingTest" style="stroke:#A80036;stroke-width:1.5;" width="114" x="26.5" y="245.95" /><ellipse cx="41.5" cy="261.95" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" /><path d="M43.9731,268.0931 Q43.3921,268.3919 42.7529,268.5413 Q42.1138,268.6907 41.4082,268.6907 Q38.9014,268.6907 37.5815,267.0389 Q36.2617,265.387 36.2617,262.2659 Q36.2617,259.1365 37.5815,257.4847 Q38.9014,255.8328 41.4082,255.8328 Q42.1138,255.8328 42.7612,255.9822 Q43.4087,256.1316 43.9731,256.4305 L43.9731,259.1531 Q43.3423,258.5721 42.7488,258.3023 Q42.1553,258.0325 41.5244,258.0325 Q40.1797,258.0325 39.4949,259.0992 Q38.8101,260.1658 38.8101,262.2659 Q38.8101,264.3577 39.4949,265.4244 Q40.1797,266.491 41.5244,266.491 Q42.1553,266.491 42.7488,266.2212 Q43.3423,265.9515 43.9731,265.3704 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="82" x="55.5" y="266.4852">RealThingTest</text><path codeLine="9" d="M187.5,66.49 C187.5,89.3 187.5,118.95 187.5,136.65 " fill="none" id="Thing-backto-ThingContract" style="stroke:#A80036;stroke-width:1.0;" /><polygon fill="#A80036" points="187.5,61.77,183.5,70.77,187.5,66.77,191.5,70.77,187.5,61.77" style="stroke:#A80036;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="56" x="188.5" y="103.5184">specifies</text><path d="M234.78,74.03 C241.09,79.36 247.46,84.78 253.5,89.95 C271.89,105.71 292.75,123.97 307.07,136.57 " fill="none" id="Thing-backto-FakeThing" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;" /><polygon fill="none" points="230.44,79.53,219.65,61.29,239.46,68.82,230.44,79.53" style="stroke:#A80036;stroke-width:1.0;" /><path d="M202.8,188.78 C211.24,208 221.29,230.88 227.78,245.65 " fill="none" id="ThingContract-backto-FakeThingTest" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;" /><polygon fill="none" points="196.48,191.79,194.84,170.67,209.29,186.16,196.48,191.79" style="stroke:#A80036;stroke-width:1.0;" /><path codeLine="13" d="M307.59,174.05 C290.11,194.84 263.2,226.83 247.37,245.65 " fill="none" id="FakeThing-backto-FakeThingTest" style="stroke:#A80036;stroke-width:1.0;" /><polygon fill="#A80036" points="310.63,170.44,301.7796,174.7609,307.415,174.2694,307.9066,179.9048,310.63,170.44" style="stroke:#A80036;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="31" x="285.89" y="212.5184">tests</text><path d="M141.72,74.01 C116.85,95.5 87.52,120.84 69.21,136.65 " fill="none" id="Thing-backto-RealThing" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;" /><polygon fill="none" points="136.8,69.02,156.51,61.24,145.95,79.61,136.8,69.02" style="stroke:#A80036;stroke-width:1.0;" /><path d="M157.79,184.51 C138.36,204.5 113.81,229.77 98.37,245.65 " fill="none" id="ThingContract-backto-RealThingTest" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;" /><polygon fill="none" points="152.59,179.83,171.54,170.37,162.62,189.59,152.59,179.83" style="stroke:#A80036;stroke-width:1.0;" /><path codeLine="17" d="M57.91,175.38 C64.13,196.18 73.41,227.23 78.92,245.65 " fill="none" id="RealThing-backto-RealThingTest" style="stroke:#A80036;stroke-width:1.0;" /><polygon fill="#A80036" points="56.52,170.73,55.2535,180.4971,57.9463,175.5223,62.9211,178.2151,56.52,170.73" style="stroke:#A80036;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="31" x="70.42" y="212.5184">tests</text></g></svg></p>
+<h2 id="pseudocode">Pseudocode<a class="headerlink" href="#pseudocode" title="Permanent link">&para;</a></h2>
+<p>This example uses a <code>UserRepository</code> interface and two implementations, 
+<code>InMemoryUserRepository</code> (a <a href="../../practices/hand-roll-test-doubles/">hand-rolled</a> fake) and
+<code>PostgresUserRepository</code>:</p>
+<p><svg xmlns="http://www.w3.org/2000/svg" contentScriptType="application/ecmascript" contentStyleType="text/css" preserveAspectRatio="xMaxYMax meet" style="background:#FFFFFF" version="1.1" viewBox="0 0 600 288" width="100%" zoomAndPan="magnify" class="uml" alt="uml diagram" title=""><defs><filter height="300%" id="f1on23wyb9ysy7" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0" /><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0" /><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3" /><feBlend in="SourceGraphic" in2="blurOut3" mode="normal" /></filter></defs><g><rect codeLine="3" fill="#FEFECE" filter="url(#f1on23wyb9ysy7)" height="65.9102" id="UserRepository" style="stroke:#A80036;stroke-width:1.5;" width="126" x="234.5" y="7" /><ellipse cx="252.65" cy="23" fill="#B4A7E5" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" /><path d="M249.0777,19.2651 L249.0777,17.1069 L256.4571,17.1069 L256.4571,19.2651 L253.9918,19.2651 L253.9918,27.3418 L256.4571,27.3418 L256.4571,29.5 L249.0777,29.5 L249.0777,27.3418 L251.5431,27.3418 L251.5431,19.2651 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="87" x="267.35" y="27.5352">UserRepository</text><line style="stroke:#A80036;stroke-width:1.5;" x1="235.5" x2="359.5" y1="39" y2="39" /><ellipse cx="245.5" cy="50" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="97" x="254.5" y="53.6348">create(User): User</text><ellipse cx="245.5" cy="62.9551" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="100" x="254.5" y="66.5898">find(UserId): User?</text><rect codeLine="8" fill="#FEFECE" filter="url(#f1on23wyb9ysy7)" height="32" id="UserRepositoryContract" style="stroke:#A80036;stroke-width:1.5;" width="167" x="217" y="133.91" /><ellipse cx="232" cy="149.91" fill="#B4A7E5" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" /><path d="M228.4277,146.1751 L228.4277,144.0169 L235.8071,144.0169 L235.8071,146.1751 L233.3418,146.1751 L233.3418,154.2518 L235.8071,154.2518 L235.8071,156.41 L228.4277,156.41 L228.4277,154.2518 L230.8931,154.2518 L230.8931,146.1751 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="135" x="246" y="154.4452">UserRepositoryContract</text><rect codeLine="10" fill="#FEFECE" filter="url(#f1on23wyb9ysy7)" height="32" id="InMemoryUserRepository" style="stroke:#A80036;stroke-width:1.5;" width="175" x="7" y="133.91" /><ellipse cx="22" cy="149.91" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" /><path d="M24.4731,156.0531 Q23.8921,156.3519 23.2529,156.5013 Q22.6138,156.6507 21.9082,156.6507 Q19.4014,156.6507 18.0815,154.9989 Q16.7617,153.347 16.7617,150.2259 Q16.7617,147.0965 18.0815,145.4447 Q19.4014,143.7928 21.9082,143.7928 Q22.6138,143.7928 23.2612,143.9422 Q23.9087,144.0916 24.4731,144.3905 L24.4731,147.1131 Q23.8423,146.5321 23.2488,146.2623 Q22.6553,145.9925 22.0244,145.9925 Q20.6797,145.9925 19.9949,147.0592 Q19.3101,148.1258 19.3101,150.2259 Q19.3101,152.3177 19.9949,153.3844 Q20.6797,154.451 22.0244,154.451 Q22.6553,154.451 23.2488,154.1812 Q23.8423,153.9115 24.4731,153.3304 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="143" x="36" y="154.4452">InMemoryUserRepository</text><rect codeLine="11" fill="#FEFECE" filter="url(#f1on23wyb9ysy7)" height="32" id="InMemoryUserRepositoryTest" style="stroke:#A80036;stroke-width:1.5;" width="200" x="72.5" y="242.91" /><ellipse cx="87.5" cy="258.91" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" /><path d="M89.9731,265.0531 Q89.3921,265.3519 88.7529,265.5013 Q88.1138,265.6507 87.4082,265.6507 Q84.9014,265.6507 83.5815,263.9989 Q82.2617,262.347 82.2617,259.2259 Q82.2617,256.0965 83.5815,254.4447 Q84.9014,252.7928 87.4082,252.7928 Q88.1138,252.7928 88.7612,252.9422 Q89.4087,253.0916 89.9731,253.3905 L89.9731,256.1131 Q89.3423,255.5321 88.7488,255.2623 Q88.1553,254.9925 87.5244,254.9925 Q86.1797,254.9925 85.4949,256.0592 Q84.8101,257.1258 84.8101,259.2259 Q84.8101,261.3177 85.4949,262.3844 Q86.1797,263.451 87.5244,263.451 Q88.1553,263.451 88.7488,263.1812 Q89.3423,262.9115 89.9731,262.3304 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="168" x="101.5" y="263.4452">InMemoryUserRepositoryTest</text><rect codeLine="14" fill="#FEFECE" filter="url(#f1on23wyb9ysy7)" height="32" id="PostgresUserRepository" style="stroke:#A80036;stroke-width:1.5;" width="168" x="418.5" y="133.91" /><ellipse cx="433.5" cy="149.91" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" /><path d="M435.9731,156.0531 Q435.3921,156.3519 434.7529,156.5013 Q434.1138,156.6507 433.4082,156.6507 Q430.9014,156.6507 429.5815,154.9989 Q428.2617,153.347 428.2617,150.2259 Q428.2617,147.0965 429.5815,145.4447 Q430.9014,143.7928 433.4082,143.7928 Q434.1138,143.7928 434.7612,143.9422 Q435.4087,144.0916 435.9731,144.3905 L435.9731,147.1131 Q435.3423,146.5321 434.7488,146.2623 Q434.1553,145.9925 433.5244,145.9925 Q432.1797,145.9925 431.4949,147.0592 Q430.8101,148.1258 430.8101,150.2259 Q430.8101,152.3177 431.4949,153.3844 Q432.1797,154.451 433.5244,154.451 Q434.1553,154.451 434.7488,154.1812 Q435.3423,153.9115 435.9731,153.3304 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="136" x="447.5" y="154.4452">PostgresUserRepository</text><rect codeLine="15" fill="#FEFECE" filter="url(#f1on23wyb9ysy7)" height="32" id="PostgresUserRepositoryTest" style="stroke:#A80036;stroke-width:1.5;" width="193" x="316" y="242.91" /><ellipse cx="331" cy="258.91" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" /><path d="M333.4731,265.0531 Q332.8921,265.3519 332.2529,265.5013 Q331.6138,265.6507 330.9082,265.6507 Q328.4014,265.6507 327.0815,263.9989 Q325.7617,262.347 325.7617,259.2259 Q325.7617,256.0965 327.0815,254.4447 Q328.4014,252.7928 330.9082,252.7928 Q331.6138,252.7928 332.2612,252.9422 Q332.9087,253.0916 333.4731,253.3905 L333.4731,256.1131 Q332.8423,255.5321 332.2488,255.2623 Q331.6553,254.9925 331.0244,254.9925 Q329.6797,254.9925 328.9949,256.0592 Q328.3101,257.1258 328.3101,259.2259 Q328.3101,261.3177 328.9949,262.3844 Q329.6797,263.451 331.0244,263.451 Q331.6553,263.451 332.2488,263.1812 Q332.8423,262.9115 333.4731,262.3304 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="161" x="345" y="263.4452">PostgresUserRepositoryTest</text><path d="M218.01,83.23 C184.7,100.94 148.07,120.42 123.42,133.53 " fill="none" id="UserRepository-backto-InMemoryUserRepository" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;" /><polygon fill="none" points="214.31,77.27,235.26,74.06,220.89,89.63,214.31,77.27" style="stroke:#A80036;stroke-width:1.0;" /><path d="M265.72,179.98 C241.54,200.2 210.28,226.33 190.81,242.61 " fill="none" id="UserRepositoryContract-backto-InMemoryUserRepositoryTest" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;" /><polygon fill="none" points="261.17,174.67,281,167.21,270.14,185.41,261.17,174.67" style="stroke:#A80036;stroke-width:1.0;" /><path codeLine="12" d="M109.35,171.27 C124.5,192.07 147.69,223.87 161.35,242.61 " fill="none" id="InMemoryUserRepository-backto-InMemoryUserRepositoryTest" style="stroke:#A80036;stroke-width:1.0;" /><polygon fill="#A80036" points="106.57,167.46,108.6326,177.0904,109.5126,171.5024,115.1006,172.3824,106.57,167.46" style="stroke:#A80036;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="31" x="139.17" y="209.4784">tests</text><path d="M377.78,83.23 C411.41,100.94 448.4,120.42 473.3,133.53 " fill="none" id="UserRepository-backto-PostgresUserRepository" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;" /><polygon fill="none" points="374.78,89.56,360.35,74.05,381.3,77.18,374.78,89.56" style="stroke:#A80036;stroke-width:1.0;" /><path d="M331.86,180.87 C352.89,200.96 379.69,226.57 396.48,242.61 " fill="none" id="UserRepositoryContract-backto-PostgresUserRepositoryTest" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;" /><polygon fill="none" points="327.27,186.16,317.64,167.29,336.94,176.04,327.27,186.16" style="stroke:#A80036;stroke-width:1.0;" /><path codeLine="16" d="M485.59,171.01 C468.11,191.8 441.2,223.79 425.37,242.61 " fill="none" id="PostgresUserRepository-backto-PostgresUserRepositoryTest" style="stroke:#A80036;stroke-width:1.0;" /><polygon fill="#A80036" points="488.63,167.4,479.7796,171.7209,485.415,171.2294,485.9066,176.8648,488.63,167.4" style="stroke:#A80036;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="31" x="463.89" y="209.4784">tests</text></g></svg></p>
+<div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nc">UserRepositoryContract</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">unit</span><span class="p">:</span><span class="w"> </span><span class="n">UserRepository</span>
+
+<span class="w">    </span><span class="nd">@Test</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">`finds user`</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">expected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">unit</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="n">randomUser</span><span class="p">())</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">actual</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">unit</span><span class="p">.</span><span class="na">find</span><span class="p">(</span><span class="n">expected</span><span class="p">.</span><span class="na">id</span><span class="p">)</span>
+<span class="w">        </span><span class="n">assertThat</span><span class="p">(</span><span class="n">actual</span><span class="p">).</span><span class="na">isEqualTo</span><span class="p">(</span><span class="n">expected</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Test</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">`won&#39;t find absent user`</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">unit</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="n">randomUser</span><span class="p">())</span>
+<span class="w">        </span><span class="n">assertThat</span><span class="p">(</span><span class="n">user</span><span class="p">).</span><span class="na">isNull</span><span class="p">()</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Note that there is no implementation specific code in here.
+Every test is defined using the <code>UserRepository</code> interface.
+In addition, there is no setup or teardown logic.</p>
+<div class="admonition tests">
+<p class="admonition-title">Tests</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">InMemoryUserRepositoryTest</label><label for="__tabbed_1_2">PostgresUserRepository</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">InMemoryUserRepositoryTest</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">UserRepositoryContract</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">unit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">InMemoryUserRepository</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nd">@SpringBootTest</span>
+<span class="nd">@ContextConfiguration</span><span class="p">(</span><span class="n">initializers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">Initializer</span><span class="o">::</span><span class="n">class</span><span class="o">]</span><span class="p">)</span>
+<span class="nd">@Testcontainers</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">PostgresUserRepositoryTest</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">UserRepositoryContract</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">companion</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="err">{</span>
+<span class="w">        </span><span class="nd">@Container</span>
+<span class="w">        </span><span class="nd">@ServiceConnection</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">postgres</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Postgres</span><span class="p">()</span>
+<span class="w">    </span><span class="p">}</span>
+
+
+<span class="w">    </span><span class="kd">internal</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Initializer</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">PostgresInitializer</span><span class="p">(</span><span class="n">postgres</span><span class="p">)</span>
+
+<span class="w">    </span><span class="nd">@Import</span><span class="p">(</span><span class="n">PostgresUserRepository</span><span class="o">::</span><span class="n">class</span><span class="p">)</span>
+<span class="w">    </span><span class="nd">@Configuration</span>
+<span class="w">    </span><span class="nd">@ImportAutoConfiguration</span><span class="p">(</span>
+<span class="w">        </span><span class="n">classes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span>
+<span class="w">            </span><span class="n">DataSourceAutoConfiguration</span><span class="o">::</span><span class="n">class</span><span class="p">,</span>
+<span class="w">            </span><span class="n">FlywayAutoConfiguration</span><span class="o">::</span><span class="n">class</span><span class="p">,</span>
+<span class="w">            </span><span class="n">JdbcTemplateAutoConfiguration</span><span class="o">::</span><span class="n">class</span><span class="p">,</span>
+<span class="w">        </span><span class="o">]</span><span class="p">,</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">    </span><span class="kd">open</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">TestConfiguration</span>
+
+<span class="w">    </span><span class="nd">@Autowired</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">lateinit</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">unit</span><span class="p">:</span><span class="w"> </span><span class="n">PostgresUserRepository</span>
+
+<span class="w">    </span><span class="nd">@Autowired</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">lateinit</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">jdbc</span><span class="p">:</span><span class="w"> </span><span class="n">NamedParameterJdbcTemplate</span>
+
+
+<span class="w">    </span><span class="nd">@BeforeEach</span>
+<span class="w">    </span><span class="nd">@AfterEach</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">truncate</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">jdbc</span><span class="p">.</span><span class="na">update</span><span class="p">(</span><span class="s">&quot;TRUNCATE my_table&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">emptyMap</span><span class="o">&lt;</span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="kt">Any</span><span class="o">&gt;</span><span class="p">())</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">Postgres</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">PostgreSQLContainer</span><span class="o">&lt;</span><span class="n">Postgres</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;postgres:16&quot;</span><span class="p">)</span>
+
+<span class="kd">abstract</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">PostgresInitializer</span><span class="p">(</span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">postgres</span><span class="p">:</span><span class="w"> </span><span class="n">Postgres</span><span class="p">)</span><span class="w"> </span><span class="p">:</span>
+<span class="w">    </span><span class="n">ApplicationContextInitializer</span><span class="o">&lt;</span><span class="n">ConfigurableApplicationContext</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="n">configurableApplicationContext</span><span class="p">:</span><span class="w"> </span><span class="n">ConfigurableApplicationContext</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">TestPropertyValues</span><span class="p">.</span><span class="na">of</span><span class="p">(</span>
+<span class="w">            </span><span class="s">&quot;spring.flyway.user: </span><span class="si">${</span><span class="n">postgres</span><span class="p">.</span><span class="na">username</span><span class="si">}</span><span class="s">&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s">&quot;spring.flyway.password: </span><span class="si">${</span><span class="n">postgres</span><span class="p">.</span><span class="na">password</span><span class="si">}</span><span class="s">&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s">&quot;spring.datasource.url: </span><span class="si">${</span><span class="n">postgres</span><span class="p">.</span><span class="na">jdbcUrl</span><span class="si">}</span><span class="s">&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s">&quot;spring.datasource.username: user&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s">&quot;spring.datasource.password: password&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="p">).</span><span class="na">applyTo</span><span class="p">(</span><span class="n">configurableApplicationContext</span><span class="p">.</span><span class="na">environment</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<h3 id="transfer-of-confidence">Transfer of confidence<a class="headerlink" href="#transfer-of-confidence" title="Permanent link">&para;</a></h3>
+<p>You have two implementations,
+one for production that is too slow for tests
+and one that isn&rsquo;t for production but is fast.</p>
+<p>The test for your production variant gives you confidence for production.
+Since a test contract executes and verifies the same tests against your fake,
+you can now be confident that you can use the fake whenever you&rsquo;d usually need the production variant.</p>
+<p>The test contract allows you to transfer the trust from one implementation to another.
+In other words, it&rsquo;s a way to verify the <a href="https://en.wikipedia.org/wiki/Liskov_substitution_principle">Liskov substitution principle</a>.</p>
+<h2 id="alternatives">Alternatives<a class="headerlink" href="#alternatives" title="Permanent link">&para;</a></h2>
+<p>There are some options you could use:</p>
+<h3 id="abstract-test-class">Abstract test class<a class="headerlink" href="#abstract-test-class" title="Permanent link">&para;</a></h3>
+<p>While it works, it&rsquo;s not ideal. You can only have one base class and e.g. some database testing
+libraries/frameworks require you to use class inheritance which is then no longer possible.
+Also, I&rsquo;m not a big fan of inheritance and favor <a href="../../composition/">composition</a> whenever I can.</p>
+<h3 id="parameterizedtest"><code>@ParameterizedTest</code><a class="headerlink" href="#parameterizedtest" title="Permanent link">&para;</a></h3>
+<p>&hellip; using instances of all implementations as the parameters.
+Technically doable, but it would also require to have all setup and teardown logic for all implementations
+in a single test - which will quickly become a maintenance nightmare.</p>
+<p>Both of these also share the downside that one can&rsquo;t easily split the tests up into smaller test classes,
+because one would need to repeat itself - a lot.</p>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-test-interfaces-and-default-methods">JUnit 5 User Guide: 2.13. Test Interfaces and Default Methods</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Liskov_substitution_principle">Liskov substitution principle</a></li>
+</ul>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 16, 2025</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.sections"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+    
+  </body>
+</html>

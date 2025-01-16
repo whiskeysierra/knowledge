@@ -10,8 +10,15 @@
       
         <link rel="canonical" href="https://whiskeysierra.github.io/knowledge/patterns/composite/">
       
+      
+        <link rel="prev" href="../../primitive-obsession/">
+      
+      
+        <link rel="next" href="../staged-builders/">
+      
+      
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
     
     
       
@@ -19,15 +26,14 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.472b142f.min.css">
-      
-        
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.08040f6c.min.css">
-        
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
       
       
 
+
     
+    
+      
     
     
       
@@ -39,7 +45,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -49,14 +55,8 @@
   </head>
   
   
-    
-    
-    
-    
-    
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="None" data-md-color-accent="None">
+    <body dir="ltr">
   
-    
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -76,16 +76,19 @@
     
       
 
-<header class="md-header" data-md-component="header">
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="Knowledge" class="md-header__button md-logo" aria-label="Knowledge" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -105,9 +108,13 @@
     </div>
     
     
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
       </label>
       <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
@@ -115,24 +122,27 @@
     <form class="md-search__form" name="search">
       <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
       <nav class="md-search__options" aria-label="Search">
         
         <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
       </nav>
       
     </form>
     <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
             Initializing search
           </div>
-          <ol class="md-search-result__list"></ol>
+          <ol class="md-search-result__list" role="presentation"></ol>
         </div>
       </div>
     </div>
@@ -144,7 +154,7 @@
         <a href="https://github.com/whiskeysierra/knowledge" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
   </div>
   <div class="md-source__repository">
     Edit on Github
@@ -174,12 +184,13 @@
                     
 
 
+
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="Knowledge" class="md-nav__button md-logo" aria-label="Knowledge" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
     Knowledge
@@ -189,7 +200,7 @@
       <a href="https://github.com/whiskeysierra/knowledge" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
   </div>
   <div class="md-source__repository">
     Edit on Github
@@ -201,14 +212,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../.." class="md-nav__link">
-        Home
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
       </a>
     </li>
   
@@ -216,14 +232,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../compile-time-runtime/" class="md-nav__link">
-        Compile time > runtime
+        
+  
+  <span class="md-ellipsis">
+    Compile time > runtime
+  </span>
+  
+
       </a>
     </li>
   
@@ -231,14 +252,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../composition/" class="md-nav__link">
-        Composition
+        
+  
+  <span class="md-ellipsis">
+    Composition
+  </span>
+  
+
       </a>
     </li>
   
@@ -246,14 +272,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../primitive-obsession/" class="md-nav__link">
-        Primitive Obsession
+        
+  
+  <span class="md-ellipsis">
+    Primitive Obsession
+  </span>
+  
+
       </a>
     </li>
   
@@ -261,56 +292,79 @@
     
       
       
-      
-
   
   
     
   
   
+  
+    
+    
     
       
+        
+        
+      
+    
     
     <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_5">
-          Patterns
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Patterns" data-md-level="1">
-        <label class="md-nav__title" for="__nav_5">
-          <span class="md-nav__icon md-icon"></span>
-          Patterns
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
           
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Patterns
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Patterns
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
             
               
+                
   
   
     
+  
   
   
     <li class="md-nav__item md-nav__item--active">
       
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Composite
+          
+  
+  <span class="md-ellipsis">
+    Composite
+  </span>
+  
+
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Composite
+        
+  
+  <span class="md-ellipsis">
+    Composite
+  </span>
+  
+
       </a>
       
         
@@ -328,63 +382,81 @@
       
         <li class="md-nav__item">
   <a href="#intent" class="md-nav__link">
-    💬 Intent
+    <span class="md-ellipsis">
+      💬 Intent
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#problem" class="md-nav__link">
-    ☹️ Problem
+    <span class="md-ellipsis">
+      ☹️ Problem
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#solution" class="md-nav__link">
-    😊 Solution
+    <span class="md-ellipsis">
+      😊 Solution
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#structure" class="md-nav__link">
-    Structure
+    <span class="md-ellipsis">
+      Structure
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#pseudocode" class="md-nav__link">
-    Pseudocode
+    <span class="md-ellipsis">
+      Pseudocode
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#applicability" class="md-nav__link">
-    💡Applicability
+    <span class="md-ellipsis">
+      💡Applicability
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#how-to-implement" class="md-nav__link">
-    📝 How to implement
+    <span class="md-ellipsis">
+      📝 How to implement
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#pros-and-cons" class="md-nav__link">
-    ⚖︎ Pros and Cons
+    <span class="md-ellipsis">
+      ⚖︎ Pros and Cons
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#references" class="md-nav__link">
-    References
+    <span class="md-ellipsis">
+      References
+    </span>
   </a>
   
 </li>
@@ -396,52 +468,163 @@
     </li>
   
 
-            
-          
+              
             
               
+                
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../contract-style-unit-testing/" class="md-nav__link">
-        Contract-style Unit Testing
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
   
   
   
     <li class="md-nav__item">
       <a href="../staged-builders/" class="md-nav__link">
-        Staged Builders
+        
+  
+  <span class="md-ellipsis">
+    Staged Builders
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../test-contract/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Test contract
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../time-dependent/" class="md-nav__link">
-        Time-dependent
+        
+  
+  <span class="md-ellipsis">
+    Time-dependent
+  </span>
+  
+
       </a>
     </li>
   
 
+              
             
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
           
-        </ul>
-      </nav>
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Practices
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Practices
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practices/either-stub-or-verify-not-both/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Either stub or verify, not both
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practices/hand-roll-test-doubles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hand-roll test doubles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -472,63 +655,81 @@
       
         <li class="md-nav__item">
   <a href="#intent" class="md-nav__link">
-    💬 Intent
+    <span class="md-ellipsis">
+      💬 Intent
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#problem" class="md-nav__link">
-    ☹️ Problem
+    <span class="md-ellipsis">
+      ☹️ Problem
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#solution" class="md-nav__link">
-    😊 Solution
+    <span class="md-ellipsis">
+      😊 Solution
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#structure" class="md-nav__link">
-    Structure
+    <span class="md-ellipsis">
+      Structure
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#pseudocode" class="md-nav__link">
-    Pseudocode
+    <span class="md-ellipsis">
+      Pseudocode
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#applicability" class="md-nav__link">
-    💡Applicability
+    <span class="md-ellipsis">
+      💡Applicability
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#how-to-implement" class="md-nav__link">
-    📝 How to implement
+    <span class="md-ellipsis">
+      📝 How to implement
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#pros-and-cons" class="md-nav__link">
-    ⚖︎ Pros and Cons
+    <span class="md-ellipsis">
+      ⚖︎ Pros and Cons
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#references" class="md-nav__link">
-    References
+    <span class="md-ellipsis">
+      References
+    </span>
   </a>
   
 </li>
@@ -547,10 +748,8 @@
                 
                   
 
-  <a href="https://github.com/whiskeysierra/knowledge?path=/docs/patterns/composite.md" title="Edit this page" class="md-content__button md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
-  </a>
+  
+  
 
 
   <h1>Composite</h1>
@@ -560,40 +759,37 @@
 <h2 id="problem">☹️ Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>I often stumble upon the following problem.
 Starting off with a class that accepts a callback of some kind.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">UserService</span><span class="p">(</span><span class="w"></span>
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">repository</span><span class="p">:</span><span class="w"> </span><span class="n">UserRepository</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">listener</span><span class="p">:</span><span class="w"> </span><span class="n">Listener</span><span class="w"></span>
-<span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">UserService</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">repository</span><span class="p">:</span><span class="w"> </span><span class="n">UserRepository</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">listener</span><span class="p">:</span><span class="w"> </span><span class="n">Listener</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="n">user</span><span class="p">:</span><span class="w"> </span><span class="n">User</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">require</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="na">isValid</span><span class="p">())</span><span class="w"></span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">created</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">repository</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="n">user</span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="n">listener</span><span class="p">.</span><span class="na">onCreated</span><span class="p">(</span><span class="n">created</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="n">user</span><span class="p">:</span><span class="w"> </span><span class="n">User</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">require</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="na">isValid</span><span class="p">())</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">created</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">repository</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+<span class="w">        </span><span class="n">listener</span><span class="p">.</span><span class="na">onCreated</span><span class="p">(</span><span class="n">created</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div>
-
 <p>Could be a listener, notifier or anything along those lines:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nc">Listener</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreated</span><span class="p">(</span><span class="n">user</span><span class="p">:</span><span class="w"> </span><span class="n">User</span><span class="p">)</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nc">Listener</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreated</span><span class="p">(</span><span class="n">user</span><span class="p">:</span><span class="w"> </span><span class="n">User</span><span class="p">)</span>
+<span class="p">}</span>
 </code></pre></div>
-
 <p>More often than not, I have the need to add support for multiple of callbacks.
 The straightforward and somewhat compelling implementation looks like this: </p>
-<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">UserService</span><span class="p">(</span><span class="w"></span>
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">repository</span><span class="p">:</span><span class="w"> </span><span class="n">UserRepository</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">listeners</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Listener</span><span class="o">&gt;</span><span class="w"></span>
-<span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">UserService</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">repository</span><span class="p">:</span><span class="w"> </span><span class="n">UserRepository</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">listeners</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Listener</span><span class="o">&gt;</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="n">user</span><span class="p">:</span><span class="w"> </span><span class="n">User</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">require</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="na">isValid</span><span class="p">())</span><span class="w"></span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">created</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">repository</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="n">user</span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="n">listeners</span><span class="p">.</span><span class="na">forEach</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">onCreated</span><span class="p">(</span><span class="n">created</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="n">user</span><span class="p">:</span><span class="w"> </span><span class="n">User</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">require</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="na">isValid</span><span class="p">())</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">created</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">repository</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+<span class="w">        </span><span class="n">listeners</span><span class="p">.</span><span class="na">forEach</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">onCreated</span><span class="p">(</span><span class="n">created</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div>
-
 <p>It does have a few aspects in its favor:</p>
 <ul>
 <li>✅ Easy to understand</li>
@@ -628,22 +824,21 @@ just to name a few:</p>
 the complexity of <code>UserService</code> quite a bit.</p>
 <h2 id="solution">😊 Solution<a class="headerlink" href="#solution" title="Permanent link">&para;</a></h2>
 <h2 id="structure">Structure<a class="headerlink" href="#structure" title="Permanent link">&para;</a></h2>
-<p><svg contentScriptType="application/ecmascript" contentStyleType="text/css" preserveAspectRatio="none" style="background:#FFFFFF" version="1.1" viewBox="0 0 400 317" width="100%" zoomAndPan="magnify" class="uml" alt="uml diagram" title=""><defs><filter height="300%" id="f12hqkvnijzhq6" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0" /><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0" /><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3" /><feBlend in="SourceGraphic" in2="blurOut3" mode="normal" /></filter></defs><g><rect codeLine="3" fill="#FEFECE" filter="url(#f12hqkvnijzhq6)" height="52.9551" id="Component" style="stroke:#A80036;stroke-width:1.5;" width="98" x="65.5" y="116" /><ellipse cx="80.5" cy="132" fill="#B4A7E5" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" /><path d="M76.9277,128.2651 L76.9277,126.1069 L84.3071,126.1069 L84.3071,128.2651 L81.8418,128.2651 L81.8418,136.3418 L84.3071,136.3418 L84.3071,138.5 L76.9277,138.5 L76.9277,136.3418 L79.3931,136.3418 L79.3931,128.2651 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="66" x="94.5" y="136.5352">Component</text><line style="stroke:#A80036;stroke-width:1.5;" x1="66.5" x2="162.5" y1="148" y2="148" /><ellipse cx="76.5" cy="159" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="27" x="85.5" y="162.6348">run()</text><rect codeLine="5" fill="#FEFECE" filter="url(#f12hqkvnijzhq6)" height="73.9102" id="CompositeComponent" style="stroke:#A80036;stroke-width:1.5;" width="215" x="7" y="230" /><ellipse cx="47.2" cy="246" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" /><path d="M49.6731,252.1431 Q49.0921,252.4419 48.4529,252.5913 Q47.8138,252.7407 47.1082,252.7407 Q44.6014,252.7407 43.2815,251.0889 Q41.9617,249.437 41.9617,246.3159 Q41.9617,243.1865 43.2815,241.5347 Q44.6014,239.8828 47.1082,239.8828 Q47.8138,239.8828 48.4612,240.0322 Q49.1087,240.1816 49.6731,240.4805 L49.6731,243.2031 Q49.0423,242.6221 48.4488,242.3523 Q47.8553,242.0825 47.2244,242.0825 Q45.8797,242.0825 45.1949,243.1492 Q44.5101,244.2158 44.5101,246.3159 Q44.5101,248.4077 45.1949,249.4744 Q45.8797,250.541 47.2244,250.541 Q47.8553,250.541 48.4488,250.2712 Q49.0423,250.0015 49.6731,249.4204 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="127" x="66.8" y="250.5352">CompositeComponent</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="221" y1="262" y2="262" /><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="15" y="270" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="189" x="27" y="276.6348">elements: Collection&lt;Component&gt;</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="221" y1="282.9551" y2="282.9551" /><ellipse cx="18" cy="293.9551" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="27" x="27" y="297.5898">run()</text><rect codeLine="9" fill="#FEFECE" filter="url(#f12hqkvnijzhq6)" height="52.9551" id="SomeComponent" style="stroke:#A80036;stroke-width:1.5;" width="129" x="257" y="240.5" /><ellipse cx="272" cy="256.5" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" /><path d="M274.4731,262.6431 Q273.8921,262.9419 273.2529,263.0913 Q272.6138,263.2407 271.9082,263.2407 Q269.4014,263.2407 268.0815,261.5889 Q266.7617,259.937 266.7617,256.8159 Q266.7617,253.6865 268.0815,252.0347 Q269.4014,250.3828 271.9082,250.3828 Q272.6138,250.3828 273.2612,250.5322 Q273.9087,250.6816 274.4731,250.9805 L274.4731,253.7031 Q273.8423,253.1221 273.2488,252.8523 Q272.6553,252.5825 272.0244,252.5825 Q270.6797,252.5825 269.9949,253.6492 Q269.3101,254.7158 269.3101,256.8159 Q269.3101,258.9077 269.9949,259.9744 Q270.6797,261.041 272.0244,261.041 Q272.6553,261.041 273.2488,260.7712 Q273.8423,260.5015 274.4731,259.9204 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="97" x="286" y="261.0352">SomeComponent</text><line style="stroke:#A80036;stroke-width:1.5;" x1="258" x2="385" y1="272.5" y2="272.5" /><ellipse cx="268" cy="283.5" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="27" x="277" y="287.1348">run()</text><rect fill="#FEFECE" filter="url(#f12hqkvnijzhq6)" height="32" id="Client" style="stroke:#A80036;stroke-width:1.5;" width="64" x="82.5" y="7" /><ellipse cx="97.5" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" /><path d="M99.9731,29.1431 Q99.3921,29.4419 98.7529,29.5913 Q98.1138,29.7407 97.4082,29.7407 Q94.9014,29.7407 93.5815,28.0889 Q92.2617,26.437 92.2617,23.3159 Q92.2617,20.1865 93.5815,18.5347 Q94.9014,16.8828 97.4082,16.8828 Q98.1138,16.8828 98.7612,17.0322 Q99.4087,17.1816 99.9731,17.4805 L99.9731,20.2031 Q99.3423,19.6221 98.7488,19.3523 Q98.1553,19.0825 97.5244,19.0825 Q96.1797,19.0825 95.4949,20.1492 Q94.8101,21.2158 94.8101,23.3159 Q94.8101,25.4077 95.4949,26.4744 Q96.1797,27.541 97.5244,27.541 Q98.1553,27.541 98.7488,27.2712 Q99.3423,27.0015 99.9731,26.4204 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="32" x="111.5" y="27.5352">Client</text><path codeLine="12" d="M114.5,39.36 C114.5,57.4 114.5,87.79 114.5,110.73 " fill="none" id="Client-to-Component" style="stroke:#A80036;stroke-width:1.0;" /><polygon fill="#A80036" points="114.5,115.8,118.5,106.8,114.5,110.8,110.5,106.8,114.5,115.8" style="stroke:#A80036;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="22" x="115.5" y="82.5684">use</text><path codeLine="13" d="M102.54,182.37 C101.42,197.51 101.49,214.77 102.74,229.67 " fill="none" id="Component-backto-CompositeComponent" style="stroke:#A80036;stroke-width:1.0;" /><polygon fill="#FFFFFF" points="103.89,169.18,99.2976,174.7397,102.6633,181.1171,107.2557,175.5575,103.89,169.18" style="stroke:#A80036;stroke-width:1.0;" /><path codeLine="14" d="M127.62,189.45 C128.29,202.74 128.07,217.05 126.95,229.67 " fill="none" id="Component-backto-CompositeComponent-1" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;" /><polygon fill="none" points="120.62,189.74,125.73,169.18,134.56,188.44,120.62,189.74" style="stroke:#A80036;stroke-width:1.0;" /><path codeLine="15" d="M175.14,179.39 C208.14,198.91 248.2,222.62 278.06,240.29 " fill="none" id="Component-backto-SomeComponent" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;" /><polygon fill="none" points="171.29,185.24,157.64,169.03,178.42,173.19,171.29,185.24" style="stroke:#A80036;stroke-width:1.0;" /></g></svg></p>
+<p><svg xmlns="http://www.w3.org/2000/svg" contentScriptType="application/ecmascript" contentStyleType="text/css" preserveAspectRatio="xMaxYMax meet" style="background:#FFFFFF" version="1.1" viewBox="0 0 400 317" width="100%" zoomAndPan="magnify" class="uml" alt="uml diagram" title=""><defs><filter height="300%" id="f12hqkvnijzhq6" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0" /><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0" /><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3" /><feBlend in="SourceGraphic" in2="blurOut3" mode="normal" /></filter></defs><g><rect codeLine="3" fill="#FEFECE" filter="url(#f12hqkvnijzhq6)" height="52.9551" id="Component" style="stroke:#A80036;stroke-width:1.5;" width="98" x="65.5" y="116" /><ellipse cx="80.5" cy="132" fill="#B4A7E5" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" /><path d="M76.9277,128.2651 L76.9277,126.1069 L84.3071,126.1069 L84.3071,128.2651 L81.8418,128.2651 L81.8418,136.3418 L84.3071,136.3418 L84.3071,138.5 L76.9277,138.5 L76.9277,136.3418 L79.3931,136.3418 L79.3931,128.2651 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="66" x="94.5" y="136.5352">Component</text><line style="stroke:#A80036;stroke-width:1.5;" x1="66.5" x2="162.5" y1="148" y2="148" /><ellipse cx="76.5" cy="159" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="27" x="85.5" y="162.6348">run()</text><rect codeLine="5" fill="#FEFECE" filter="url(#f12hqkvnijzhq6)" height="73.9102" id="CompositeComponent" style="stroke:#A80036;stroke-width:1.5;" width="215" x="7" y="230" /><ellipse cx="47.2" cy="246" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" /><path d="M49.6731,252.1431 Q49.0921,252.4419 48.4529,252.5913 Q47.8138,252.7407 47.1082,252.7407 Q44.6014,252.7407 43.2815,251.0889 Q41.9617,249.437 41.9617,246.3159 Q41.9617,243.1865 43.2815,241.5347 Q44.6014,239.8828 47.1082,239.8828 Q47.8138,239.8828 48.4612,240.0322 Q49.1087,240.1816 49.6731,240.4805 L49.6731,243.2031 Q49.0423,242.6221 48.4488,242.3523 Q47.8553,242.0825 47.2244,242.0825 Q45.8797,242.0825 45.1949,243.1492 Q44.5101,244.2158 44.5101,246.3159 Q44.5101,248.4077 45.1949,249.4744 Q45.8797,250.541 47.2244,250.541 Q47.8553,250.541 48.4488,250.2712 Q49.0423,250.0015 49.6731,249.4204 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="127" x="66.8" y="250.5352">CompositeComponent</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="221" y1="262" y2="262" /><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="15" y="270" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="189" x="27" y="276.6348">elements: Collection&lt;Component&gt;</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="221" y1="282.9551" y2="282.9551" /><ellipse cx="18" cy="293.9551" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="27" x="27" y="297.5898">run()</text><rect codeLine="9" fill="#FEFECE" filter="url(#f12hqkvnijzhq6)" height="52.9551" id="SomeComponent" style="stroke:#A80036;stroke-width:1.5;" width="129" x="257" y="240.5" /><ellipse cx="272" cy="256.5" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" /><path d="M274.4731,262.6431 Q273.8921,262.9419 273.2529,263.0913 Q272.6138,263.2407 271.9082,263.2407 Q269.4014,263.2407 268.0815,261.5889 Q266.7617,259.937 266.7617,256.8159 Q266.7617,253.6865 268.0815,252.0347 Q269.4014,250.3828 271.9082,250.3828 Q272.6138,250.3828 273.2612,250.5322 Q273.9087,250.6816 274.4731,250.9805 L274.4731,253.7031 Q273.8423,253.1221 273.2488,252.8523 Q272.6553,252.5825 272.0244,252.5825 Q270.6797,252.5825 269.9949,253.6492 Q269.3101,254.7158 269.3101,256.8159 Q269.3101,258.9077 269.9949,259.9744 Q270.6797,261.041 272.0244,261.041 Q272.6553,261.041 273.2488,260.7712 Q273.8423,260.5015 274.4731,259.9204 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="97" x="286" y="261.0352">SomeComponent</text><line style="stroke:#A80036;stroke-width:1.5;" x1="258" x2="385" y1="272.5" y2="272.5" /><ellipse cx="268" cy="283.5" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="27" x="277" y="287.1348">run()</text><rect fill="#FEFECE" filter="url(#f12hqkvnijzhq6)" height="32" id="Client" style="stroke:#A80036;stroke-width:1.5;" width="64" x="82.5" y="7" /><ellipse cx="97.5" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" /><path d="M99.9731,29.1431 Q99.3921,29.4419 98.7529,29.5913 Q98.1138,29.7407 97.4082,29.7407 Q94.9014,29.7407 93.5815,28.0889 Q92.2617,26.437 92.2617,23.3159 Q92.2617,20.1865 93.5815,18.5347 Q94.9014,16.8828 97.4082,16.8828 Q98.1138,16.8828 98.7612,17.0322 Q99.4087,17.1816 99.9731,17.4805 L99.9731,20.2031 Q99.3423,19.6221 98.7488,19.3523 Q98.1553,19.0825 97.5244,19.0825 Q96.1797,19.0825 95.4949,20.1492 Q94.8101,21.2158 94.8101,23.3159 Q94.8101,25.4077 95.4949,26.4744 Q96.1797,27.541 97.5244,27.541 Q98.1553,27.541 98.7488,27.2712 Q99.3423,27.0015 99.9731,26.4204 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="32" x="111.5" y="27.5352">Client</text><path codeLine="12" d="M114.5,39.36 C114.5,57.4 114.5,87.79 114.5,110.73 " fill="none" id="Client-to-Component" style="stroke:#A80036;stroke-width:1.0;" /><polygon fill="#A80036" points="114.5,115.8,118.5,106.8,114.5,110.8,110.5,106.8,114.5,115.8" style="stroke:#A80036;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="22" x="115.5" y="82.5684">use</text><path codeLine="13" d="M102.54,182.37 C101.42,197.51 101.49,214.77 102.74,229.67 " fill="none" id="Component-backto-CompositeComponent" style="stroke:#A80036;stroke-width:1.0;" /><polygon fill="#FFFFFF" points="103.89,169.18,99.2976,174.7397,102.6633,181.1171,107.2557,175.5575,103.89,169.18" style="stroke:#A80036;stroke-width:1.0;" /><path codeLine="14" d="M127.62,189.45 C128.29,202.74 128.07,217.05 126.95,229.67 " fill="none" id="Component-backto-CompositeComponent-1" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;" /><polygon fill="none" points="120.62,189.74,125.73,169.18,134.56,188.44,120.62,189.74" style="stroke:#A80036;stroke-width:1.0;" /><path codeLine="15" d="M175.14,179.39 C208.14,198.91 248.2,222.62 278.06,240.29 " fill="none" id="Component-backto-SomeComponent" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;" /><polygon fill="none" points="171.29,185.24,157.64,169.03,178.42,173.19,171.29,185.24" style="stroke:#A80036;stroke-width:1.0;" /></g></svg></p>
 <h2 id="pseudocode">Pseudocode<a class="headerlink" href="#pseudocode" title="Permanent link">&para;</a></h2>
-<p><svg contentScriptType="application/ecmascript" contentStyleType="text/css" preserveAspectRatio="none" style="background:#FFFFFF" version="1.1" viewBox="0 0 523 317" width="100%" zoomAndPan="magnify" class="uml" alt="uml diagram" title=""><defs><filter height="300%" id="f1g2xovcmjt45a" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0" /><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0" /><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3" /><feBlend in="SourceGraphic" in2="blurOut3" mode="normal" /></filter></defs><g><rect codeLine="3" fill="#FEFECE" filter="url(#f1g2xovcmjt45a)" height="52.9551" id="Listener" style="stroke:#A80036;stroke-width:1.5;" width="77" x="161" y="116" /><ellipse cx="176" cy="132" fill="#B4A7E5" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" /><path d="M172.4277,128.2651 L172.4277,126.1069 L179.8071,126.1069 L179.8071,128.2651 L177.3418,128.2651 L177.3418,136.3418 L179.8071,136.3418 L179.8071,138.5 L172.4277,138.5 L172.4277,136.3418 L174.8931,136.3418 L174.8931,128.2651 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="45" x="190" y="136.5352">Listener</text><line style="stroke:#A80036;stroke-width:1.5;" x1="162" x2="237" y1="148" y2="148" /><ellipse cx="172" cy="159" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="27" x="181" y="162.6348">run()</text><rect codeLine="6" fill="#FEFECE" filter="url(#f1g2xovcmjt45a)" height="73.9102" id="CompositeListener" style="stroke:#A80036;stroke-width:1.5;" width="193" x="7" y="230" /><ellipse cx="46.75" cy="246" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" /><path d="M49.2231,252.1431 Q48.6421,252.4419 48.0029,252.5913 Q47.3638,252.7407 46.6582,252.7407 Q44.1514,252.7407 42.8315,251.0889 Q41.5117,249.437 41.5117,246.3159 Q41.5117,243.1865 42.8315,241.5347 Q44.1514,239.8828 46.6582,239.8828 Q47.3638,239.8828 48.0112,240.0322 Q48.6587,240.1816 49.2231,240.4805 L49.2231,243.2031 Q48.5923,242.6221 47.9988,242.3523 Q47.4053,242.0825 46.7744,242.0825 Q45.4297,242.0825 44.7449,243.1492 Q44.0601,244.2158 44.0601,246.3159 Q44.0601,248.4077 44.7449,249.4744 Q45.4297,250.541 46.7744,250.541 Q47.4053,250.541 47.9988,250.2712 Q48.5923,250.0015 49.2231,249.4204 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="106" x="66.25" y="250.5352">CompositeListener</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="199" y1="262" y2="262" /><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="15" y="270" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="167" x="27" y="276.6348">listeners: Collection&lt;Listener&gt;</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="199" y1="282.9551" y2="282.9551" /><ellipse cx="18" cy="293.9551" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="27" x="27" y="297.5898">run()</text><rect codeLine="10" fill="#FEFECE" filter="url(#f1g2xovcmjt45a)" height="52.9551" id="LoggingListener" style="stroke:#A80036;stroke-width:1.5;" width="121" x="235" y="240.5" /><ellipse cx="250" cy="256.5" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" /><path d="M252.4731,262.6431 Q251.8921,262.9419 251.2529,263.0913 Q250.6138,263.2407 249.9082,263.2407 Q247.4014,263.2407 246.0815,261.5889 Q244.7617,259.937 244.7617,256.8159 Q244.7617,253.6865 246.0815,252.0347 Q247.4014,250.3828 249.9082,250.3828 Q250.6138,250.3828 251.2612,250.5322 Q251.9087,250.6816 252.4731,250.9805 L252.4731,253.7031 Q251.8423,253.1221 251.2488,252.8523 Q250.6553,252.5825 250.0244,252.5825 Q248.6797,252.5825 247.9949,253.6492 Q247.3101,254.7158 247.3101,256.8159 Q247.3101,258.9077 247.9949,259.9744 Q248.6797,261.041 250.0244,261.041 Q250.6553,261.041 251.2488,260.7712 Q251.8423,260.5015 252.4731,259.9204 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="89" x="264" y="261.0352">LoggingListener</text><line style="stroke:#A80036;stroke-width:1.5;" x1="236" x2="355" y1="272.5" y2="272.5" /><ellipse cx="246" cy="283.5" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="27" x="255" y="287.1348">run()</text><rect codeLine="13" fill="#FEFECE" filter="url(#f1g2xovcmjt45a)" height="52.9551" id="MetricsListener" style="stroke:#A80036;stroke-width:1.5;" width="118" x="391.5" y="240.5" /><ellipse cx="406.5" cy="256.5" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" /><path d="M408.9731,262.6431 Q408.3921,262.9419 407.7529,263.0913 Q407.1138,263.2407 406.4082,263.2407 Q403.9014,263.2407 402.5815,261.5889 Q401.2617,259.937 401.2617,256.8159 Q401.2617,253.6865 402.5815,252.0347 Q403.9014,250.3828 406.4082,250.3828 Q407.1138,250.3828 407.7612,250.5322 Q408.4087,250.6816 408.9731,250.9805 L408.9731,253.7031 Q408.3423,253.1221 407.7488,252.8523 Q407.1553,252.5825 406.5244,252.5825 Q405.1797,252.5825 404.4949,253.6492 Q403.8101,254.7158 403.8101,256.8159 Q403.8101,258.9077 404.4949,259.9744 Q405.1797,261.041 406.5244,261.041 Q407.1553,261.041 407.7488,260.7712 Q408.3423,260.5015 408.9731,259.9204 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="86" x="420.5" y="261.0352">MetricsListener</text><line style="stroke:#A80036;stroke-width:1.5;" x1="392.5" x2="508.5" y1="272.5" y2="272.5" /><ellipse cx="402.5" cy="283.5" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="27" x="411.5" y="287.1348">run()</text><rect fill="#FEFECE" filter="url(#f1g2xovcmjt45a)" height="32" id="UserService" style="stroke:#A80036;stroke-width:1.5;" width="98" x="150.5" y="7" /><ellipse cx="165.5" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" /><path d="M167.9731,29.1431 Q167.3921,29.4419 166.7529,29.5913 Q166.1138,29.7407 165.4082,29.7407 Q162.9014,29.7407 161.5815,28.0889 Q160.2617,26.437 160.2617,23.3159 Q160.2617,20.1865 161.5815,18.5347 Q162.9014,16.8828 165.4082,16.8828 Q166.1138,16.8828 166.7612,17.0322 Q167.4087,17.1816 167.9731,17.4805 L167.9731,20.2031 Q167.3423,19.6221 166.7488,19.3523 Q166.1553,19.0825 165.5244,19.0825 Q164.1797,19.0825 163.4949,20.1492 Q162.8101,21.2158 162.8101,23.3159 Q162.8101,25.4077 163.4949,26.4744 Q164.1797,27.541 165.5244,27.541 Q166.1553,27.541 166.7488,27.2712 Q167.3423,27.0015 167.9731,26.4204 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="66" x="179.5" y="27.5352">UserService</text><path codeLine="17" d="M199.5,39.36 C199.5,57.4 199.5,87.79 199.5,110.73 " fill="none" id="UserService-to-Listener" style="stroke:#A80036;stroke-width:1.0;" /><polygon fill="#A80036" points="199.5,115.8,203.5,106.8,199.5,110.8,195.5,106.8,199.5,115.8" style="stroke:#A80036;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="22" x="200.5" y="82.5684">use</text><path codeLine="18" d="M159.86,179.15 C146.04,195.03 131.38,213.71 120.21,229.67 " fill="none" id="Listener-backto-CompositeListener" style="stroke:#A80036;stroke-width:1.0;" /><polygon fill="#FFFFFF" points="168.77,169.18,161.7905,170.993,160.7796,178.1329,167.7591,176.3199,168.77,169.18" style="stroke:#A80036;stroke-width:1.0;" /><path codeLine="19" d="M179.03,186.11 C168.8,200.31 156.36,215.99 144.43,229.67 " fill="none" id="Listener-backto-CompositeListener-1" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;" /><polygon fill="none" points="173.54,181.74,190.6,169.18,185.1,189.64,173.54,181.74" style="stroke:#A80036;stroke-width:1.0;" /><path codeLine="20" d="M232.07,185.06 C246.43,203.39 262.86,224.35 275.4,240.35 " fill="none" id="Listener-backto-LoggingListener" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;" /><polygon fill="none" points="226.45,189.24,219.62,169.18,237.47,180.6,226.45,189.24" style="stroke:#A80036;stroke-width:1.0;" /><path codeLine="21" d="M256.21,171.18 C298.67,191.9 356.33,220.04 397.79,240.28 " fill="none" id="Listener-backto-MetricsListener" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;" /><polygon fill="none" points="253.07,177.43,238.17,162.37,259.21,164.85,253.07,177.43" style="stroke:#A80036;stroke-width:1.0;" /></g></svg></p>
+<p><svg xmlns="http://www.w3.org/2000/svg" contentScriptType="application/ecmascript" contentStyleType="text/css" preserveAspectRatio="xMaxYMax meet" style="background:#FFFFFF" version="1.1" viewBox="0 0 523 317" width="100%" zoomAndPan="magnify" class="uml" alt="uml diagram" title=""><defs><filter height="300%" id="f1g2xovcmjt45a" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0" /><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0" /><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3" /><feBlend in="SourceGraphic" in2="blurOut3" mode="normal" /></filter></defs><g><rect codeLine="3" fill="#FEFECE" filter="url(#f1g2xovcmjt45a)" height="52.9551" id="Listener" style="stroke:#A80036;stroke-width:1.5;" width="77" x="161" y="116" /><ellipse cx="176" cy="132" fill="#B4A7E5" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" /><path d="M172.4277,128.2651 L172.4277,126.1069 L179.8071,126.1069 L179.8071,128.2651 L177.3418,128.2651 L177.3418,136.3418 L179.8071,136.3418 L179.8071,138.5 L172.4277,138.5 L172.4277,136.3418 L174.8931,136.3418 L174.8931,128.2651 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="45" x="190" y="136.5352">Listener</text><line style="stroke:#A80036;stroke-width:1.5;" x1="162" x2="237" y1="148" y2="148" /><ellipse cx="172" cy="159" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="27" x="181" y="162.6348">run()</text><rect codeLine="6" fill="#FEFECE" filter="url(#f1g2xovcmjt45a)" height="73.9102" id="CompositeListener" style="stroke:#A80036;stroke-width:1.5;" width="193" x="7" y="230" /><ellipse cx="46.75" cy="246" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" /><path d="M49.2231,252.1431 Q48.6421,252.4419 48.0029,252.5913 Q47.3638,252.7407 46.6582,252.7407 Q44.1514,252.7407 42.8315,251.0889 Q41.5117,249.437 41.5117,246.3159 Q41.5117,243.1865 42.8315,241.5347 Q44.1514,239.8828 46.6582,239.8828 Q47.3638,239.8828 48.0112,240.0322 Q48.6587,240.1816 49.2231,240.4805 L49.2231,243.2031 Q48.5923,242.6221 47.9988,242.3523 Q47.4053,242.0825 46.7744,242.0825 Q45.4297,242.0825 44.7449,243.1492 Q44.0601,244.2158 44.0601,246.3159 Q44.0601,248.4077 44.7449,249.4744 Q45.4297,250.541 46.7744,250.541 Q47.4053,250.541 47.9988,250.2712 Q48.5923,250.0015 49.2231,249.4204 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="106" x="66.25" y="250.5352">CompositeListener</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="199" y1="262" y2="262" /><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="15" y="270" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="167" x="27" y="276.6348">listeners: Collection&lt;Listener&gt;</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="199" y1="282.9551" y2="282.9551" /><ellipse cx="18" cy="293.9551" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="27" x="27" y="297.5898">run()</text><rect codeLine="10" fill="#FEFECE" filter="url(#f1g2xovcmjt45a)" height="52.9551" id="LoggingListener" style="stroke:#A80036;stroke-width:1.5;" width="121" x="235" y="240.5" /><ellipse cx="250" cy="256.5" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" /><path d="M252.4731,262.6431 Q251.8921,262.9419 251.2529,263.0913 Q250.6138,263.2407 249.9082,263.2407 Q247.4014,263.2407 246.0815,261.5889 Q244.7617,259.937 244.7617,256.8159 Q244.7617,253.6865 246.0815,252.0347 Q247.4014,250.3828 249.9082,250.3828 Q250.6138,250.3828 251.2612,250.5322 Q251.9087,250.6816 252.4731,250.9805 L252.4731,253.7031 Q251.8423,253.1221 251.2488,252.8523 Q250.6553,252.5825 250.0244,252.5825 Q248.6797,252.5825 247.9949,253.6492 Q247.3101,254.7158 247.3101,256.8159 Q247.3101,258.9077 247.9949,259.9744 Q248.6797,261.041 250.0244,261.041 Q250.6553,261.041 251.2488,260.7712 Q251.8423,260.5015 252.4731,259.9204 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="89" x="264" y="261.0352">LoggingListener</text><line style="stroke:#A80036;stroke-width:1.5;" x1="236" x2="355" y1="272.5" y2="272.5" /><ellipse cx="246" cy="283.5" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="27" x="255" y="287.1348">run()</text><rect codeLine="13" fill="#FEFECE" filter="url(#f1g2xovcmjt45a)" height="52.9551" id="MetricsListener" style="stroke:#A80036;stroke-width:1.5;" width="118" x="391.5" y="240.5" /><ellipse cx="406.5" cy="256.5" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" /><path d="M408.9731,262.6431 Q408.3921,262.9419 407.7529,263.0913 Q407.1138,263.2407 406.4082,263.2407 Q403.9014,263.2407 402.5815,261.5889 Q401.2617,259.937 401.2617,256.8159 Q401.2617,253.6865 402.5815,252.0347 Q403.9014,250.3828 406.4082,250.3828 Q407.1138,250.3828 407.7612,250.5322 Q408.4087,250.6816 408.9731,250.9805 L408.9731,253.7031 Q408.3423,253.1221 407.7488,252.8523 Q407.1553,252.5825 406.5244,252.5825 Q405.1797,252.5825 404.4949,253.6492 Q403.8101,254.7158 403.8101,256.8159 Q403.8101,258.9077 404.4949,259.9744 Q405.1797,261.041 406.5244,261.041 Q407.1553,261.041 407.7488,260.7712 Q408.3423,260.5015 408.9731,259.9204 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="86" x="420.5" y="261.0352">MetricsListener</text><line style="stroke:#A80036;stroke-width:1.5;" x1="392.5" x2="508.5" y1="272.5" y2="272.5" /><ellipse cx="402.5" cy="283.5" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="27" x="411.5" y="287.1348">run()</text><rect fill="#FEFECE" filter="url(#f1g2xovcmjt45a)" height="32" id="UserService" style="stroke:#A80036;stroke-width:1.5;" width="98" x="150.5" y="7" /><ellipse cx="165.5" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" /><path d="M167.9731,29.1431 Q167.3921,29.4419 166.7529,29.5913 Q166.1138,29.7407 165.4082,29.7407 Q162.9014,29.7407 161.5815,28.0889 Q160.2617,26.437 160.2617,23.3159 Q160.2617,20.1865 161.5815,18.5347 Q162.9014,16.8828 165.4082,16.8828 Q166.1138,16.8828 166.7612,17.0322 Q167.4087,17.1816 167.9731,17.4805 L167.9731,20.2031 Q167.3423,19.6221 166.7488,19.3523 Q166.1553,19.0825 165.5244,19.0825 Q164.1797,19.0825 163.4949,20.1492 Q162.8101,21.2158 162.8101,23.3159 Q162.8101,25.4077 163.4949,26.4744 Q164.1797,27.541 165.5244,27.541 Q166.1553,27.541 166.7488,27.2712 Q167.3423,27.0015 167.9731,26.4204 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="66" x="179.5" y="27.5352">UserService</text><path codeLine="17" d="M199.5,39.36 C199.5,57.4 199.5,87.79 199.5,110.73 " fill="none" id="UserService-to-Listener" style="stroke:#A80036;stroke-width:1.0;" /><polygon fill="#A80036" points="199.5,115.8,203.5,106.8,199.5,110.8,195.5,106.8,199.5,115.8" style="stroke:#A80036;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="22" x="200.5" y="82.5684">use</text><path codeLine="18" d="M159.86,179.15 C146.04,195.03 131.38,213.71 120.21,229.67 " fill="none" id="Listener-backto-CompositeListener" style="stroke:#A80036;stroke-width:1.0;" /><polygon fill="#FFFFFF" points="168.77,169.18,161.7905,170.993,160.7796,178.1329,167.7591,176.3199,168.77,169.18" style="stroke:#A80036;stroke-width:1.0;" /><path codeLine="19" d="M179.03,186.11 C168.8,200.31 156.36,215.99 144.43,229.67 " fill="none" id="Listener-backto-CompositeListener-1" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;" /><polygon fill="none" points="173.54,181.74,190.6,169.18,185.1,189.64,173.54,181.74" style="stroke:#A80036;stroke-width:1.0;" /><path codeLine="20" d="M232.07,185.06 C246.43,203.39 262.86,224.35 275.4,240.35 " fill="none" id="Listener-backto-LoggingListener" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;" /><polygon fill="none" points="226.45,189.24,219.62,169.18,237.47,180.6,226.45,189.24" style="stroke:#A80036;stroke-width:1.0;" /><path codeLine="21" d="M256.21,171.18 C298.67,191.9 356.33,220.04 397.79,240.28 " fill="none" id="Listener-backto-MetricsListener" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;" /><polygon fill="none" points="253.07,177.43,238.17,162.37,259.21,164.85,253.07,177.43" style="stroke:#A80036;stroke-width:1.0;" /></g></svg></p>
 <p>The ideal solution addresses all concerns above.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">UserService</span><span class="p">(</span><span class="w"></span>
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">repository</span><span class="p">:</span><span class="w"> </span><span class="n">UserRepository</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">listener</span><span class="p">:</span><span class="w"> </span><span class="n">Listener</span><span class="w"></span>
-<span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="n">user</span><span class="p">:</span><span class="w"> </span><span class="n">User</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">require</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="na">isValid</span><span class="p">())</span><span class="w"></span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">created</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">repository</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="n">user</span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="n">listener</span><span class="p">.</span><span class="na">onCreated</span><span class="p">(</span><span class="n">created</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">UserService</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">repository</span><span class="p">:</span><span class="w"> </span><span class="n">UserRepository</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">listener</span><span class="p">:</span><span class="w"> </span><span class="n">Listener</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="n">user</span><span class="p">:</span><span class="w"> </span><span class="n">User</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">require</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="na">isValid</span><span class="p">())</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">created</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">repository</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+<span class="w">        </span><span class="n">listener</span><span class="p">.</span><span class="na">onCreated</span><span class="p">(</span><span class="n">created</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div>
-
 <p>The <code>UserService</code> didn&rsquo;t need to change compared to the original design.
 No principle would be violated:</p>
 <ul>
@@ -651,79 +846,77 @@ No principle would be violated:</p>
 <li>✅ <a href="https://en.wikipedia.org/wiki/Open%E2%80%93closed_principle">Open-closed principle</a></li>
 </ul>
 <p>We create a new class instead:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">CompositeListener</span><span class="p">(</span><span class="w"></span>
-<span class="w">    </span><span class="kd">internal</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">listeners</span><span class="p">:</span><span class="w"> </span><span class="n">Collection</span><span class="o">&lt;</span><span class="n">Listener</span><span class="o">&gt;</span><span class="p">,</span><span class="w"></span>
-<span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Listener</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreated</span><span class="p">(</span><span class="n">user</span><span class="p">:</span><span class="w"> </span><span class="n">User</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">listeners</span><span class="p">.</span><span class="na">forEach</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">onCreated</span><span class="p">(</span><span class="n">user</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">CompositeListener</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">internal</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">listeners</span><span class="p">:</span><span class="w"> </span><span class="n">Collection</span><span class="o">&lt;</span><span class="n">Listener</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Listener</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreated</span><span class="p">(</span><span class="n">user</span><span class="p">:</span><span class="w"> </span><span class="n">User</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">listeners</span><span class="p">.</span><span class="na">forEach</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">onCreated</span><span class="p">(</span><span class="n">user</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div>
-
 <p>The other concerns could (as needed) all addressed with separate classes
 using the <em>Decorator</em> pattern:</p>
 <ul>
 <li>✅ Error handling<br />
-  <div class="highlight"><pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="n">Listener</span><span class="p">.</span><span class="nf">onError</span><span class="p">(</span><span class="n">handler</span><span class="p">:</span><span class="w"> </span><span class="n">ErrorHandler</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
-<span class="w">    </span><span class="k">object</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nc">Listener</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreated</span><span class="p">(</span><span class="n">user</span><span class="p">:</span><span class="w"> </span><span class="n">User</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="k">this</span><span class="nd">@onError.onCreated</span><span class="p">(</span><span class="n">user</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">:</span><span class="w"> </span><span class="n">Exception</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">handler</span><span class="p">.</span><span class="na">handle</span><span class="p">(</span><span class="k">this</span><span class="nd">@onError</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">))</span><span class="w"> </span><span class="k">return</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+  <div class="highlight"><pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="n">Listener</span><span class="p">.</span><span class="nf">onError</span><span class="p">(</span><span class="n">handler</span><span class="p">:</span><span class="w"> </span><span class="n">ErrorHandler</span><span class="p">)</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="k">object</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nc">Listener</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreated</span><span class="p">(</span><span class="n">user</span><span class="p">:</span><span class="w"> </span><span class="n">User</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">this</span><span class="nd">@onError.onCreated</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">:</span><span class="w"> </span><span class="n">Exception</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">handler</span><span class="p">.</span><span class="na">handle</span><span class="p">(</span><span class="k">this</span><span class="nd">@onError</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">))</span><span class="w"> </span><span class="k">return</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
 </code></pre></div>
-  <div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nc">ErrorHandler</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">handle</span><span class="p">(</span><span class="n">listener</span><span class="p">:</span><span class="w"> </span><span class="n">Listener</span><span class="p">,</span><span class="w"> </span><span class="n">exception</span><span class="p">:</span><span class="w"> </span><span class="n">Exception</span><span class="p">):</span><span class="w"> </span><span class="kt">Boolean</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+  <div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nc">ErrorHandler</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">handle</span><span class="p">(</span><span class="n">listener</span><span class="p">:</span><span class="w"> </span><span class="n">Listener</span><span class="p">,</span><span class="w"> </span><span class="n">exception</span><span class="p">:</span><span class="w"> </span><span class="n">Exception</span><span class="p">):</span><span class="w"> </span><span class="kt">Boolean</span>
+<span class="p">}</span>
 
-<span class="kd">object</span><span class="w"> </span><span class="nc">Log</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ErrorHandler</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">handle</span><span class="p">(</span><span class="n">listener</span><span class="p">:</span><span class="w"> </span><span class="n">Listener</span><span class="p">,</span><span class="w"> </span><span class="n">exception</span><span class="p">:</span><span class="w"> </span><span class="n">Exception</span><span class="p">):</span><span class="w"> </span><span class="kt">Boolean</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">TODO</span><span class="p">(</span><span class="s">&quot;Not yet implemented&quot;</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="kd">object</span><span class="w"> </span><span class="nc">Log</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ErrorHandler</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">handle</span><span class="p">(</span><span class="n">listener</span><span class="p">:</span><span class="w"> </span><span class="n">Listener</span><span class="p">,</span><span class="w"> </span><span class="n">exception</span><span class="p">:</span><span class="w"> </span><span class="n">Exception</span><span class="p">):</span><span class="w"> </span><span class="kt">Boolean</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">TODO</span><span class="p">(</span><span class="s">&quot;Not yet implemented&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 
-<span class="kd">object</span><span class="w"> </span><span class="nc">Ignore</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ErrorHandler</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">handle</span><span class="p">(</span><span class="n">listener</span><span class="p">:</span><span class="w"> </span><span class="n">Listener</span><span class="p">,</span><span class="w"> </span><span class="n">exception</span><span class="p">:</span><span class="w"> </span><span class="n">Exception</span><span class="p">):</span><span class="w"> </span><span class="kt">Boolean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="kd">object</span><span class="w"> </span><span class="nc">Ignore</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ErrorHandler</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">handle</span><span class="p">(</span><span class="n">listener</span><span class="p">:</span><span class="w"> </span><span class="n">Listener</span><span class="p">,</span><span class="w"> </span><span class="n">exception</span><span class="p">:</span><span class="w"> </span><span class="n">Exception</span><span class="p">):</span><span class="w"> </span><span class="kt">Boolean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<span class="p">}</span>
 </code></pre></div></li>
 <li>✅ Concurrency
-  <div class="highlight"><pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="n">CompositeListener</span><span class="p">.</span><span class="nf">concurrent</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
-<span class="w">    </span><span class="k">object</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nc">Listener</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreated</span><span class="p">(</span><span class="n">user</span><span class="p">:</span><span class="w"> </span><span class="n">User</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">runBlocking</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="kd">val</span><span class="w"> </span><span class="nv">async</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">listeners</span><span class="p">.</span><span class="na">map</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">async</span><span class="p">(</span><span class="k">this</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
-<span class="w">                </span><span class="n">CompositeListener</span><span class="p">(</span><span class="n">async</span><span class="p">).</span><span class="na">onCreated</span><span class="p">(</span><span class="n">user</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+  <div class="highlight"><pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="n">CompositeListener</span><span class="p">.</span><span class="nf">concurrent</span><span class="p">()</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="k">object</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nc">Listener</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreated</span><span class="p">(</span><span class="n">user</span><span class="p">:</span><span class="w"> </span><span class="n">User</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">runBlocking</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kd">val</span><span class="w"> </span><span class="nv">async</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">listeners</span><span class="p">.</span><span class="na">map</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">async</span><span class="p">(</span><span class="k">this</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">                </span><span class="n">CompositeListener</span><span class="p">(</span><span class="n">async</span><span class="p">).</span><span class="na">onCreated</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
 </code></pre></div></li>
 <li>✅ Asynchrony
-  <div class="highlight"><pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="n">Listener</span><span class="p">.</span><span class="nf">async</span><span class="p">(</span><span class="n">scope</span><span class="p">:</span><span class="w"> </span><span class="n">CoroutineScope</span><span class="p">):</span><span class="w"> </span><span class="n">Listener</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
-<span class="w">    </span><span class="k">object</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nc">Listener</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreated</span><span class="p">(</span><span class="n">user</span><span class="p">:</span><span class="w"> </span><span class="n">User</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">scope</span><span class="p">.</span><span class="na">launch</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">this</span><span class="nd">@async.onCreated</span><span class="p">(</span><span class="n">user</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+  <div class="highlight"><pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="n">Listener</span><span class="p">.</span><span class="nf">async</span><span class="p">(</span><span class="n">scope</span><span class="p">:</span><span class="w"> </span><span class="n">CoroutineScope</span><span class="p">):</span><span class="w"> </span><span class="n">Listener</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="k">object</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nc">Listener</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreated</span><span class="p">(</span><span class="n">user</span><span class="p">:</span><span class="w"> </span><span class="n">User</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">scope</span><span class="p">.</span><span class="na">launch</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">this</span><span class="nd">@async.onCreated</span><span class="p">(</span><span class="n">user</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
 </code></pre></div></li>
 <li>✅ Dynamic listener de/registration<br />
   Just pass a <code>CopyOnWriteArrayList</code> to <code>CompositeListener</code> and modify it as needed.</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">Usage</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">userService</span><span class="p">(</span><span class="n">repository</span><span class="p">:</span><span class="w"> </span><span class="n">UserRepository</span><span class="p">):</span><span class="w"> </span><span class="n">UserService</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">UserService</span><span class="p">(</span><span class="w"></span>
-<span class="w">            </span><span class="n">repository</span><span class="p">,</span><span class="w"></span>
-<span class="w">            </span><span class="n">CompositeListener</span><span class="p">(</span><span class="n">listOf</span><span class="p">(</span><span class="w"></span>
-<span class="w">                </span><span class="n">LoggingListener</span><span class="p">().</span><span class="na">onError</span><span class="p">(</span><span class="n">Log</span><span class="p">),</span><span class="w"></span>
-<span class="w">                </span><span class="n">MetricsListener</span><span class="p">().</span><span class="na">onError</span><span class="p">(</span><span class="n">Ignore</span><span class="p">),</span><span class="w"></span>
-<span class="w">            </span><span class="p">)).</span><span class="na">concurrent</span><span class="p">()</span><span class="w"></span>
-<span class="w">        </span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">Usage</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">userService</span><span class="p">(</span><span class="n">repository</span><span class="p">:</span><span class="w"> </span><span class="n">UserRepository</span><span class="p">):</span><span class="w"> </span><span class="n">UserService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">UserService</span><span class="p">(</span>
+<span class="w">            </span><span class="n">repository</span><span class="p">,</span>
+<span class="w">            </span><span class="n">CompositeListener</span><span class="p">(</span><span class="n">listOf</span><span class="p">(</span>
+<span class="w">                </span><span class="n">LoggingListener</span><span class="p">().</span><span class="na">onError</span><span class="p">(</span><span class="n">Log</span><span class="p">),</span>
+<span class="w">                </span><span class="n">MetricsListener</span><span class="p">().</span><span class="na">onError</span><span class="p">(</span><span class="n">Ignore</span><span class="p">),</span>
+<span class="w">            </span><span class="p">)).</span><span class="na">concurrent</span><span class="p">()</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div>
-
 <h2 id="applicability">💡Applicability<a class="headerlink" href="#applicability" title="Permanent link">&para;</a></h2>
 <h2 id="how-to-implement">📝 How to implement<a class="headerlink" href="#how-to-implement" title="Permanent link">&para;</a></h2>
 <h2 id="pros-and-cons">⚖︎ Pros and Cons<a class="headerlink" href="#pros-and-cons" title="Permanent link">&para;</a></h2>
@@ -733,16 +926,33 @@ using the <em>Decorator</em> pattern:</p>
 <li><a href="https://sourcemaking.com/design_patterns/composite">SourceMaking: Composite</a></li>
 </ul>
 
-  <hr>
-<div class="md-source-file">
-  <small>
+
+
+
+
+
+
+  
     
-      Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 5, 2021</span>
+  
+  
+
+
+  <aside class="md-source-file">
+    
       
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 16, 2025</span>
+  </span>
+
     
-  </small>
-</div>
+    
+    
+    
+  </aside>
 
 
 
@@ -753,47 +963,12 @@ using the <em>Decorator</em> pattern:</p>
             </div>
           
           
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
       </main>
       
         <footer class="md-footer">
-  
-    
-    <nav class="md-footer__inner md-grid" aria-label="Footer" >
-      
-        
-        <a href="../../primitive-obsession/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Primitive Obsession" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              Primitive Obsession
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../contract-style-unit-testing/" class="md-footer__link md-footer__link--next" aria-label="Next: Contract-style Unit Testing" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Contract-style Unit Testing
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -816,10 +991,11 @@ using the <em>Decorator</em> pattern:</p>
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.sections"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.sections"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d6c3db9e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
       
     
   </body>
