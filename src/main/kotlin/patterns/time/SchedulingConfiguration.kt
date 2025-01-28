@@ -14,7 +14,6 @@ class SchedulingConfiguration {
         val scheduler = ThreadPoolTaskScheduler()
         scheduler.clock = clock
         scheduler.poolSize = 5
-        scheduler.threadNamePrefix = "ThreadPoolTaskScheduler"
         return scheduler
     }
 }

@@ -85,7 +85,7 @@ PostgresUserRepositoryTest -up-> PostgresUserRepository : tests
 ```
 
 ```kotlin
-{% include "../../src/main/kotlin/patterns/contract/UserRepositoryContract.kt" %}
+{% include "../../src/test/kotlin/patterns/contract/UserRepositoryContract.kt" %}
 ```
 
 Note that there is no implementation specific code in here.
@@ -98,13 +98,13 @@ In addition, there is no setup or teardown logic.
     === "InMemoryUserRepositoryTest"
 
         ```kotlin
-        {% include "../../src/main/kotlin/patterns/contract/InMemoryUserRepositoryTest.kt" %}
+        {% include "../../src/test/kotlin/patterns/contract/InMemoryUserRepositoryTest.kt" %}
         ```
 
     === "PostgresUserRepository"
 
         ```kotlin
-        {% include "../../src/main/kotlin/patterns/contract/PostgresUserRepositoryTest.kt" %}
+        {% include "../../src/test/kotlin/patterns/contract/PostgresUserRepositoryTest.kt" %}
         ```
 
 
