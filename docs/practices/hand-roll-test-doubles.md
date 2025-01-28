@@ -129,21 +129,31 @@ This section demonstrates hand-rolled test doubles in Kotlin, showcasing each of
 
     === "Dummy"
 
+        !!! warning
+
+            Only hand-roll a dummy if a suitable default/noop implementation (like a [Null Object](https://sourcemaking.com/design_patterns/null_object)) doesn't already exist for the required interface.
+
         ```kotlin
-        {% include "../../src/main/kotlin/practices/handroll/dummy/Logger.kt" %}
+        {% include "../../src/main/kotlin/practices/handroll/dummy/Currency.kt" %}
+        {% include "../../src/main/kotlin/practices/handroll/dummy/Money.kt" %}
+        {% include "../../src/main/kotlin/practices/handroll/dummy/CurrencyConverter.kt" %}
+        {% include "../../src/main/kotlin/practices/handroll/dummy/EuroConverter.kt" %}
         ```
 
         ```kotlin
-        {% include "../../src/test/kotlin/practices/handroll/dummy/DummyLogger.kt" %}
+        {% include "../../src/test/kotlin/practices/handroll/dummy/DummyCurrency.kt" %}
         ```
 
         ```kotlin
-        {% include "../../src/test/kotlin/practices/handroll/dummy/SystemUnderTestTest.kt" %}
+        {% include "../../src/test/kotlin/practices/handroll/dummy/EuroConverterTest.kt" %}
         ```
 
     === "Stub"
+
+        !!! tip
     
-        Using [Configurable Responses](https://www.jamesshore.com/v2/projects/nullables/testing-without-mocks#configurable-responses)
+            This example uses the [Configurable Responses](https://www.jamesshore.com/v2/projects/nullables/testing-without-mocks#configurable-responses)
+            pattern as implemented by [whiskeysierra/test-doubles](https://github.com/whiskeysierra/test-doubles).
 
         ```kotlin
         {% include "../../src/main/kotlin/practices/handroll/stub/DataProvider.kt" %}
@@ -159,8 +169,11 @@ This section demonstrates hand-rolled test doubles in Kotlin, showcasing each of
 
     === "Spies"
 
-        Using [Output Tracking](https://www.jamesshore.com/v2/projects/nullables/testing-without-mocks#output-tracking)
-        
+        !!! tip
+    
+            This example uses the [Output Tracking](https://www.jamesshore.com/v2/projects/nullables/testing-without-mocks#output-tracking)
+            pattern as implemented by [whiskeysierra/test-doubles](https://github.com/whiskeysierra/test-doubles).
+
         ```kotlin
         {% include "../../src/main/kotlin/practices/handroll/spy/EmailService.kt" %}
         ```
@@ -175,7 +188,14 @@ This section demonstrates hand-rolled test doubles in Kotlin, showcasing each of
 
     === "Mock"
 
-        🚧 Discourage usage!!!
+        !!! warning "A Word of Caution"
+
+            While hand-rolling mocks is technically possible (as shown below), it’s often less ideal than using simpler types of test doubles.
+            
+            Hand-rolled mocks present two key challenges.
+            First, the need to pre-program and verify expectations increases the complexity of the mock itself, making it harder to write, understand, and maintain.
+            Second, and this applies to mocks in general, hiding expectations and verifications within the mock makes the tests themselves less expressive and readable, as they contain less visible evidence (assertions).
+            Consider using simpler test doubles like stubs, spies, or fakes before resorting to hand-rolled mocks.
 
         ```kotlin
         {% include "../../src/main/kotlin/practices/handroll/mock/PaymentGateway.kt" %}
@@ -190,6 +210,12 @@ This section demonstrates hand-rolled test doubles in Kotlin, showcasing each of
         ```
 
     === "Fake"
+
+        !!! tip
+
+            Fakes are particularly well-suited for implementing repository interfaces because they provide simplified,
+            in-memory implementations that mimic the behavior of a real database or external service, making tests fast
+            and predictable.
 
         ```kotlin
         {% include "../../src/main/kotlin/practices/handroll/fake/UserRepository.kt" %}
