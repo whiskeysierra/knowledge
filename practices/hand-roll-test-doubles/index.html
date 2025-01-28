@@ -555,6 +555,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#testing-without-mocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing Without Mocks
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#references" class="md-nav__link">
     <span class="md-ellipsis">
       References
@@ -643,6 +652,15 @@
   <a href="#conclusion" class="md-nav__link">
     <span class="md-ellipsis">
       Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-without-mocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing Without Mocks
     </span>
   </a>
   
@@ -798,8 +816,6 @@ You avoid the need to delve into complex mocking framework internals.</p>
 </ul>
 <h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
 <p>This section demonstrates hand-rolled test doubles in Kotlin, showcasing each of the five main types:</p>
-<div class="admonition examples">
-<p class="admonition-title">Examples</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:5"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Dummy</label><label for="__tabbed_1_2">Stub</label><label for="__tabbed_1_3">Spies</label><label for="__tabbed_1_4">Mock</label><label for="__tabbed_1_5">Fake</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -1164,7 +1180,6 @@ and predictable.</p>
 </div>
 </div>
 </div>
-</div>
 <h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
 <p>Mocking libraries have their place, especially for complex, existing interfaces or external dependencies you can&rsquo;t
 easily replicate
@@ -1172,6 +1187,10 @@ But for many cases, hand-rolled test doubles are a much better choice.
 They lead to simpler, more maintainable tests and give you valuable feedback on your design.
 So, before reaching for a mocking library, take a moment to consider if a simple hand-rolled double might do the trick.
 You might be surprised how often it&rsquo;s the right answer.</p>
+<h2 id="testing-without-mocks"><em>Testing Without Mocks</em><a class="headerlink" href="#testing-without-mocks" title="Permanent link">&para;</a></h2>
+<p>As astute readers may have noticed, this discussion draws on several patterns from James Shore&rsquo;s <a href="https://www.jamesshore.com/v2/projects/nullables/testing-without-mocks"><em><em>Testing Without Mocks</em></em></a> article.
+It is packed with useful testing tricks and techniques, from test design to dependency management, offering practical ways to improve test clarity, maintainability, and effectiveness.
+Even if you&rsquo;re not buying into the whole premise, checking out these patterns can seriously improve your test design.</p>
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://www.geepawhill.org/2021/07/13/on-not-using-mocking-frameworks/">On not using Mocking Frameworks</a></li>
