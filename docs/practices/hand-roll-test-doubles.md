@@ -125,109 +125,107 @@ Hand-rolled test doubles offer several compelling advantages over mocking librar
 
 This section demonstrates hand-rolled test doubles in Kotlin, showcasing each of the five main types:
 
-!!! Examples
+=== "Dummy"
 
-    === "Dummy"
+    !!! warning
 
-        !!! warning
+        Only hand-roll a dummy if a suitable default/noop implementation (like a [Null Object](https://sourcemaking.com/design_patterns/null_object)) doesn't already exist for the required interface.
 
-            Only hand-roll a dummy if a suitable default/noop implementation (like a [Null Object](https://sourcemaking.com/design_patterns/null_object)) doesn't already exist for the required interface.
+    ```kotlin
+    {% include "../../src/main/kotlin/practices/handroll/dummy/Currency.kt" %}
+    {% include "../../src/main/kotlin/practices/handroll/dummy/Money.kt" %}
+    {% include "../../src/main/kotlin/practices/handroll/dummy/CurrencyConverter.kt" %}
+    {% include "../../src/main/kotlin/practices/handroll/dummy/EuroConverter.kt" %}
+    ```
 
-        ```kotlin
-        {% include "../../src/main/kotlin/practices/handroll/dummy/Currency.kt" %}
-        {% include "../../src/main/kotlin/practices/handroll/dummy/Money.kt" %}
-        {% include "../../src/main/kotlin/practices/handroll/dummy/CurrencyConverter.kt" %}
-        {% include "../../src/main/kotlin/practices/handroll/dummy/EuroConverter.kt" %}
-        ```
+    ```kotlin
+    {% include "../../src/test/kotlin/practices/handroll/dummy/DummyCurrency.kt" %}
+    ```
 
-        ```kotlin
-        {% include "../../src/test/kotlin/practices/handroll/dummy/DummyCurrency.kt" %}
-        ```
+    ```kotlin
+    {% include "../../src/test/kotlin/practices/handroll/dummy/EuroConverterTest.kt" %}
+    ```
 
-        ```kotlin
-        {% include "../../src/test/kotlin/practices/handroll/dummy/EuroConverterTest.kt" %}
-        ```
+=== "Stub"
 
-    === "Stub"
+    !!! tip
 
-        !!! tip
-    
-            This example uses the [Configurable Responses](https://www.jamesshore.com/v2/projects/nullables/testing-without-mocks#configurable-responses)
-            pattern as implemented by [whiskeysierra/test-doubles](https://github.com/whiskeysierra/test-doubles).
+        This example uses the [Configurable Responses](https://www.jamesshore.com/v2/projects/nullables/testing-without-mocks#configurable-responses)
+        pattern as implemented by [whiskeysierra/test-doubles](https://github.com/whiskeysierra/test-doubles).
 
-        ```kotlin
-        {% include "../../src/main/kotlin/practices/handroll/stub/DataProvider.kt" %}
-        ```
+    ```kotlin
+    {% include "../../src/main/kotlin/practices/handroll/stub/DataProvider.kt" %}
+    ```
 
-        ```kotlin
-        {% include "../../src/test/kotlin/practices/handroll/stub/StubDataProvider.kt" %}
-        ```
+    ```kotlin
+    {% include "../../src/test/kotlin/practices/handroll/stub/StubDataProvider.kt" %}
+    ```
 
-        ```kotlin
-        {% include "../../src/test/kotlin/practices/handroll/stub/DataProcessorTest.kt" %}
-        ```
+    ```kotlin
+    {% include "../../src/test/kotlin/practices/handroll/stub/DataProcessorTest.kt" %}
+    ```
 
-    === "Spies"
+=== "Spies"
 
-        !!! tip
-    
-            This example uses the [Output Tracking](https://www.jamesshore.com/v2/projects/nullables/testing-without-mocks#output-tracking)
-            pattern as implemented by [whiskeysierra/test-doubles](https://github.com/whiskeysierra/test-doubles).
+    !!! tip
 
-        ```kotlin
-        {% include "../../src/main/kotlin/practices/handroll/spy/EmailService.kt" %}
-        ```
+        This example uses the [Output Tracking](https://www.jamesshore.com/v2/projects/nullables/testing-without-mocks#output-tracking)
+        pattern as implemented by [whiskeysierra/test-doubles](https://github.com/whiskeysierra/test-doubles).
 
-        ```kotlin
-        {% include "../../src/test/kotlin/practices/handroll/spy/SpyEmailService.kt" %}
-        ```
+    ```kotlin
+    {% include "../../src/main/kotlin/practices/handroll/spy/EmailService.kt" %}
+    ```
 
-        ```kotlin
-        {% include "../../src/test/kotlin/practices/handroll/spy/UserNotifierTest.kt" %}
-        ```
+    ```kotlin
+    {% include "../../src/test/kotlin/practices/handroll/spy/SpyEmailService.kt" %}
+    ```
 
-    === "Mock"
+    ```kotlin
+    {% include "../../src/test/kotlin/practices/handroll/spy/UserNotifierTest.kt" %}
+    ```
 
-        !!! warning "A Word of Caution"
+=== "Mock"
 
-            While hand-rolling mocks is technically possible (as shown below), it’s often less ideal than using simpler types of test doubles.
-            
-            Hand-rolled mocks present two key challenges.
-            First, the need to pre-program and verify expectations increases the complexity of the mock itself, making it harder to write, understand, and maintain.
-            Second, and this applies to mocks in general, hiding expectations and verifications within the mock makes the tests themselves less expressive and readable, as they contain less visible evidence (assertions).
-            Consider using simpler test doubles like stubs, spies, or fakes before resorting to hand-rolled mocks.
+    !!! warning "A Word of Caution"
 
-        ```kotlin
-        {% include "../../src/main/kotlin/practices/handroll/mock/PaymentGateway.kt" %}
-        ```
+        While hand-rolling mocks is technically possible (as shown below), it’s often less ideal than using simpler types of test doubles.
+        
+        Hand-rolled mocks present two key challenges.
+        First, the need to pre-program and verify expectations increases the complexity of the mock itself, making it harder to write, understand, and maintain.
+        Second, and this applies to mocks in general, hiding expectations and verifications within the mock makes the tests themselves less expressive and readable, as they contain less visible evidence (assertions).
+        Consider using simpler test doubles like stubs, spies, or fakes before resorting to hand-rolled mocks.
 
-        ```kotlin
-        {% include "../../src/test/kotlin/practices/handroll/mock/MockPaymentGateway.kt" %}
-        ```
+    ```kotlin
+    {% include "../../src/main/kotlin/practices/handroll/mock/PaymentGateway.kt" %}
+    ```
 
-        ```kotlin
-        {% include "../../src/test/kotlin/practices/handroll/mock/OrderProcessorTest.kt" %}
-        ```
+    ```kotlin
+    {% include "../../src/test/kotlin/practices/handroll/mock/MockPaymentGateway.kt" %}
+    ```
 
-    === "Fake"
+    ```kotlin
+    {% include "../../src/test/kotlin/practices/handroll/mock/OrderProcessorTest.kt" %}
+    ```
 
-        !!! tip
+=== "Fake"
 
-            Fakes are particularly well-suited for implementing repository interfaces because they provide simplified,
-            in-memory implementations that mimic the behavior of a real database or external service, making tests fast
-            and predictable.
+    !!! tip
 
-        ```kotlin
-        {% include "../../src/main/kotlin/practices/handroll/fake/UserRepository.kt" %}
-        ```
+        Fakes are particularly well-suited for implementing repository interfaces because they provide simplified,
+        in-memory implementations that mimic the behavior of a real database or external service, making tests fast
+        and predictable.
 
-        ```kotlin
-        {% include "../../src/test/kotlin/practices/handroll/fake/InMemoryUserRepository.kt" %}
-        ```
+    ```kotlin
+    {% include "../../src/main/kotlin/practices/handroll/fake/UserRepository.kt" %}
+    ```
 
-        ```kotlin
-        {% include "../../src/test/kotlin/practices/handroll/fake/UserServiceTest.kt" %}
-        ```
+    ```kotlin
+    {% include "../../src/test/kotlin/practices/handroll/fake/InMemoryUserRepository.kt" %}
+    ```
+
+    ```kotlin
+    {% include "../../src/test/kotlin/practices/handroll/fake/UserServiceTest.kt" %}
+    ```
 
 ## Conclusion
 
@@ -237,6 +235,12 @@ But for many cases, hand-rolled test doubles are a much better choice.
 They lead to simpler, more maintainable tests and give you valuable feedback on your design.
 So, before reaching for a mocking library, take a moment to consider if a simple hand-rolled double might do the trick.
 You might be surprised how often it's the right answer.
+
+## _Testing Without Mocks_
+
+As astute readers may have noticed, this discussion draws on several patterns from James Shore's [*_Testing Without Mocks_*](https://www.jamesshore.com/v2/projects/nullables/testing-without-mocks) article.
+It is packed with useful testing tricks and techniques, from test design to dependency management, offering practical ways to improve test clarity, maintainability, and effectiveness.
+Even if you're not buying into the whole premise, checking out these patterns can seriously improve your test design.
 
 ## References
 
