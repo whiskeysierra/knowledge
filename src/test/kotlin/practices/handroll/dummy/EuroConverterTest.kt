@@ -10,9 +10,8 @@ class EuroConverterTest {
     fun `converts to eur ignoring preferred currency`() {
         val converter = EuroConverter()
         val amount = Money(BigDecimal("100"), USD)
-        val dummyCurrency = DummyCurrency
 
-        val convertedAmount = converter.convert(amount, dummyCurrency)
+        val convertedAmount = converter.convert(amount, DummyCurrency)
 
         assertEquals(BigDecimal("92.00"), convertedAmount.amount)
         assertEquals("EUR", convertedAmount.currency.code)
