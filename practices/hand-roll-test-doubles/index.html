@@ -563,15 +563,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#leftovers" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚧 Leftovers
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -666,15 +657,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#leftovers" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚧 Leftovers
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -707,6 +689,8 @@ Let&rsquo;s talk about why explicit code often beats the magic of mocking framew
 <p><a href="https://martinfowler.com/bliki/TestDouble.html">Test doubles</a> are objects that stand in for real dependencies during testing.
 They allow you to isolate the unit under test, controlling its interactions with other parts of the system and ensuring predictable test outcomes.</p>
 <p>Before using test doubles, consider whether you can use the real dependency; if it&rsquo;s cheap, fast, and safe, using the real thing is preferable.
+This approach aligns with the concept of <a href="https://martinfowler.com/bliki/UnitTest.html#SolitaryOrSociable"><em>sociable unit tests</em></a>,
+which verify the behavior of multiple components in collaboration.
 Test doubles should only be used when using the real dependency is impractical or problematic.</p>
 <p>Here are the common types:</p>
 <ul>
@@ -813,10 +797,10 @@ You avoid the need to delve into complex mocking framework internals.</p>
 </li>
 </ul>
 <h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
-<p>This section demonstrates hand-rolled test doubles in Kotlin, showcasing each of the five main types: Dummy, Stub, Spy, Mock, and Fake.</p>
+<p>This section demonstrates hand-rolled test doubles in Kotlin, showcasing each of the five main types:</p>
 <div class="admonition examples">
 <p class="admonition-title">Examples</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:5"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Dummy</label><label for="__tabbed_1_2">Stub</label><label for="__tabbed_1_3">Stub</label><label for="__tabbed_1_4">Mock</label><label for="__tabbed_1_5">Fake</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:5"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Dummy</label><label for="__tabbed_1_2">Stub</label><label for="__tabbed_1_3">Spies</label><label for="__tabbed_1_4">Mock</label><label for="__tabbed_1_5">Fake</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nc">Logger</span><span class="w"> </span><span class="p">{</span>
@@ -830,17 +814,14 @@ You avoid the need to delve into complex mocking framework internals.</p>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">DummyLogger</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Logger</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="n">message</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// Do nothing</span>
-<span class="w">    </span><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="kd">object</span><span class="w"> </span><span class="nc">DummyLogger</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Logger</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="n">message</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Unit</span>
 <span class="p">}</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">SystemUnderTestTest</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nd">@Test</span>
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">`doSomething processes input`</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">dummyLogger</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DummyLogger</span><span class="p">()</span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">sut</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SystemUnderTest</span><span class="p">(</span><span class="n">dummyLogger</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">`processes input`</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">sut</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SystemUnderTest</span><span class="p">(</span><span class="n">logger</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DummyLogger</span><span class="p">)</span>
 <span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sut</span><span class="p">.</span><span class="na">doSomething</span><span class="p">(</span><span class="s">&quot;test&quot;</span><span class="p">)</span>
 <span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="s">&quot;Processed: test&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p">)</span>
 <span class="w">    </span><span class="p">}</span>
@@ -848,69 +829,47 @@ You avoid the need to delve into complex mocking framework internals.</p>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<p>Using with Configurable Responses!</p>
+<p>Using <a href="https://www.jamesshore.com/v2/projects/nullables/testing-without-mocks#configurable-responses">Configurable Responses</a></p>
 <div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nc">DataProvider</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getData</span><span class="p">(</span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">):</span><span class="w"> </span><span class="kt">String?</span>
 <span class="p">}</span>
 
 <span class="kd">class</span><span class="w"> </span><span class="nc">DataProcessor</span><span class="p">(</span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">dataProvider</span><span class="p">:</span><span class="w"> </span><span class="n">DataProvider</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">processData</span><span class="p">(</span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">):</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dataProvider</span><span class="p">.</span><span class="na">getData</span><span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="s">&quot;Default Data&quot;</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Processed: </span><span class="si">$</span><span class="n">data</span><span class="s">&quot;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">processDataWithFallback</span><span class="p">(</span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="n">fallback</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">):</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">process</span><span class="p">(</span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="n">fallback</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Default Data&quot;</span><span class="p">):</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Processed: </span><span class="si">${</span><span class="n">dataProvider</span><span class="p">.</span><span class="na">getData</span><span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="n">fallback</span><span class="si">}</span><span class="s">&quot;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="c1">// Configurable Responses Stub</span>
-<span class="kd">class</span><span class="w"> </span><span class="nc">StubDataProvider</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">DataProvider</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">responses</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mutableMapOf</span><span class="o">&lt;</span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="kt">String?</span><span class="o">&gt;</span><span class="p">()</span>
-
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">addResponse</span><span class="p">(</span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">:</span><span class="w"> </span><span class="kt">String?</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">responses</span><span class="o">[</span><span class="n">id</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getData</span><span class="p">(</span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">):</span><span class="w"> </span><span class="kt">String?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">responses</span><span class="o">[</span><span class="n">id</span><span class="o">]</span>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">StubDataProvider</span><span class="p">(</span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">responses</span><span class="p">:</span><span class="w"> </span><span class="n">Iterator</span><span class="o">&lt;</span><span class="kt">String?</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">DataProvider</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getData</span><span class="p">(</span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">responses</span><span class="p">.</span><span class="na">next</span><span class="p">()</span>
 <span class="p">}</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">DataProcessorTest</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nd">@Test</span>
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">`processData retrieves and processes data`</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">stub</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">StubDataProvider</span><span class="p">()</span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">processor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataProcessor</span><span class="p">(</span><span class="n">stub</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">`retrieves and processes data`</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">provider</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">StubDataProvider</span><span class="p">(</span><span class="n">responses</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">once</span><span class="p">(</span><span class="s">&quot;Test Data&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Other Data&quot;</span><span class="p">))</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">processor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataProcessor</span><span class="p">(</span><span class="n">provider</span><span class="p">)</span>
 
-<span class="w">        </span><span class="n">stub</span><span class="p">.</span><span class="na">addResponse</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Test Data&quot;</span><span class="p">)</span>
-<span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="s">&quot;Processed: Test Data&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">processor</span><span class="p">.</span><span class="na">processData</span><span class="p">(</span><span class="m">1</span><span class="p">))</span>
-
-<span class="w">        </span><span class="n">stub</span><span class="p">.</span><span class="na">addResponse</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span>
-<span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="s">&quot;Processed: Default Data&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">processor</span><span class="p">.</span><span class="na">processData</span><span class="p">(</span><span class="m">2</span><span class="p">))</span>
-
-<span class="w">        </span><span class="n">stub</span><span class="p">.</span><span class="na">addResponse</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Other Data&quot;</span><span class="p">)</span>
-<span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="s">&quot;Processed: Other Data&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">processor</span><span class="p">.</span><span class="na">processData</span><span class="p">(</span><span class="m">3</span><span class="p">))</span>
+<span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="s">&quot;Processed: Test Data&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">processor</span><span class="p">.</span><span class="na">process</span><span class="p">(</span><span class="m">1</span><span class="p">))</span>
+<span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="s">&quot;Processed: Default Data&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">processor</span><span class="p">.</span><span class="na">process</span><span class="p">(</span><span class="m">2</span><span class="p">))</span>
+<span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="s">&quot;Processed: Other Data&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">processor</span><span class="p">.</span><span class="na">process</span><span class="p">(</span><span class="m">3</span><span class="p">))</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="nd">@Test</span>
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">`processDataWithFallback uses fallback when no data is available`</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">stub</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">StubDataProvider</span><span class="p">()</span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">processor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataProcessor</span><span class="p">(</span><span class="n">stub</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">`uses fallback when no data is available`</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">provider</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">StubDataProvider</span><span class="p">(</span><span class="n">responses</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">once</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Real Data&quot;</span><span class="p">))</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">processor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataProcessor</span><span class="p">(</span><span class="n">provider</span><span class="p">)</span>
 
-<span class="w">        </span><span class="n">stub</span><span class="p">.</span><span class="na">addResponse</span><span class="p">(</span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span>
-<span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="s">&quot;Processed: Fallback Data&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">processor</span><span class="p">.</span><span class="na">processDataWithFallback</span><span class="p">(</span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Fallback Data&quot;</span><span class="p">))</span>
-
-<span class="w">        </span><span class="n">stub</span><span class="p">.</span><span class="na">addResponse</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Real Data&quot;</span><span class="p">)</span>
-<span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="s">&quot;Processed: Real Data&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">processor</span><span class="p">.</span><span class="na">processDataWithFallback</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Fallback Data&quot;</span><span class="p">))</span>
+<span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="s">&quot;Processed: Fallback Data&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">processor</span><span class="p">.</span><span class="na">process</span><span class="p">(</span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Fallback Data&quot;</span><span class="p">))</span>
+<span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="s">&quot;Processed: Real Data&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">processor</span><span class="p">.</span><span class="na">process</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Fallback Data&quot;</span><span class="p">))</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<p>Using Output Tracking!</p>
-<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">EmailService</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">sendEmail</span><span class="p">(</span><span class="n">recipient</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// Actual email sending logic would go here</span>
-<span class="w">    </span><span class="p">}</span>
+<p>Using <a href="https://www.jamesshore.com/v2/projects/nullables/testing-without-mocks#output-tracking">Output Tracking</a></p>
+<div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nc">EmailService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">sendEmail</span><span class="p">(</span><span class="n">recipient</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span>
 <span class="p">}</span>
 
 <span class="kd">class</span><span class="w"> </span><span class="nc">UserNotifier</span><span class="p">(</span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">emailService</span><span class="p">:</span><span class="w"> </span><span class="n">EmailService</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -920,52 +879,45 @@ You avoid the need to delve into complex mocking framework internals.</p>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="c1">// Output Tracking Spy</span>
-<span class="kd">class</span><span class="w"> </span><span class="nc">EmailServiceSpy</span><span class="p">(</span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">realEmailService</span><span class="p">:</span><span class="w"> </span><span class="n">EmailService</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">EmailService</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">sentEmails</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mutableListOf</span><span class="o">&lt;</span><span class="n">Pair</span><span class="o">&lt;</span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="kt">String</span><span class="o">&gt;&gt;</span><span class="p">()</span><span class="w"> </span><span class="c1">// Store recipient and message</span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nn">io.github.whiskeysierra.testdoubles.spy.OutputTracking</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">io.github.whiskeysierra.testdoubles.spy.Tracker</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">org.assertj.core.util.VisibleForTesting</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">SpyEmailService</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">EmailService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">tracking</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OutputTracking</span><span class="o">&lt;</span><span class="n">Pair</span><span class="o">&lt;</span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="kt">String</span><span class="o">&gt;&gt;</span><span class="p">()</span>
+
+<span class="w">    </span><span class="nd">@VisibleForTesting</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">track</span><span class="p">():</span><span class="w"> </span><span class="n">Tracker</span><span class="o">&lt;</span><span class="n">Pair</span><span class="o">&lt;</span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="kt">String</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tracking</span><span class="p">.</span><span class="na">track</span><span class="p">()</span>
 
 <span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">sendEmail</span><span class="p">(</span><span class="n">recipient</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">sentEmails</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">Pair</span><span class="p">(</span><span class="n">recipient</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">))</span>
-<span class="w">        </span><span class="n">realEmailService</span><span class="p">.</span><span class="na">sendEmail</span><span class="p">(</span><span class="n">recipient</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">)</span>
+<span class="w">        </span><span class="n">tracking</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">Pair</span><span class="p">(</span><span class="n">recipient</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">))</span>
 <span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getSentEmails</span><span class="p">():</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Pair</span><span class="o">&lt;</span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="kt">String</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sentEmails</span>
 <span class="p">}</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">UserNotifierTest</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nn">io.github.whiskeysierra.testdoubles.spy.Tracker</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">org.assertj.core.api.Assertions.assertThat</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">org.junit.jupiter.api.Test</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">UserNotifierTest</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nd">@Test</span>
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">`notifyUser sends emails to user and admin`</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">realEmailService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EmailService</span><span class="p">()</span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">spy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EmailServiceSpy</span><span class="p">(</span><span class="n">realEmailService</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">`sends emails to user and admin`</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">spy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpyEmailService</span><span class="p">()</span>
 <span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">notifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UserNotifier</span><span class="p">(</span><span class="n">spy</span><span class="p">)</span>
+
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">sentEmails</span><span class="p">:</span><span class="w"> </span><span class="n">Tracker</span><span class="o">&lt;</span><span class="n">Pair</span><span class="o">&lt;</span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="kt">String</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spy</span><span class="p">.</span><span class="na">track</span><span class="p">()</span>
+
 <span class="w">        </span><span class="n">notifier</span><span class="p">.</span><span class="na">notifyUser</span><span class="p">(</span><span class="s">&quot;test@example.com&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Hello!&quot;</span><span class="p">)</span>
 
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">expectedEmails</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">listOf</span><span class="p">(</span>
+<span class="w">        </span><span class="n">assertThat</span><span class="p">(</span><span class="n">sentEmails</span><span class="p">).</span><span class="na">containsExactly</span><span class="p">(</span>
 <span class="w">            </span><span class="n">Pair</span><span class="p">(</span><span class="s">&quot;test@example.com&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Hello!&quot;</span><span class="p">),</span>
 <span class="w">            </span><span class="n">Pair</span><span class="p">(</span><span class="s">&quot;admin@example.com&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;User notified&quot;</span><span class="p">)</span>
 <span class="w">        </span><span class="p">)</span>
-
-<span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="n">expectedEmails</span><span class="p">.</span><span class="na">size</span><span class="p">,</span><span class="w"> </span><span class="n">spy</span><span class="p">.</span><span class="na">getSentEmails</span><span class="p">().</span><span class="na">size</span><span class="p">)</span>
-<span class="w">        </span><span class="n">assertTrue</span><span class="p">(</span><span class="n">spy</span><span class="p">.</span><span class="na">getSentEmails</span><span class="p">().</span><span class="na">containsAll</span><span class="p">(</span><span class="n">expectedEmails</span><span class="p">))</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="nd">@Test</span>
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">`notifyUser sends emails to user and admin - more readable assertions`</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">realEmailService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EmailService</span><span class="p">()</span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">spy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EmailServiceSpy</span><span class="p">(</span><span class="n">realEmailService</span><span class="p">)</span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">notifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UserNotifier</span><span class="p">(</span><span class="n">spy</span><span class="p">)</span>
-<span class="w">        </span><span class="n">notifier</span><span class="p">.</span><span class="na">notifyUser</span><span class="p">(</span><span class="s">&quot;test@example.com&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Hello!&quot;</span><span class="p">)</span>
-
-<span class="w">        </span><span class="n">spy</span><span class="p">.</span><span class="na">getSentEmails</span><span class="p">().</span><span class="na">apply</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="n">assertEquals</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">)</span>
-<span class="w">            </span><span class="n">assertTrue</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">contains</span><span class="p">(</span><span class="n">Pair</span><span class="p">(</span><span class="s">&quot;test@example.com&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Hello!&quot;</span><span class="p">))}</span>
-<span class="w">            </span><span class="n">assertTrue</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">contains</span><span class="p">(</span><span class="n">Pair</span><span class="p">(</span><span class="s">&quot;admin@example.com&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;User notified&quot;</span><span class="p">))}</span>
-<span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
+<p>🚧 Discourage usage!!!</p>
 <div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nc">PaymentGateway</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">processPayment</span><span class="p">(</span><span class="n">amount</span><span class="p">:</span><span class="w"> </span><span class="kt">Double</span><span class="p">):</span><span class="w"> </span><span class="kt">Boolean</span>
 <span class="p">}</span>
@@ -981,8 +933,7 @@ You avoid the need to delve into complex mocking framework internals.</p>
 
 <span class="kd">class</span><span class="w"> </span><span class="nc">PaymentFailedException</span><span class="p">(</span><span class="n">message</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">RuntimeException</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="c1">// Simple Mock</span>
-<span class="kd">class</span><span class="w"> </span><span class="nc">MockPaymentGateway</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">PaymentGateway</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">MockPaymentGateway</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">PaymentGateway</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">paymentProcessed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
 <span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">expectedAmount</span><span class="p">:</span><span class="w"> </span><span class="kt">Double?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span>
 <span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">wasCalled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
@@ -1012,7 +963,7 @@ You avoid the need to delve into complex mocking framework internals.</p>
 <span class="w">        </span><span class="n">mock</span><span class="p">.</span><span class="na">willReturn</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
 <span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">processor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OrderProcessor</span><span class="p">(</span><span class="n">mock</span><span class="p">)</span>
 <span class="w">        </span><span class="n">processor</span><span class="p">.</span><span class="na">processOrder</span><span class="p">(</span><span class="m">100.0</span><span class="p">)</span>
-<span class="w">        </span><span class="n">kotlin</span><span class="p">.</span><span class="na">test</span><span class="p">.</span><span class="na">assertTrue</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mock</span><span class="p">.</span><span class="na">wasCalled</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="n">assert</span><span class="p">(</span><span class="n">mock</span><span class="p">.</span><span class="na">wasCalled</span><span class="p">)</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="nd">@Test</span>
@@ -1024,7 +975,7 @@ You avoid the need to delve into complex mocking framework internals.</p>
 <span class="w">        </span><span class="n">assertThrows</span><span class="o">&lt;</span><span class="n">PaymentFailedException</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="n">processor</span><span class="p">.</span><span class="na">processOrder</span><span class="p">(</span><span class="m">50.0</span><span class="p">)</span>
 <span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="n">kotlin</span><span class="p">.</span><span class="na">test</span><span class="p">.</span><span class="na">assertTrue</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mock</span><span class="p">.</span><span class="na">wasCalled</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="n">assert</span><span class="p">(</span><span class="n">mock</span><span class="p">.</span><span class="na">wasCalled</span><span class="p">)</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="nd">@Test</span>
@@ -1034,7 +985,7 @@ You avoid the need to delve into complex mocking framework internals.</p>
 <span class="w">        </span><span class="n">mock</span><span class="p">.</span><span class="na">willReturn</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
 <span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">processor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OrderProcessor</span><span class="p">(</span><span class="n">mock</span><span class="p">)</span>
 <span class="w">        </span><span class="n">processor</span><span class="p">.</span><span class="na">processOrder</span><span class="p">(</span><span class="m">200.0</span><span class="p">)</span>
-<span class="w">        </span><span class="n">kotlin</span><span class="p">.</span><span class="na">test</span><span class="p">.</span><span class="na">assertTrue</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mock</span><span class="p">.</span><span class="na">wasCalled</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="n">assert</span><span class="p">(</span><span class="n">mock</span><span class="p">.</span><span class="na">wasCalled</span><span class="p">)</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="nd">@Test</span>
@@ -1045,7 +996,7 @@ You avoid the need to delve into complex mocking framework internals.</p>
 <span class="w">        </span><span class="n">assertThrows</span><span class="o">&lt;</span><span class="n">AssertionError</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="n">processor</span><span class="p">.</span><span class="na">processOrder</span><span class="p">(</span><span class="m">100.0</span><span class="p">)</span>
 <span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="n">kotlin</span><span class="p">.</span><span class="na">test</span><span class="p">.</span><span class="na">assertTrue</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mock</span><span class="p">.</span><span class="na">wasCalled</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="n">assert</span><span class="p">(</span><span class="n">mock</span><span class="p">.</span><span class="na">wasCalled</span><span class="p">)</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -1065,17 +1016,20 @@ You avoid the need to delve into complex mocking framework internals.</p>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">createUser</span><span class="p">(</span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">):</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">newId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="m">0.</span><span class="p">.</span><span class="na">Int</span><span class="p">.</span><span class="na">MAX_VALUE</span><span class="p">).</span><span class="na">random</span><span class="p">()</span><span class="w"> </span><span class="c1">// In real app, you would use a proper ID generation strategy</span>
+<span class="w">        </span><span class="c1">// In real app, you would use a proper ID generation strategy</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">newId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="m">0.</span><span class="p">.</span><span class="na">Int</span><span class="p">.</span><span class="na">MAX_VALUE</span><span class="p">).</span><span class="na">random</span><span class="p">()</span>
 <span class="w">        </span><span class="n">userRepository</span><span class="p">.</span><span class="na">saveUser</span><span class="p">(</span><span class="n">User</span><span class="p">(</span><span class="n">newId</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">))</span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">newId</span>
 <span class="w">    </span><span class="p">}</span>
+
 <span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">removeUser</span><span class="p">(</span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">userRepository</span><span class="p">.</span><span class="na">deleteUser</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">FakeUserRepository</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">UserRepository</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">InMemoryUserRepository</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">UserRepository</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mutableMapOf</span><span class="o">&lt;</span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="n">User</span><span class="o">&gt;</span><span class="p">()</span>
+
 <span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getUser</span><span class="p">(</span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">):</span><span class="w"> </span><span class="n">User? </span><span class="p">{</span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">users</span><span class="o">[</span><span class="n">id</span><span class="o">]</span>
 <span class="w">    </span><span class="p">}</span>
@@ -1090,47 +1044,48 @@ You avoid the need to delve into complex mocking framework internals.</p>
 <span class="p">}</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">UserServiceTest</span><span class="w"> </span><span class="p">{</span>
+
 <span class="w">    </span><span class="nd">@Test</span>
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">`findUser returns user name if user exists`</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">fakeRepo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FakeUserRepository</span><span class="p">()</span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">userService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UserService</span><span class="p">(</span><span class="n">fakeRepo</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">`finds user if user exists`</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">repository</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">InMemoryUserRepository</span><span class="p">()</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">userService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UserService</span><span class="p">(</span><span class="n">repository</span><span class="p">)</span>
 <span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">testUser</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">User</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Test User&quot;</span><span class="p">)</span>
-<span class="w">        </span><span class="n">fakeRepo</span><span class="p">.</span><span class="na">saveUser</span><span class="p">(</span><span class="n">testUser</span><span class="p">)</span>
+<span class="w">        </span><span class="n">repository</span><span class="p">.</span><span class="na">saveUser</span><span class="p">(</span><span class="n">testUser</span><span class="p">)</span>
 
 <span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">userName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">userService</span><span class="p">.</span><span class="na">findUser</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
 <span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="s">&quot;Test User&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">userName</span><span class="p">)</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="nd">@Test</span>
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">`findUser returns null if user does not exist`</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">fakeRepo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FakeUserRepository</span><span class="p">()</span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">userService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UserService</span><span class="p">(</span><span class="n">fakeRepo</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">`doesn&#39;t find user if user does not exist`</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">repository</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">InMemoryUserRepository</span><span class="p">()</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">userService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UserService</span><span class="p">(</span><span class="n">repository</span><span class="p">)</span>
 
 <span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">userName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">userService</span><span class="p">.</span><span class="na">findUser</span><span class="p">(</span><span class="m">999</span><span class="p">)</span>
 <span class="w">        </span><span class="n">assertNull</span><span class="p">(</span><span class="n">userName</span><span class="p">)</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="nd">@Test</span>
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">`createUser correctly saves the user`</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">fakeRepo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FakeUserRepository</span><span class="p">()</span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">userService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UserService</span><span class="p">(</span><span class="n">fakeRepo</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">`creates the user`</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">repository</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">InMemoryUserRepository</span><span class="p">()</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">userService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UserService</span><span class="p">(</span><span class="n">repository</span><span class="p">)</span>
 
 <span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">newUserId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">userService</span><span class="p">.</span><span class="na">createUser</span><span class="p">(</span><span class="s">&quot;New User&quot;</span><span class="p">)</span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">retrievedUser</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fakeRepo</span><span class="p">.</span><span class="na">getUser</span><span class="p">(</span><span class="n">newUserId</span><span class="p">)</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">retrievedUser</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">repository</span><span class="p">.</span><span class="na">getUser</span><span class="p">(</span><span class="n">newUserId</span><span class="p">)</span>
 
 <span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="s">&quot;New User&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">retrievedUser</span><span class="o">?.</span><span class="na">name</span><span class="p">)</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="nd">@Test</span>
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">`removeUser correctly deletes the user`</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">fakeRepo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FakeUserRepository</span><span class="p">()</span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">userService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UserService</span><span class="p">(</span><span class="n">fakeRepo</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">`deletes the user`</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">repository</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">InMemoryUserRepository</span><span class="p">()</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">userService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UserService</span><span class="p">(</span><span class="n">repository</span><span class="p">)</span>
 <span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">testUser</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">User</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Test User&quot;</span><span class="p">)</span>
-<span class="w">        </span><span class="n">fakeRepo</span><span class="p">.</span><span class="na">saveUser</span><span class="p">(</span><span class="n">testUser</span><span class="p">)</span>
+<span class="w">        </span><span class="n">repository</span><span class="p">.</span><span class="na">saveUser</span><span class="p">(</span><span class="n">testUser</span><span class="p">)</span>
 
 <span class="w">        </span><span class="n">userService</span><span class="p">.</span><span class="na">removeUser</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
 
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">retrievedUser</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fakeRepo</span><span class="p">.</span><span class="na">getUser</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">retrievedUser</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">repository</span><span class="p">.</span><span class="na">getUser</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
 <span class="w">        </span><span class="n">assertNull</span><span class="p">(</span><span class="n">retrievedUser</span><span class="p">)</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
@@ -1154,8 +1109,6 @@ You might be surprised how often it&rsquo;s the right answer.</p>
 <li><a href="https://www.jamesshore.com/v2/projects/nullables/testing-without-mocks#configurable-responses">Configurable Responses</a></li>
 <li><a href="https://www.jamesshore.com/v2/projects/nullables/testing-without-mocks#output-tracking">Output Tracking</a></li>
 </ul>
-<h2 id="leftovers">🚧 Leftovers<a class="headerlink" href="#leftovers" title="Permanent link">&para;</a></h2>
-<p>Sociable unit tests FTW!</p>
 <div class="footnote">
 <hr />
 <ol>
@@ -1184,7 +1137,7 @@ You might be surprised how often it&rsquo;s the right answer.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 27, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 28, 2025</span>
   </span>
 
     
