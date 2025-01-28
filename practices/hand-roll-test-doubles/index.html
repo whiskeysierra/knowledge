@@ -803,33 +803,87 @@ You avoid the need to delve into complex mocking framework internals.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:5"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Dummy</label><label for="__tabbed_1_2">Stub</label><label for="__tabbed_1_3">Spies</label><label for="__tabbed_1_4">Mock</label><label for="__tabbed_1_5">Fake</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nc">Logger</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="n">message</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Only hand-roll a dummy if a suitable default/noop implementation (like a <a href="https://sourcemaking.com/design_patterns/null_object">Null Object</a>) doesn&rsquo;t already exist for the required interface.</p>
+</div>
+<div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nc">Currency</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">code</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">symbol</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">displayName</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">defaultFractionDigits</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span>
 <span class="p">}</span>
 
-<span class="kd">class</span><span class="w"> </span><span class="nc">SystemUnderTest</span><span class="p">(</span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">logger</span><span class="p">:</span><span class="w"> </span><span class="n">Logger</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">doSomething</span><span class="p">(</span><span class="n">input</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">):</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// Logger is not used here</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Processed: </span><span class="si">$</span><span class="n">input</span><span class="s">&quot;</span>
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Money</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">amount</span><span class="p">:</span><span class="w"> </span><span class="n">BigDecimal</span><span class="p">,</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">currency</span><span class="p">:</span><span class="w"> </span><span class="n">Currency</span><span class="p">)</span>
+
+<span class="kd">data</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="nc">EUR</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Currency</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">code</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;EUR&quot;</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">symbol</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;€&quot;</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">displayName</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Euro&quot;</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">defaultFractionDigits</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
+<span class="p">}</span>
+
+<span class="kd">data</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="nc">USD</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Currency</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;USD&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">symbol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;</span><span class="err">$</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">displayName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;US Dollar&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">defaultFractionDigits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
+<span class="p">}</span>
+
+<span class="kd">interface</span><span class="w"> </span><span class="nc">CurrencyConverter</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">convert</span><span class="p">(</span><span class="n">amount</span><span class="p">:</span><span class="w"> </span><span class="n">Money</span><span class="p">,</span><span class="w"> </span><span class="n">preferredCurrency</span><span class="p">:</span><span class="w"> </span><span class="n">Currency</span><span class="p">):</span><span class="w"> </span><span class="n">Money</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Converts amounts to EUR.  Ignores the [preferredCurrency] parameter.</span>
+<span class="cm"> */</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">EuroConverter</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">CurrencyConverter</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">convert</span><span class="p">(</span><span class="n">amount</span><span class="p">:</span><span class="w"> </span><span class="n">Money</span><span class="p">,</span><span class="w"> </span><span class="n">preferredCurrency</span><span class="p">:</span><span class="w"> </span><span class="n">Currency</span><span class="p">):</span><span class="w"> </span><span class="n">Money</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">euroAmount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">when</span><span class="w"> </span><span class="p">(</span><span class="n">amount</span><span class="p">.</span><span class="na">currency</span><span class="p">.</span><span class="na">code</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="s">&quot;USD&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">amount</span><span class="p">.</span><span class="na">amount</span><span class="p">.</span><span class="na">multiply</span><span class="p">(</span><span class="n">BigDecimal</span><span class="p">(</span><span class="s">&quot;0.92&quot;</span><span class="p">))</span>
+<span class="w">            </span><span class="s">&quot;GBP&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">amount</span><span class="p">.</span><span class="na">amount</span><span class="p">.</span><span class="na">multiply</span><span class="p">(</span><span class="n">BigDecimal</span><span class="p">(</span><span class="s">&quot;1.15&quot;</span><span class="p">))</span>
+<span class="w">            </span><span class="k">else</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">amount</span><span class="p">.</span><span class="na">amount</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Money</span><span class="p">(</span><span class="n">euroAmount</span><span class="p">,</span><span class="w"> </span><span class="n">EUR</span><span class="p">)</span>
 <span class="w">    </span><span class="p">}</span>
+
 <span class="p">}</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="kd">object</span><span class="w"> </span><span class="nc">DummyLogger</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Logger</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="n">message</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Unit</span>
+<div class="highlight"><pre><span></span><code><span class="kd">data</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="nc">DummyCurrency</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Currency</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">code</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span>
+<span class="w">        </span><span class="k">get</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">throw</span><span class="w"> </span><span class="n">UnsupportedOperationException</span><span class="p">(</span><span class="s">&quot;Dummy Currency should not be used.&quot;</span><span class="p">)</span>
+
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">symbol</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span>
+<span class="w">        </span><span class="k">get</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">throw</span><span class="w"> </span><span class="n">UnsupportedOperationException</span><span class="p">(</span><span class="s">&quot;Dummy Currency should not be used.&quot;</span><span class="p">)</span>
+
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">displayName</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span>
+<span class="w">        </span><span class="k">get</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">throw</span><span class="w"> </span><span class="n">UnsupportedOperationException</span><span class="p">(</span><span class="s">&quot;Dummy Currency should not be used.&quot;</span><span class="p">)</span>
+
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">defaultFractionDigits</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span>
+<span class="w">        </span><span class="k">get</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">throw</span><span class="w"> </span><span class="n">UnsupportedOperationException</span><span class="p">(</span><span class="s">&quot;Dummy Currency should not be used.&quot;</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">SystemUnderTestTest</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">EuroConverterTest</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nd">@Test</span>
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">`processes input`</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">sut</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SystemUnderTest</span><span class="p">(</span><span class="n">logger</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DummyLogger</span><span class="p">)</span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sut</span><span class="p">.</span><span class="na">doSomething</span><span class="p">(</span><span class="s">&quot;test&quot;</span><span class="p">)</span>
-<span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="s">&quot;Processed: test&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">`converts to eur ignoring preferred currency`</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">converter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EuroConverter</span><span class="p">()</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">amount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Money</span><span class="p">(</span><span class="n">BigDecimal</span><span class="p">(</span><span class="s">&quot;100&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">USD</span><span class="p">)</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">dummyCurrency</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DummyCurrency</span>
+
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">convertedAmount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">converter</span><span class="p">.</span><span class="na">convert</span><span class="p">(</span><span class="n">amount</span><span class="p">,</span><span class="w"> </span><span class="n">dummyCurrency</span><span class="p">)</span>
+
+<span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="n">BigDecimal</span><span class="p">(</span><span class="s">&quot;92.00&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">convertedAmount</span><span class="p">.</span><span class="na">amount</span><span class="p">)</span>
+<span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="s">&quot;EUR&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">convertedAmount</span><span class="p">.</span><span class="na">currency</span><span class="p">.</span><span class="na">code</span><span class="p">)</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<p>Using <a href="https://www.jamesshore.com/v2/projects/nullables/testing-without-mocks#configurable-responses">Configurable Responses</a></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>This example uses the <a href="https://www.jamesshore.com/v2/projects/nullables/testing-without-mocks#configurable-responses">Configurable Responses</a>
+pattern as implemented by <a href="https://github.com/whiskeysierra/test-doubles">whiskeysierra/test-doubles</a>.</p>
+</div>
 <div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nc">DataProvider</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getData</span><span class="p">(</span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">):</span><span class="w"> </span><span class="kt">String?</span>
 <span class="p">}</span>
@@ -867,7 +921,11 @@ You avoid the need to delve into complex mocking framework internals.</p>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<p>Using <a href="https://www.jamesshore.com/v2/projects/nullables/testing-without-mocks#output-tracking">Output Tracking</a></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>This example uses the <a href="https://www.jamesshore.com/v2/projects/nullables/testing-without-mocks#output-tracking">Output Tracking</a>
+pattern as implemented by <a href="https://github.com/whiskeysierra/test-doubles">whiskeysierra/test-doubles</a>.</p>
+</div>
 <div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nc">EmailService</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">sendEmail</span><span class="p">(</span><span class="n">recipient</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span>
 <span class="p">}</span>
@@ -917,7 +975,14 @@ You avoid the need to delve into complex mocking framework internals.</p>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<p>🚧 Discourage usage!!!</p>
+<div class="admonition warning">
+<p class="admonition-title">A Word of Caution</p>
+<p>While hand-rolling mocks is technically possible (as shown below), it’s often less ideal than using simpler types of test doubles.</p>
+<p>Hand-rolled mocks present two key challenges.
+First, the need to pre-program and verify expectations increases the complexity of the mock itself, making it harder to write, understand, and maintain.
+Second, and this applies to mocks in general, hiding expectations and verifications within the mock makes the tests themselves less expressive and readable, as they contain less visible evidence (assertions).
+Consider using simpler test doubles like stubs, spies, or fakes before resorting to hand-rolled mocks.</p>
+</div>
 <div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nc">PaymentGateway</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">processPayment</span><span class="p">(</span><span class="n">amount</span><span class="p">:</span><span class="w"> </span><span class="kt">Double</span><span class="p">):</span><span class="w"> </span><span class="kt">Boolean</span>
 <span class="p">}</span>
@@ -1002,6 +1067,12 @@ You avoid the need to delve into complex mocking framework internals.</p>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Fakes are particularly well-suited for implementing repository interfaces because they provide simplified,
+in-memory implementations that mimic the behavior of a real database or external service, making tests fast
+and predictable.</p>
+</div>
 <div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nc">UserRepository</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getUser</span><span class="p">(</span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">):</span><span class="w"> </span><span class="n">User?</span>
 <span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">saveUser</span><span class="p">(</span><span class="n">user</span><span class="p">:</span><span class="w"> </span><span class="n">User</span><span class="p">)</span>
