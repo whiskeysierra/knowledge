@@ -155,3 +155,4 @@ using the *Decorator* pattern:
 
 * [Refactoring Guru: Composite](https://refactoring.guru/design-patterns/composite)
 * [SourceMaking: Composite](https://sourcemaking.com/design_patterns/composite)
+* [Domain-Oriented Observability](https://martinfowler.com/articles/domain-oriented-observability.html)
