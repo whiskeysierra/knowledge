@@ -762,7 +762,7 @@ Mocks are used to verify interactions and enforce specific behavior.</p>
 <p><strong>Mocks are not aware of the interface contract</strong></p>
 <p>Mocks only know about the specific methods and behaviors you explicitly define in each test.
 This means there&rsquo;s no compile-time or runtime check to ensure these mock setups adhere to the actual interface <em>contract</em>.
-This lack of enforcement creates a significant risk of introducing subtle errors that can go undetected.</p>
+This lack of enforcement creates a significant risk of introducing subtle differences between the mock and the real class that can go undetected.</p>
 <p>The term &ldquo;<em>contract</em>&rdquo;, in this context, refers to both the syntax (method signatures) and semantics (intended behavior) of an interface.</p>
 </li>
 <li>
@@ -990,27 +990,27 @@ pattern as implemented by <a href="https://github.com/whiskeysierra/test-doubles
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>```kotlin</p>
-<p>import io.github.whiskeysierra.testdoubles.spy.Tracker
-import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Test</p>
-<p>class UserNotifierTest {
-    @Test
-    fun <code>sends emails to user and admin</code>() {
-        val spy = SpyEmailService()
-        val notifier = UserNotifier(spy)</p>
-<div class="codehilite"><pre><span></span><code><span class="w">    </span>val<span class="w"> </span>sentEmails:<span class="w"> </span>Tracker<span class="nt">&lt;Pair</span><span class="err">&lt;String,</span><span class="w"> </span><span class="err">String</span><span class="nt">&gt;</span>&gt;<span class="w"> </span>=<span class="w"> </span>spy.track()
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nn">io.github.whiskeysierra.testdoubles.spy.Tracker</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">org.assertj.core.api.Assertions.assertThat</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">org.junit.jupiter.api.Test</span>
 
-<span class="w">    </span>notifier.notifyUser(&quot;test@example.com&quot;,<span class="w"> </span>&quot;Hello!&quot;)
+<span class="kd">class</span><span class="w"> </span><span class="nc">UserNotifierTest</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Test</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">`sends emails to user and admin`</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">spy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpyEmailService</span><span class="p">()</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">notifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UserNotifier</span><span class="p">(</span><span class="n">spy</span><span class="p">)</span>
 
-<span class="w">    </span>assertThat(sentEmails).containsExactly(
-<span class="w">        </span>Pair(&quot;test@example.com&quot;,<span class="w"> </span>&quot;Hello!&quot;),
-<span class="w">        </span>Pair(&quot;admin@example.com&quot;,<span class="w"> </span>&quot;User<span class="w"> </span>notified&quot;)
-<span class="w">    </span>)
-}
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">sentEmails</span><span class="p">:</span><span class="w"> </span><span class="n">Tracker</span><span class="o">&lt;</span><span class="n">Pair</span><span class="o">&lt;</span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="kt">String</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spy</span><span class="p">.</span><span class="na">track</span><span class="p">()</span>
+
+<span class="w">        </span><span class="n">notifier</span><span class="p">.</span><span class="na">notifyUser</span><span class="p">(</span><span class="s">&quot;test@example.com&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Hello!&quot;</span><span class="p">)</span>
+
+<span class="w">        </span><span class="n">assertThat</span><span class="p">(</span><span class="n">sentEmails</span><span class="p">).</span><span class="na">containsExactly</span><span class="p">(</span>
+<span class="w">            </span><span class="n">Pair</span><span class="p">(</span><span class="s">&quot;test@example.com&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Hello!&quot;</span><span class="p">),</span>
+<span class="w">            </span><span class="n">Pair</span><span class="p">(</span><span class="s">&quot;admin@example.com&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;User notified&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div>
-
-<p>}</p>
 </div>
 <div class="tabbed-block">
 <div class="admonition warning">
@@ -1073,7 +1073,7 @@ import org.junit.jupiter.api.Test</p>
 <span class="w">        </span><span class="k">get</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">throw</span><span class="w"> </span><span class="n">UnsupportedOperationException</span><span class="p">(</span><span class="s">&quot;Dummy Currency should not be used.&quot;</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
-<p><div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">EuroConverterTest</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">EuroConverterTest</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nd">@Test</span>
 <span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">`converts to eur ignoring preferred currency`</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">converter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EuroConverter</span><span class="p">()</span>
@@ -1086,7 +1086,6 @@ import org.junit.jupiter.api.Test</p>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-```</p>
 </div>
 <div class="tabbed-block">
 <div class="admonition warning">
