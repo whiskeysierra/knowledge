@@ -70,7 +70,7 @@ While mocking libraries offer convenient test double creation and reduced boiler
 
     Mocks only know about the specific methods and behaviors you explicitly define in each test.
     This means there's no compile-time or runtime check to ensure these mock setups adhere to the actual interface *contract*.
-    This lack of enforcement creates a significant risk of introducing subtle errors that can go undetected.
+    This lack of enforcement creates a significant risk of introducing subtle differences between the mock and the real class that can go undetected.
 
     The term "_contract_", in this context, refers to both the syntax (method signatures) and semantics (intended behavior) of an interface.
 
@@ -184,6 +184,7 @@ This section demonstrates hand-rolled test doubles in Kotlin, showcasing each of
 
     ```kotlin
     {% include "../../src/test/kotlin/practices/handroll/spy/UserNotifierTest.kt" %}
+    ```
 
 === "Dummy"
 
@@ -204,7 +205,6 @@ This section demonstrates hand-rolled test doubles in Kotlin, showcasing each of
 
     ```kotlin
     {% include "../../src/test/kotlin/practices/handroll/dummy/EuroConverterTest.kt" %}
-    ```
     ```
 
 === "Mock"
