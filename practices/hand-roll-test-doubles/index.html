@@ -700,9 +700,10 @@
 — <a href="https://www.geepawhill.org/2021/07/13/on-not-using-mocking-frameworks/">GeePaw Hill</a>, July 13<sup>th</sup>, 2021</p>
 </blockquote>
 <p>Mocking libraries<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> are everywhere these days, promising easy test setup and readable code.
-But honestly, sometimes it&rsquo;s way better to just roll your own test doubles.
+But honestly, it&rsquo;s almost always way better to just roll your own test doubles.
 Especially if you care about clean, maintainable tests.
-Let&rsquo;s talk about why explicit code often beats the magic of mocking frameworks.</p>
+The only real exception is during legacy migrations, and even then, mocking libraries should be considered a temporary crutch, not a long-term solution.
+Let&rsquo;s talk about why explicit code virtually always beats the magic of mocking frameworks.</p>
 <h2 id="what-are-test-doubles-anyway">What are Test Doubles Anyway?<a class="headerlink" href="#what-are-test-doubles-anyway" title="Permanent link">&para;</a></h2>
 <p><a href="https://martinfowler.com/bliki/TestDouble.html">Test doubles</a> are objects that stand in for real dependencies during testing.
 They allow you to isolate the unit under test, controlling its interactions with other parts of the system and ensuring predictable test outcomes.</p>
@@ -710,12 +711,13 @@ They allow you to isolate the unit under test, controlling its interactions with
 This approach aligns with the concept of <a href="https://martinfowler.com/bliki/UnitTest.html#SolitaryOrSociable"><em>sociable unit tests</em></a>,
 which verify the behavior of multiple components in collaboration.
 Test doubles should only be used when using the real dependency is impractical or problematic.</p>
-<p>Here are the common types:</p>
+<p>Here are the common types (roughly ordered by my personal preference, from most to least preferred in most situations):</p>
 <ul>
 <li>
-<p><strong>Dummies</strong></p>
-<p>These are objects passed as arguments but are never actually used within the method being tested.
-They are simply placeholders to satisfy method signatures.</p>
+<p><strong>Fakes</strong></p>
+<p>Fakes are working implementations of a dependency, but they are simplified for testing purposes.
+Examples include in-memory databases or simplified versions of external services.
+They provide a functional but lightweight alternative to the real dependency.</p>
 </li>
 <li>
 <p><strong>Stubs</strong></p>
@@ -742,16 +744,15 @@ Instead of verifying specific method calls, they verify that the object&rsquo;s 
 </ul>
 </li>
 <li>
+<p><strong>Dummies</strong></p>
+<p>These are objects passed as arguments but are never actually used within the method being tested.
+They are simply placeholders to satisfy method signatures.</p>
+</li>
+<li>
 <p><strong>Mocks</strong></p>
 <p>Mocks are pre-programmed with expectations about how they will be called.
 If these expectations are not met during the test, the test fails.
 Mocks are used to verify interactions and enforce specific behavior.</p>
-</li>
-<li>
-<p><strong>Fakes</strong></p>
-<p>Fakes are working implementations of a dependency, but they are simplified for testing purposes.
-Examples include in-memory databases or simplified versions of external services.
-They provide a functional but lightweight alternative to the real dependency.</p>
 </li>
 </ul>
 <h2 id="the-problem-with-mocking-libraries">The Problem with Mocking Libraries<a class="headerlink" href="#the-problem-with-mocking-libraries" title="Permanent link">&para;</a></h2>
@@ -762,6 +763,7 @@ They provide a functional but lightweight alternative to the real dependency.</p
 <p>Mocks only know about the specific methods and behaviors you explicitly define in each test.
 This means there&rsquo;s no compile-time or runtime check to ensure these mock setups adhere to the actual interface <em>contract</em>.
 This lack of enforcement creates a significant risk of introducing subtle errors that can go undetected.</p>
+<p>The term &ldquo;<em>contract</em>&rdquo;, in this context, refers to both the syntax (method signatures) and semantics (intended behavior) of an interface.</p>
 </li>
 <li>
 <p><strong>Tight Coupling to Implementation</strong></p>
@@ -816,271 +818,8 @@ You avoid the need to delve into complex mocking framework internals.</p>
 </ul>
 <h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
 <p>This section demonstrates hand-rolled test doubles in Kotlin, showcasing each of the five main types:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:5"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Dummy</label><label for="__tabbed_1_2">Stub</label><label for="__tabbed_1_3">Spies</label><label for="__tabbed_1_4">Mock</label><label for="__tabbed_1_5">Fake</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:5"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Fake</label><label for="__tabbed_1_2">Stub</label><label for="__tabbed_1_3">Spies</label><label for="__tabbed_1_4">Dummy</label><label for="__tabbed_1_5">Mock</label></div>
 <div class="tabbed-content">
-<div class="tabbed-block">
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Only hand-roll a dummy if a suitable default/noop implementation (like a <a href="https://sourcemaking.com/design_patterns/null_object">Null Object</a>) doesn&rsquo;t already exist for the required interface.</p>
-</div>
-<div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nc">Currency</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">code</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span>
-<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">symbol</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span>
-<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">displayName</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span>
-<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">defaultFractionDigits</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span>
-<span class="p">}</span>
-
-<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Money</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">amount</span><span class="p">:</span><span class="w"> </span><span class="n">BigDecimal</span><span class="p">,</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">currency</span><span class="p">:</span><span class="w"> </span><span class="n">Currency</span><span class="p">)</span>
-
-<span class="kd">data</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="nc">EUR</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Currency</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">code</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;EUR&quot;</span>
-<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">symbol</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;€&quot;</span>
-<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">displayName</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Euro&quot;</span>
-<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">defaultFractionDigits</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
-<span class="p">}</span>
-
-<span class="kd">data</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="nc">USD</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Currency</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;USD&quot;</span><span class="p">;</span>
-<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">symbol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;</span><span class="err">$</span><span class="s">&quot;</span><span class="p">;</span>
-<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">displayName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;US Dollar&quot;</span><span class="p">;</span>
-<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">defaultFractionDigits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
-<span class="p">}</span>
-
-<span class="kd">interface</span><span class="w"> </span><span class="nc">CurrencyConverter</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">convert</span><span class="p">(</span><span class="n">amount</span><span class="p">:</span><span class="w"> </span><span class="n">Money</span><span class="p">,</span><span class="w"> </span><span class="n">preferredCurrency</span><span class="p">:</span><span class="w"> </span><span class="n">Currency</span><span class="p">):</span><span class="w"> </span><span class="n">Money</span>
-<span class="p">}</span>
-
-<span class="cm">/**</span>
-<span class="cm"> * Converts amounts to EUR.  Ignores the [preferredCurrency] parameter.</span>
-<span class="cm"> */</span>
-<span class="kd">class</span><span class="w"> </span><span class="nc">EuroConverter</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">CurrencyConverter</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">convert</span><span class="p">(</span><span class="n">amount</span><span class="p">:</span><span class="w"> </span><span class="n">Money</span><span class="p">,</span><span class="w"> </span><span class="n">preferredCurrency</span><span class="p">:</span><span class="w"> </span><span class="n">Currency</span><span class="p">):</span><span class="w"> </span><span class="n">Money</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">euroAmount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">when</span><span class="w"> </span><span class="p">(</span><span class="n">amount</span><span class="p">.</span><span class="na">currency</span><span class="p">.</span><span class="na">code</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="s">&quot;USD&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">amount</span><span class="p">.</span><span class="na">amount</span><span class="p">.</span><span class="na">multiply</span><span class="p">(</span><span class="n">BigDecimal</span><span class="p">(</span><span class="s">&quot;0.92&quot;</span><span class="p">))</span>
-<span class="w">            </span><span class="s">&quot;GBP&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">amount</span><span class="p">.</span><span class="na">amount</span><span class="p">.</span><span class="na">multiply</span><span class="p">(</span><span class="n">BigDecimal</span><span class="p">(</span><span class="s">&quot;1.15&quot;</span><span class="p">))</span>
-<span class="w">            </span><span class="k">else</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">amount</span><span class="p">.</span><span class="na">amount</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Money</span><span class="p">(</span><span class="n">euroAmount</span><span class="p">,</span><span class="w"> </span><span class="n">EUR</span><span class="p">)</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="p">}</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="kd">data</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="nc">DummyCurrency</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Currency</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">code</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span>
-<span class="w">        </span><span class="k">get</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">throw</span><span class="w"> </span><span class="n">UnsupportedOperationException</span><span class="p">(</span><span class="s">&quot;Dummy Currency should not be used.&quot;</span><span class="p">)</span>
-
-<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">symbol</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span>
-<span class="w">        </span><span class="k">get</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">throw</span><span class="w"> </span><span class="n">UnsupportedOperationException</span><span class="p">(</span><span class="s">&quot;Dummy Currency should not be used.&quot;</span><span class="p">)</span>
-
-<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">displayName</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span>
-<span class="w">        </span><span class="k">get</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">throw</span><span class="w"> </span><span class="n">UnsupportedOperationException</span><span class="p">(</span><span class="s">&quot;Dummy Currency should not be used.&quot;</span><span class="p">)</span>
-
-<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">defaultFractionDigits</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span>
-<span class="w">        </span><span class="k">get</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">throw</span><span class="w"> </span><span class="n">UnsupportedOperationException</span><span class="p">(</span><span class="s">&quot;Dummy Currency should not be used.&quot;</span><span class="p">)</span>
-<span class="p">}</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">EuroConverterTest</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nd">@Test</span>
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">`converts to eur ignoring preferred currency`</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">converter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EuroConverter</span><span class="p">()</span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">amount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Money</span><span class="p">(</span><span class="n">BigDecimal</span><span class="p">(</span><span class="s">&quot;100&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">USD</span><span class="p">)</span>
-
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">convertedAmount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">converter</span><span class="p">.</span><span class="na">convert</span><span class="p">(</span><span class="n">amount</span><span class="p">,</span><span class="w"> </span><span class="n">DummyCurrency</span><span class="p">)</span>
-
-<span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="n">BigDecimal</span><span class="p">(</span><span class="s">&quot;92.00&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">convertedAmount</span><span class="p">.</span><span class="na">amount</span><span class="p">)</span>
-<span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="s">&quot;EUR&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">convertedAmount</span><span class="p">.</span><span class="na">currency</span><span class="p">.</span><span class="na">code</span><span class="p">)</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>This example uses the <a href="https://www.jamesshore.com/v2/projects/nullables/testing-without-mocks#configurable-responses">Configurable Responses</a>
-pattern as implemented by <a href="https://github.com/whiskeysierra/test-doubles">whiskeysierra/test-doubles</a>.</p>
-</div>
-<div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nc">DataProvider</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getData</span><span class="p">(</span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">):</span><span class="w"> </span><span class="kt">String?</span>
-<span class="p">}</span>
-
-<span class="kd">class</span><span class="w"> </span><span class="nc">DataProcessor</span><span class="p">(</span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">dataProvider</span><span class="p">:</span><span class="w"> </span><span class="n">DataProvider</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">process</span><span class="p">(</span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="n">fallback</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Default Data&quot;</span><span class="p">):</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Processed: </span><span class="si">${</span><span class="n">dataProvider</span><span class="p">.</span><span class="na">getData</span><span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="n">fallback</span><span class="si">}</span><span class="s">&quot;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">StubDataProvider</span><span class="p">(</span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">responses</span><span class="p">:</span><span class="w"> </span><span class="n">Iterator</span><span class="o">&lt;</span><span class="kt">String?</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">DataProvider</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getData</span><span class="p">(</span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">responses</span><span class="p">.</span><span class="na">next</span><span class="p">()</span>
-<span class="p">}</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">DataProcessorTest</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nd">@Test</span>
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">`retrieves and processes data`</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">provider</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">StubDataProvider</span><span class="p">(</span><span class="n">responses</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">once</span><span class="p">(</span><span class="s">&quot;Test Data&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Other Data&quot;</span><span class="p">))</span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">processor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataProcessor</span><span class="p">(</span><span class="n">provider</span><span class="p">)</span>
-
-<span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="s">&quot;Processed: Test Data&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">processor</span><span class="p">.</span><span class="na">process</span><span class="p">(</span><span class="m">1</span><span class="p">))</span>
-<span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="s">&quot;Processed: Default Data&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">processor</span><span class="p">.</span><span class="na">process</span><span class="p">(</span><span class="m">2</span><span class="p">))</span>
-<span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="s">&quot;Processed: Other Data&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">processor</span><span class="p">.</span><span class="na">process</span><span class="p">(</span><span class="m">3</span><span class="p">))</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="nd">@Test</span>
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">`uses fallback when no data is available`</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">provider</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">StubDataProvider</span><span class="p">(</span><span class="n">responses</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">once</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Real Data&quot;</span><span class="p">))</span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">processor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataProcessor</span><span class="p">(</span><span class="n">provider</span><span class="p">)</span>
-
-<span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="s">&quot;Processed: Fallback Data&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">processor</span><span class="p">.</span><span class="na">process</span><span class="p">(</span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Fallback Data&quot;</span><span class="p">))</span>
-<span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="s">&quot;Processed: Real Data&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">processor</span><span class="p">.</span><span class="na">process</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Fallback Data&quot;</span><span class="p">))</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>This example uses the <a href="https://www.jamesshore.com/v2/projects/nullables/testing-without-mocks#output-tracking">Output Tracking</a>
-pattern as implemented by <a href="https://github.com/whiskeysierra/test-doubles">whiskeysierra/test-doubles</a>.</p>
-</div>
-<div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nc">EmailService</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">sendEmail</span><span class="p">(</span><span class="n">recipient</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="kd">class</span><span class="w"> </span><span class="nc">UserNotifier</span><span class="p">(</span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">emailService</span><span class="p">:</span><span class="w"> </span><span class="n">EmailService</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">notifyUser</span><span class="p">(</span><span class="n">userEmail</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">emailService</span><span class="p">.</span><span class="na">sendEmail</span><span class="p">(</span><span class="n">userEmail</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">)</span>
-<span class="w">        </span><span class="n">emailService</span><span class="p">.</span><span class="na">sendEmail</span><span class="p">(</span><span class="s">&quot;admin@example.com&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;User notified&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// Send notification to admin as well</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nn">io.github.whiskeysierra.testdoubles.spy.OutputTracking</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">io.github.whiskeysierra.testdoubles.spy.Tracker</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">org.assertj.core.util.VisibleForTesting</span>
-
-<span class="kd">class</span><span class="w"> </span><span class="nc">SpyEmailService</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">EmailService</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">tracking</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OutputTracking</span><span class="o">&lt;</span><span class="n">Pair</span><span class="o">&lt;</span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="kt">String</span><span class="o">&gt;&gt;</span><span class="p">()</span>
-
-<span class="w">    </span><span class="nd">@VisibleForTesting</span>
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">track</span><span class="p">():</span><span class="w"> </span><span class="n">Tracker</span><span class="o">&lt;</span><span class="n">Pair</span><span class="o">&lt;</span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="kt">String</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tracking</span><span class="p">.</span><span class="na">track</span><span class="p">()</span>
-
-<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">sendEmail</span><span class="p">(</span><span class="n">recipient</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">tracking</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">Pair</span><span class="p">(</span><span class="n">recipient</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">))</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nn">io.github.whiskeysierra.testdoubles.spy.Tracker</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">org.assertj.core.api.Assertions.assertThat</span>
-<span class="k">import</span><span class="w"> </span><span class="nn">org.junit.jupiter.api.Test</span>
-
-<span class="kd">class</span><span class="w"> </span><span class="nc">UserNotifierTest</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nd">@Test</span>
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">`sends emails to user and admin`</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">spy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpyEmailService</span><span class="p">()</span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">notifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UserNotifier</span><span class="p">(</span><span class="n">spy</span><span class="p">)</span>
-
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">sentEmails</span><span class="p">:</span><span class="w"> </span><span class="n">Tracker</span><span class="o">&lt;</span><span class="n">Pair</span><span class="o">&lt;</span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="kt">String</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spy</span><span class="p">.</span><span class="na">track</span><span class="p">()</span>
-
-<span class="w">        </span><span class="n">notifier</span><span class="p">.</span><span class="na">notifyUser</span><span class="p">(</span><span class="s">&quot;test@example.com&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Hello!&quot;</span><span class="p">)</span>
-
-<span class="w">        </span><span class="n">assertThat</span><span class="p">(</span><span class="n">sentEmails</span><span class="p">).</span><span class="na">containsExactly</span><span class="p">(</span>
-<span class="w">            </span><span class="n">Pair</span><span class="p">(</span><span class="s">&quot;test@example.com&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Hello!&quot;</span><span class="p">),</span>
-<span class="w">            </span><span class="n">Pair</span><span class="p">(</span><span class="s">&quot;admin@example.com&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;User notified&quot;</span><span class="p">)</span>
-<span class="w">        </span><span class="p">)</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="admonition warning">
-<p class="admonition-title">A Word of Caution</p>
-<p>While hand-rolling mocks is technically possible (as shown below), it’s often less ideal than using simpler types of test doubles.</p>
-<p>Hand-rolled mocks present two key challenges.
-First, the need to pre-program and verify expectations increases the complexity of the mock itself, making it harder to write, understand, and maintain.
-Second, and this applies to mocks in general, hiding expectations and verifications within the mock makes the tests themselves less expressive and readable, as they contain less visible evidence (assertions).
-Consider using simpler test doubles like stubs, spies, or fakes before resorting to hand-rolled mocks.</p>
-</div>
-<div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nc">PaymentGateway</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">processPayment</span><span class="p">(</span><span class="n">amount</span><span class="p">:</span><span class="w"> </span><span class="kt">Double</span><span class="p">):</span><span class="w"> </span><span class="kt">Boolean</span>
-<span class="p">}</span>
-
-<span class="kd">class</span><span class="w"> </span><span class="nc">OrderProcessor</span><span class="p">(</span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">paymentGateway</span><span class="p">:</span><span class="w"> </span><span class="n">PaymentGateway</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">processOrder</span><span class="p">(</span><span class="n">amount</span><span class="p">:</span><span class="w"> </span><span class="kt">Double</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">paymentGateway</span><span class="p">.</span><span class="na">processPayment</span><span class="p">(</span><span class="n">amount</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="n">PaymentFailedException</span><span class="p">(</span><span class="s">&quot;Payment failed for amount: </span><span class="si">$</span><span class="n">amount</span><span class="s">&quot;</span><span class="p">)</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="c1">// Order processing logic here</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kd">class</span><span class="w"> </span><span class="nc">PaymentFailedException</span><span class="p">(</span><span class="n">message</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">RuntimeException</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">MockPaymentGateway</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">PaymentGateway</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">paymentProcessed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">expectedAmount</span><span class="p">:</span><span class="w"> </span><span class="kt">Double?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span>
-<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">wasCalled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
-
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">willReturn</span><span class="p">(</span><span class="n">value</span><span class="p">:</span><span class="w"> </span><span class="kt">Boolean</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">paymentProcessed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">value</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">expectPaymentOf</span><span class="p">(</span><span class="n">amount</span><span class="p">:</span><span class="w"> </span><span class="kt">Double</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">expectedAmount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">amount</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">processPayment</span><span class="p">(</span><span class="n">amount</span><span class="p">:</span><span class="w"> </span><span class="kt">Double</span><span class="p">):</span><span class="w"> </span><span class="kt">Boolean</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">wasCalled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">expectedAmount</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">expectedAmount</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">amount</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="n">AssertionError</span><span class="p">(</span><span class="s">&quot;Expected payment of </span><span class="si">$</span><span class="n">expectedAmount</span><span class="s"> but received </span><span class="si">$</span><span class="n">amount</span><span class="s">&quot;</span><span class="p">)</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">paymentProcessed</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">OrderProcessorTest</span><span class="w"> </span><span class="p">{</span>
-
-<span class="w">    </span><span class="nd">@Test</span>
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">`processOrder successfully processes payment`</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">mock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MockPaymentGateway</span><span class="p">()</span>
-<span class="w">        </span><span class="n">mock</span><span class="p">.</span><span class="na">willReturn</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">processor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OrderProcessor</span><span class="p">(</span><span class="n">mock</span><span class="p">)</span>
-<span class="w">        </span><span class="n">processor</span><span class="p">.</span><span class="na">processOrder</span><span class="p">(</span><span class="m">100.0</span><span class="p">)</span>
-<span class="w">        </span><span class="n">assert</span><span class="p">(</span><span class="n">mock</span><span class="p">.</span><span class="na">wasCalled</span><span class="p">)</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="nd">@Test</span>
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">`processOrder throws exception when payment fails`</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">mock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MockPaymentGateway</span><span class="p">()</span>
-<span class="w">        </span><span class="n">mock</span><span class="p">.</span><span class="na">willReturn</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">processor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OrderProcessor</span><span class="p">(</span><span class="n">mock</span><span class="p">)</span>
-
-<span class="w">        </span><span class="n">assertThrows</span><span class="o">&lt;</span><span class="n">PaymentFailedException</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="n">processor</span><span class="p">.</span><span class="na">processOrder</span><span class="p">(</span><span class="m">50.0</span><span class="p">)</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="n">assert</span><span class="p">(</span><span class="n">mock</span><span class="p">.</span><span class="na">wasCalled</span><span class="p">)</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="nd">@Test</span>
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">`processOrder checks the amount passed to the payment gateway`</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">mock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MockPaymentGateway</span><span class="p">()</span>
-<span class="w">        </span><span class="n">mock</span><span class="p">.</span><span class="na">expectPaymentOf</span><span class="p">(</span><span class="m">200.0</span><span class="p">)</span>
-<span class="w">        </span><span class="n">mock</span><span class="p">.</span><span class="na">willReturn</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">processor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OrderProcessor</span><span class="p">(</span><span class="n">mock</span><span class="p">)</span>
-<span class="w">        </span><span class="n">processor</span><span class="p">.</span><span class="na">processOrder</span><span class="p">(</span><span class="m">200.0</span><span class="p">)</span>
-<span class="w">        </span><span class="n">assert</span><span class="p">(</span><span class="n">mock</span><span class="p">.</span><span class="na">wasCalled</span><span class="p">)</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="nd">@Test</span>
-<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">`processOrder throws assertion if unexpected amount passed`</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">mock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MockPaymentGateway</span><span class="p">()</span>
-<span class="w">        </span><span class="n">mock</span><span class="p">.</span><span class="na">expectPaymentOf</span><span class="p">(</span><span class="m">200.0</span><span class="p">)</span>
-<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">processor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OrderProcessor</span><span class="p">(</span><span class="n">mock</span><span class="p">)</span>
-<span class="w">        </span><span class="n">assertThrows</span><span class="o">&lt;</span><span class="n">AssertionError</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="n">processor</span><span class="p">.</span><span class="na">processOrder</span><span class="p">(</span><span class="m">100.0</span><span class="p">)</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="n">assert</span><span class="p">(</span><span class="n">mock</span><span class="p">.</span><span class="na">wasCalled</span><span class="p">)</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-</div>
 <div class="tabbed-block">
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -1177,6 +916,270 @@ and predictable.</p>
 <span class="p">}</span>
 </code></pre></div>
 </div>
+<div class="tabbed-block">
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>This example uses the <a href="https://www.jamesshore.com/v2/projects/nullables/testing-without-mocks#configurable-responses">Configurable Responses</a>
+pattern as implemented by <a href="https://github.com/whiskeysierra/test-doubles">whiskeysierra/test-doubles</a>.</p>
+</div>
+<div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nc">DataProvider</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getData</span><span class="p">(</span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">):</span><span class="w"> </span><span class="kt">String?</span>
+<span class="p">}</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">DataProcessor</span><span class="p">(</span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">dataProvider</span><span class="p">:</span><span class="w"> </span><span class="n">DataProvider</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">process</span><span class="p">(</span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="n">fallback</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Default Data&quot;</span><span class="p">):</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Processed: </span><span class="si">${</span><span class="n">dataProvider</span><span class="p">.</span><span class="na">getData</span><span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="n">fallback</span><span class="si">}</span><span class="s">&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">StubDataProvider</span><span class="p">(</span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">responses</span><span class="p">:</span><span class="w"> </span><span class="n">Iterator</span><span class="o">&lt;</span><span class="kt">String?</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">DataProvider</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getData</span><span class="p">(</span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">responses</span><span class="p">.</span><span class="na">next</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">DataProcessorTest</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Test</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">`retrieves and processes data`</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">provider</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">StubDataProvider</span><span class="p">(</span><span class="n">responses</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">once</span><span class="p">(</span><span class="s">&quot;Test Data&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Other Data&quot;</span><span class="p">))</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">processor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataProcessor</span><span class="p">(</span><span class="n">provider</span><span class="p">)</span>
+
+<span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="s">&quot;Processed: Test Data&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">processor</span><span class="p">.</span><span class="na">process</span><span class="p">(</span><span class="m">1</span><span class="p">))</span>
+<span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="s">&quot;Processed: Default Data&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">processor</span><span class="p">.</span><span class="na">process</span><span class="p">(</span><span class="m">2</span><span class="p">))</span>
+<span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="s">&quot;Processed: Other Data&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">processor</span><span class="p">.</span><span class="na">process</span><span class="p">(</span><span class="m">3</span><span class="p">))</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Test</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">`uses fallback when no data is available`</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">provider</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">StubDataProvider</span><span class="p">(</span><span class="n">responses</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">once</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Real Data&quot;</span><span class="p">))</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">processor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataProcessor</span><span class="p">(</span><span class="n">provider</span><span class="p">)</span>
+
+<span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="s">&quot;Processed: Fallback Data&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">processor</span><span class="p">.</span><span class="na">process</span><span class="p">(</span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Fallback Data&quot;</span><span class="p">))</span>
+<span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="s">&quot;Processed: Real Data&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">processor</span><span class="p">.</span><span class="na">process</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Fallback Data&quot;</span><span class="p">))</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>This example uses the <a href="https://www.jamesshore.com/v2/projects/nullables/testing-without-mocks#output-tracking">Output Tracking</a>
+pattern as implemented by <a href="https://github.com/whiskeysierra/test-doubles">whiskeysierra/test-doubles</a>.</p>
+</div>
+<div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nc">EmailService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">sendEmail</span><span class="p">(</span><span class="n">recipient</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">UserNotifier</span><span class="p">(</span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">emailService</span><span class="p">:</span><span class="w"> </span><span class="n">EmailService</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">notifyUser</span><span class="p">(</span><span class="n">userEmail</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">emailService</span><span class="p">.</span><span class="na">sendEmail</span><span class="p">(</span><span class="n">userEmail</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">)</span>
+<span class="w">        </span><span class="n">emailService</span><span class="p">.</span><span class="na">sendEmail</span><span class="p">(</span><span class="s">&quot;admin@example.com&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;User notified&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// Send notification to admin as well</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nn">io.github.whiskeysierra.testdoubles.spy.OutputTracking</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">io.github.whiskeysierra.testdoubles.spy.Tracker</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">org.assertj.core.util.VisibleForTesting</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">SpyEmailService</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">EmailService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">tracking</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OutputTracking</span><span class="o">&lt;</span><span class="n">Pair</span><span class="o">&lt;</span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="kt">String</span><span class="o">&gt;&gt;</span><span class="p">()</span>
+
+<span class="w">    </span><span class="nd">@VisibleForTesting</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">track</span><span class="p">():</span><span class="w"> </span><span class="n">Tracker</span><span class="o">&lt;</span><span class="n">Pair</span><span class="o">&lt;</span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="kt">String</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tracking</span><span class="p">.</span><span class="na">track</span><span class="p">()</span>
+
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">sendEmail</span><span class="p">(</span><span class="n">recipient</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">tracking</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">Pair</span><span class="p">(</span><span class="n">recipient</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">))</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>```kotlin</p>
+<p>import io.github.whiskeysierra.testdoubles.spy.Tracker
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test</p>
+<p>class UserNotifierTest {
+    @Test
+    fun <code>sends emails to user and admin</code>() {
+        val spy = SpyEmailService()
+        val notifier = UserNotifier(spy)</p>
+<div class="codehilite"><pre><span></span><code><span class="w">    </span>val<span class="w"> </span>sentEmails:<span class="w"> </span>Tracker<span class="nt">&lt;Pair</span><span class="err">&lt;String,</span><span class="w"> </span><span class="err">String</span><span class="nt">&gt;</span>&gt;<span class="w"> </span>=<span class="w"> </span>spy.track()
+
+<span class="w">    </span>notifier.notifyUser(&quot;test@example.com&quot;,<span class="w"> </span>&quot;Hello!&quot;)
+
+<span class="w">    </span>assertThat(sentEmails).containsExactly(
+<span class="w">        </span>Pair(&quot;test@example.com&quot;,<span class="w"> </span>&quot;Hello!&quot;),
+<span class="w">        </span>Pair(&quot;admin@example.com&quot;,<span class="w"> </span>&quot;User<span class="w"> </span>notified&quot;)
+<span class="w">    </span>)
+}
+</code></pre></div>
+
+<p>}</p>
+</div>
+<div class="tabbed-block">
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Only hand-roll a dummy if a suitable default/noop implementation (like a <a href="https://sourcemaking.com/design_patterns/null_object">Null Object</a>) doesn&rsquo;t already exist for the required interface.</p>
+</div>
+<div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nc">Currency</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">code</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">symbol</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">displayName</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">defaultFractionDigits</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span>
+<span class="p">}</span>
+
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Money</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">amount</span><span class="p">:</span><span class="w"> </span><span class="n">BigDecimal</span><span class="p">,</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">currency</span><span class="p">:</span><span class="w"> </span><span class="n">Currency</span><span class="p">)</span>
+
+<span class="kd">data</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="nc">EUR</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Currency</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">code</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;EUR&quot;</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">symbol</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;€&quot;</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">displayName</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Euro&quot;</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">defaultFractionDigits</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
+<span class="p">}</span>
+
+<span class="kd">data</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="nc">USD</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Currency</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;USD&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">symbol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;</span><span class="err">$</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">displayName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;US Dollar&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">defaultFractionDigits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
+<span class="p">}</span>
+
+<span class="kd">interface</span><span class="w"> </span><span class="nc">CurrencyConverter</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">convert</span><span class="p">(</span><span class="n">amount</span><span class="p">:</span><span class="w"> </span><span class="n">Money</span><span class="p">,</span><span class="w"> </span><span class="n">preferredCurrency</span><span class="p">:</span><span class="w"> </span><span class="n">Currency</span><span class="p">):</span><span class="w"> </span><span class="n">Money</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Converts amounts to EUR.  Ignores the [preferredCurrency] parameter.</span>
+<span class="cm"> */</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">EuroConverter</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">CurrencyConverter</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">convert</span><span class="p">(</span><span class="n">amount</span><span class="p">:</span><span class="w"> </span><span class="n">Money</span><span class="p">,</span><span class="w"> </span><span class="n">preferredCurrency</span><span class="p">:</span><span class="w"> </span><span class="n">Currency</span><span class="p">):</span><span class="w"> </span><span class="n">Money</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">euroAmount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">when</span><span class="w"> </span><span class="p">(</span><span class="n">amount</span><span class="p">.</span><span class="na">currency</span><span class="p">.</span><span class="na">code</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="s">&quot;USD&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">amount</span><span class="p">.</span><span class="na">amount</span><span class="p">.</span><span class="na">multiply</span><span class="p">(</span><span class="n">BigDecimal</span><span class="p">(</span><span class="s">&quot;0.92&quot;</span><span class="p">))</span>
+<span class="w">            </span><span class="s">&quot;GBP&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">amount</span><span class="p">.</span><span class="na">amount</span><span class="p">.</span><span class="na">multiply</span><span class="p">(</span><span class="n">BigDecimal</span><span class="p">(</span><span class="s">&quot;1.15&quot;</span><span class="p">))</span>
+<span class="w">            </span><span class="k">else</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">amount</span><span class="p">.</span><span class="na">amount</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Money</span><span class="p">(</span><span class="n">euroAmount</span><span class="p">,</span><span class="w"> </span><span class="n">EUR</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kd">data</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="nc">DummyCurrency</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Currency</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">code</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span>
+<span class="w">        </span><span class="k">get</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">throw</span><span class="w"> </span><span class="n">UnsupportedOperationException</span><span class="p">(</span><span class="s">&quot;Dummy Currency should not be used.&quot;</span><span class="p">)</span>
+
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">symbol</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span>
+<span class="w">        </span><span class="k">get</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">throw</span><span class="w"> </span><span class="n">UnsupportedOperationException</span><span class="p">(</span><span class="s">&quot;Dummy Currency should not be used.&quot;</span><span class="p">)</span>
+
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">displayName</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span>
+<span class="w">        </span><span class="k">get</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">throw</span><span class="w"> </span><span class="n">UnsupportedOperationException</span><span class="p">(</span><span class="s">&quot;Dummy Currency should not be used.&quot;</span><span class="p">)</span>
+
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">defaultFractionDigits</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span>
+<span class="w">        </span><span class="k">get</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">throw</span><span class="w"> </span><span class="n">UnsupportedOperationException</span><span class="p">(</span><span class="s">&quot;Dummy Currency should not be used.&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">EuroConverterTest</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Test</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">`converts to eur ignoring preferred currency`</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">converter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EuroConverter</span><span class="p">()</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">amount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Money</span><span class="p">(</span><span class="n">BigDecimal</span><span class="p">(</span><span class="s">&quot;100&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">USD</span><span class="p">)</span>
+
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">convertedAmount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">converter</span><span class="p">.</span><span class="na">convert</span><span class="p">(</span><span class="n">amount</span><span class="p">,</span><span class="w"> </span><span class="n">DummyCurrency</span><span class="p">)</span>
+
+<span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="n">BigDecimal</span><span class="p">(</span><span class="s">&quot;92.00&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">convertedAmount</span><span class="p">.</span><span class="na">amount</span><span class="p">)</span>
+<span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="s">&quot;EUR&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">convertedAmount</span><span class="p">.</span><span class="na">currency</span><span class="p">.</span><span class="na">code</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+```</p>
+</div>
+<div class="tabbed-block">
+<div class="admonition warning">
+<p class="admonition-title">A Word of Caution</p>
+<p>While hand-rolling mocks is technically possible (as shown below), it’s often less ideal than using simpler types of test doubles.</p>
+<p>Hand-rolled mocks present two key challenges.
+First, the need to pre-program and verify expectations increases the complexity of the mock itself, making it harder to write, understand, and maintain.
+Second, and this applies to mocks in general, hiding expectations and verifications within the mock makes the tests themselves less expressive and readable, as they contain less visible evidence (assertions).
+Consider using simpler test doubles like stubs, spies, or fakes before resorting to hand-rolled mocks.</p>
+</div>
+<div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nc">PaymentGateway</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">processPayment</span><span class="p">(</span><span class="n">amount</span><span class="p">:</span><span class="w"> </span><span class="kt">Double</span><span class="p">):</span><span class="w"> </span><span class="kt">Boolean</span>
+<span class="p">}</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">OrderProcessor</span><span class="p">(</span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">paymentGateway</span><span class="p">:</span><span class="w"> </span><span class="n">PaymentGateway</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">processOrder</span><span class="p">(</span><span class="n">amount</span><span class="p">:</span><span class="w"> </span><span class="kt">Double</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">paymentGateway</span><span class="p">.</span><span class="na">processPayment</span><span class="p">(</span><span class="n">amount</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="n">PaymentFailedException</span><span class="p">(</span><span class="s">&quot;Payment failed for amount: </span><span class="si">$</span><span class="n">amount</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="c1">// Order processing logic here</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">PaymentFailedException</span><span class="p">(</span><span class="n">message</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">RuntimeException</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">MockPaymentGateway</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">PaymentGateway</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">paymentProcessed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">expectedAmount</span><span class="p">:</span><span class="w"> </span><span class="kt">Double?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">wasCalled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
+
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">willReturn</span><span class="p">(</span><span class="n">value</span><span class="p">:</span><span class="w"> </span><span class="kt">Boolean</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">paymentProcessed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">value</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">expectPaymentOf</span><span class="p">(</span><span class="n">amount</span><span class="p">:</span><span class="w"> </span><span class="kt">Double</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">expectedAmount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">amount</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">processPayment</span><span class="p">(</span><span class="n">amount</span><span class="p">:</span><span class="w"> </span><span class="kt">Double</span><span class="p">):</span><span class="w"> </span><span class="kt">Boolean</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">wasCalled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">expectedAmount</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">expectedAmount</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">amount</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="n">AssertionError</span><span class="p">(</span><span class="s">&quot;Expected payment of </span><span class="si">$</span><span class="n">expectedAmount</span><span class="s"> but received </span><span class="si">$</span><span class="n">amount</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">paymentProcessed</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">OrderProcessorTest</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Test</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">`processOrder successfully processes payment`</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">mock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MockPaymentGateway</span><span class="p">()</span>
+<span class="w">        </span><span class="n">mock</span><span class="p">.</span><span class="na">willReturn</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">processor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OrderProcessor</span><span class="p">(</span><span class="n">mock</span><span class="p">)</span>
+<span class="w">        </span><span class="n">processor</span><span class="p">.</span><span class="na">processOrder</span><span class="p">(</span><span class="m">100.0</span><span class="p">)</span>
+<span class="w">        </span><span class="n">assert</span><span class="p">(</span><span class="n">mock</span><span class="p">.</span><span class="na">wasCalled</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Test</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">`processOrder throws exception when payment fails`</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">mock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MockPaymentGateway</span><span class="p">()</span>
+<span class="w">        </span><span class="n">mock</span><span class="p">.</span><span class="na">willReturn</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">processor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OrderProcessor</span><span class="p">(</span><span class="n">mock</span><span class="p">)</span>
+
+<span class="w">        </span><span class="n">assertThrows</span><span class="o">&lt;</span><span class="n">PaymentFailedException</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">processor</span><span class="p">.</span><span class="na">processOrder</span><span class="p">(</span><span class="m">50.0</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">assert</span><span class="p">(</span><span class="n">mock</span><span class="p">.</span><span class="na">wasCalled</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Test</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">`processOrder checks the amount passed to the payment gateway`</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">mock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MockPaymentGateway</span><span class="p">()</span>
+<span class="w">        </span><span class="n">mock</span><span class="p">.</span><span class="na">expectPaymentOf</span><span class="p">(</span><span class="m">200.0</span><span class="p">)</span>
+<span class="w">        </span><span class="n">mock</span><span class="p">.</span><span class="na">willReturn</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">processor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OrderProcessor</span><span class="p">(</span><span class="n">mock</span><span class="p">)</span>
+<span class="w">        </span><span class="n">processor</span><span class="p">.</span><span class="na">processOrder</span><span class="p">(</span><span class="m">200.0</span><span class="p">)</span>
+<span class="w">        </span><span class="n">assert</span><span class="p">(</span><span class="n">mock</span><span class="p">.</span><span class="na">wasCalled</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Test</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">`processOrder throws assertion if unexpected amount passed`</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">mock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MockPaymentGateway</span><span class="p">()</span>
+<span class="w">        </span><span class="n">mock</span><span class="p">.</span><span class="na">expectPaymentOf</span><span class="p">(</span><span class="m">200.0</span><span class="p">)</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">processor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OrderProcessor</span><span class="p">(</span><span class="n">mock</span><span class="p">)</span>
+<span class="w">        </span><span class="n">assertThrows</span><span class="o">&lt;</span><span class="n">AssertionError</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">processor</span><span class="p">.</span><span class="na">processOrder</span><span class="p">(</span><span class="m">100.0</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">assert</span><span class="p">(</span><span class="n">mock</span><span class="p">.</span><span class="na">wasCalled</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
 </div>
 </div>
 <h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
@@ -1226,7 +1229,7 @@ Even if you&rsquo;re not buying into the whole premise, checking out these patte
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 28, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 29, 2025</span>
   </span>
 
     
