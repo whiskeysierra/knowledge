@@ -6,9 +6,10 @@ title: Hand-roll test doubles
 > — [GeePaw Hill](https://www.geepawhill.org/2021/07/13/on-not-using-mocking-frameworks/), July 13th, 2021
 
 Mocking libraries[^1] are everywhere these days, promising easy test setup and readable code.
-But honestly, sometimes it's way better to just roll your own test doubles.
+But honestly, it's almost always way better to just roll your own test doubles.
 Especially if you care about clean, maintainable tests.
-Let's talk about why explicit code often beats the magic of mocking frameworks.
+The only real exception is during legacy migrations, and even then, mocking libraries should be considered a temporary crutch, not a long-term solution.
+Let's talk about why explicit code virtually always beats the magic of mocking frameworks.
 
 ## What are Test Doubles Anyway?
 
@@ -20,12 +21,13 @@ This approach aligns with the concept of [*sociable unit tests*](https://martinf
 which verify the behavior of multiple components in collaboration.
 Test doubles should only be used when using the real dependency is impractical or problematic.
 
-Here are the common types:
+Here are the common types (roughly ordered by my personal preference, from most to least preferred in most situations):
 
-*   **Dummies**
+*   **Fakes**
 
-    These are objects passed as arguments but are never actually used within the method being tested.
-    They are simply placeholders to satisfy method signatures.
+    Fakes are working implementations of a dependency, but they are simplified for testing purposes.
+    Examples include in-memory databases or simplified versions of external services.
+    They provide a functional but lightweight alternative to the real dependency.
 
 *   **Stubs**
 
@@ -49,17 +51,16 @@ Here are the common types:
         These spies focus on observing the *state* changes of the object being spied on.
         Instead of verifying specific method calls, they verify that the object's internal state has changed in the expected way as a result of the interaction.
 
+*   **Dummies**
+
+    These are objects passed as arguments but are never actually used within the method being tested.
+    They are simply placeholders to satisfy method signatures.
+
 *   **Mocks**
 
     Mocks are pre-programmed with expectations about how they will be called.
     If these expectations are not met during the test, the test fails.
     Mocks are used to verify interactions and enforce specific behavior.
-
-*   **Fakes**
-
-    Fakes are working implementations of a dependency, but they are simplified for testing purposes.
-    Examples include in-memory databases or simplified versions of external services.
-    They provide a functional but lightweight alternative to the real dependency.
 
 ## The Problem with Mocking Libraries
 
@@ -70,6 +71,8 @@ While mocking libraries offer convenient test double creation and reduced boiler
     Mocks only know about the specific methods and behaviors you explicitly define in each test.
     This means there's no compile-time or runtime check to ensure these mock setups adhere to the actual interface *contract*.
     This lack of enforcement creates a significant risk of introducing subtle errors that can go undetected.
+
+    The term "_contract_", in this context, refers to both the syntax (method signatures) and semantics (intended behavior) of an interface.
 
 *   **Tight Coupling to Implementation**
 
@@ -125,25 +128,24 @@ Hand-rolled test doubles offer several compelling advantages over mocking librar
 
 This section demonstrates hand-rolled test doubles in Kotlin, showcasing each of the five main types:
 
-=== "Dummy"
+=== "Fake"
 
-    !!! warning
+    !!! tip
 
-        Only hand-roll a dummy if a suitable default/noop implementation (like a [Null Object](https://sourcemaking.com/design_patterns/null_object)) doesn't already exist for the required interface.
+        Fakes are particularly well-suited for implementing repository interfaces because they provide simplified,
+        in-memory implementations that mimic the behavior of a real database or external service, making tests fast
+        and predictable.
 
     ```kotlin
-    {% include "../../src/main/kotlin/practices/handroll/dummy/Currency.kt" %}
-    {% include "../../src/main/kotlin/practices/handroll/dummy/Money.kt" %}
-    {% include "../../src/main/kotlin/practices/handroll/dummy/CurrencyConverter.kt" %}
-    {% include "../../src/main/kotlin/practices/handroll/dummy/EuroConverter.kt" %}
+    {% include "../../src/main/kotlin/practices/handroll/fake/UserRepository.kt" %}
     ```
 
     ```kotlin
-    {% include "../../src/test/kotlin/practices/handroll/dummy/DummyCurrency.kt" %}
+    {% include "../../src/test/kotlin/practices/handroll/fake/InMemoryUserRepository.kt" %}
     ```
 
     ```kotlin
-    {% include "../../src/test/kotlin/practices/handroll/dummy/EuroConverterTest.kt" %}
+    {% include "../../src/test/kotlin/practices/handroll/fake/UserServiceTest.kt" %}
     ```
 
 === "Stub"
@@ -182,6 +184,27 @@ This section demonstrates hand-rolled test doubles in Kotlin, showcasing each of
 
     ```kotlin
     {% include "../../src/test/kotlin/practices/handroll/spy/UserNotifierTest.kt" %}
+
+=== "Dummy"
+
+    !!! warning
+
+        Only hand-roll a dummy if a suitable default/noop implementation (like a [Null Object](https://sourcemaking.com/design_patterns/null_object)) doesn't already exist for the required interface.
+
+    ```kotlin
+    {% include "../../src/main/kotlin/practices/handroll/dummy/Currency.kt" %}
+    {% include "../../src/main/kotlin/practices/handroll/dummy/Money.kt" %}
+    {% include "../../src/main/kotlin/practices/handroll/dummy/CurrencyConverter.kt" %}
+    {% include "../../src/main/kotlin/practices/handroll/dummy/EuroConverter.kt" %}
+    ```
+
+    ```kotlin
+    {% include "../../src/test/kotlin/practices/handroll/dummy/DummyCurrency.kt" %}
+    ```
+
+    ```kotlin
+    {% include "../../src/test/kotlin/practices/handroll/dummy/EuroConverterTest.kt" %}
+    ```
     ```
 
 === "Mock"
@@ -205,26 +228,6 @@ This section demonstrates hand-rolled test doubles in Kotlin, showcasing each of
 
     ```kotlin
     {% include "../../src/test/kotlin/practices/handroll/mock/OrderProcessorTest.kt" %}
-    ```
-
-=== "Fake"
-
-    !!! tip
-
-        Fakes are particularly well-suited for implementing repository interfaces because they provide simplified,
-        in-memory implementations that mimic the behavior of a real database or external service, making tests fast
-        and predictable.
-
-    ```kotlin
-    {% include "../../src/main/kotlin/practices/handroll/fake/UserRepository.kt" %}
-    ```
-
-    ```kotlin
-    {% include "../../src/test/kotlin/practices/handroll/fake/InMemoryUserRepository.kt" %}
-    ```
-
-    ```kotlin
-    {% include "../../src/test/kotlin/practices/handroll/fake/UserServiceTest.kt" %}
     ```
 
 ## Conclusion
