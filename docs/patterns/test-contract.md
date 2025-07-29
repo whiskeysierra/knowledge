@@ -5,6 +5,8 @@ tags:
   - Liskov substitution
 ---
 
+![](../img/contract-6872046_1280.png)
+
 ## 💬 Intent
 
 **Test contract** or _Contract-style unit test_ is a structural test design pattern that lets you define a contract for an interface and enforce
