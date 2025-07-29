@@ -1,6 +1,3 @@
----
----
-
 ![](../img/puzzle-1713170_1280.jpg)
 
 > *noun*: **composition**, the action of putting things together; formation or construction.
