@@ -3,6 +3,8 @@ tags:
   - Hexagonal Architecture
 ---
 
+![](../img/ai-generated-8619458_1280.jpg)
+
 Properly slicing repository interfaces (our "ports" to
 persistence) is a common snag in clean architectures like
 Hexagonal. A frequent, problematic habit is to create a separate
