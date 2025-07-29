@@ -5,7 +5,7 @@ tags:
   - Least Astonishment
 ---
 
-![](img/programming_code_screen_java_of_technology_developer_computer_design-1165593.jpg)
+![](../img/programming_code_screen_java_of_technology_developer_computer_design-1165593.jpg)
 
 The compiler is a very powerful tool, if being used right.
 
@@ -77,7 +77,7 @@ private T compute(final Something something) {
 
 ```
 
-## [Primitive Obsession](primitive-obsession.md)
+## [Primitive Obsession](../patterns/primitive-obsession.md)
 
 There is a certain, well-known anti-pattern or smell, the [Primitive Obsession](https://refactoring.guru/smells/primitive-obsession).
 The pattern to solve that also helps to push runtime errors towards compile time validation:
@@ -106,8 +106,8 @@ That is done at construction time of the object (graph) and no longer when it's 
 
 ## Related
 
-* [Staged Builders](patterns/staged-builders.md)
-* [Primitive Obsession](primitive-obsession.md)
+* [Staged Builders](../patterns/staged-builders.md)
+* [Primitive Obsession](../patterns/primitive-obsession.md)
 
 ## References
 

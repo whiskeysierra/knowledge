@@ -4,7 +4,7 @@ tags:
   - Immutability
 ---
 
-![](img/tool-1314070_1280.jpg)
+![](../img/tool-1314070_1280.jpg)
 
 Primitives have their use, but they shouldn't be our first choice.
 

@@ -132,7 +132,7 @@ There are some options you could use:
 
 While it works, it's not ideal. You can only have one base class and e.g. some database testing
 libraries/frameworks require you to use class inheritance which is then no longer possible.
-Also, I'm not a big fan of inheritance and favor [composition](../composition.md) whenever I can.
+Also, I'm not a big fan of inheritance and favor [composition](../concepts and principles/composition.md) whenever I can.
 
 ### `@ParameterizedTest`
 

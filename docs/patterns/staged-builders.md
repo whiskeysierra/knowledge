@@ -13,7 +13,7 @@ tags:
 Another pattern that I like to use a lot is *Staged Builder*.
 The traditional implementation of the [Builder pattern](https://en.wikipedia.org/wiki/Builder_pattern) is usually not very safe against misuse.
 
-It's a pattern that helps with [Compile time > runtime](../compile-time-runtime.md) because it shifts validation from runtime to compile time.
+It's a pattern that helps with [Compile time > runtime](../concepts and principles/compile-time-runtime.md) because it shifts validation from runtime to compile time.
 
 Let's say there is a builder that produces a User.
 
