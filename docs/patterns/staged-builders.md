@@ -1,5 +1,4 @@
 ---
-title: Staged Builders
 tags:
   - Immutability
   - Interface segregation

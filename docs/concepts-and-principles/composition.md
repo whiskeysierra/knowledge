@@ -1,5 +1,4 @@
 ---
-title: Composition
 ---
 
 ![](../img/puzzle-1713170_1280.jpg)

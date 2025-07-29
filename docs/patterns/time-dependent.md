@@ -1,5 +1,4 @@
 ---
-title: Time-dependent
 tags:
   - Testing
   - Open/Closed

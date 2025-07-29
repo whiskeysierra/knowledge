@@ -1,5 +1,4 @@
 ---
-title: Primitive Obsession
 tags:
   - Immutability
 ---

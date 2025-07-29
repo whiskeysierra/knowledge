@@ -9,6 +9,7 @@ nav:
       - Two Sides to Every Coin: concepts-and-principles/two-sides-to-every-coin.md
   - Patterns:
       - patterns/index.md
+      - Aggregates, Not Tables: patterns/aggregates-not-tables.md
       - Composite: patterns/composite.md
       - Primitive Obsession: patterns/primitive-obsession.md
       - Staged Builders: patterns/staged-builders.md

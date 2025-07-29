@@ -1,7 +1,7 @@
 ---
-title: Test contract
 tags:
   - Testing
+  - Hexagonal Architecture
   - Liskov substitution
 ---
 

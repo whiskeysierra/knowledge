@@ -1,5 +1,4 @@
 ---
-title: Hand-roll test doubles
 tags:
   - Testing
   - Mocks

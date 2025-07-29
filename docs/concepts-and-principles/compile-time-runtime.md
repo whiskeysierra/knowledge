@@ -1,5 +1,4 @@
 ---
-title: Compile time > runtime
 tags:
   - Immutability
   - Least Astonishment
