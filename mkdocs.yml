@@ -1,7 +1,21 @@
 site_name: Knowledge
 site_url: https://whiskeysierra.github.io/knowledge
 
-nav: [ ]
+nav:
+  - Concepts & Principles:
+      - concepts-and-principles/index.md
+      - Composition: concepts-and-principles/composition.md
+      - Compile Time vs Runtime: concepts-and-principles/compile-time-runtime.md
+  - Patterns:
+      - patterns/index.md
+      - Composite: patterns/composite.md
+      - Primitive Obsession: patterns/primitive-obsession.md
+      - Staged Builders: patterns/staged-builders.md
+      - Test Contract: patterns/test-contract.md
+      - Time Dependent: patterns/time-dependent.md
+  - Practices:
+      - practices/index.md
+      - Hand Roll Test Doubles: practices/hand-roll-test-doubles.md
 
 repo_url: https://github.com/whiskeysierra/knowledge
 repo_name: Edit on Github

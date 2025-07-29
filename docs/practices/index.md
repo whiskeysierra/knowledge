@@ -1,3 +1,7 @@
+---
+title: Practices
+---
+
 This section is dedicated to the hands-on "how-to" –
 the methodologies, coding habits,
 and development workflows that I've found to be effective.

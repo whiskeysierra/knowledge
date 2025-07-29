@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -euo pipefail
+
+PLANTUML_DIR="$(git rev-parse --show-toplevel)/plantuml"
+export PLANTUML_DIR
+
+PATH="$PLANTUML_DIR/bin:$PATH"
+export PATH
+
+venv/bin/mkdocs gh-deploy --verbose

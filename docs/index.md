@@ -24,7 +24,7 @@ and benefit!
 I've loosely grouped things into a few main buckets
 to keep my head straight:
 
-* **[Concepts and Principles](concepts and principles/index.md)**:
+* **[Concepts and Principles](concepts-and-principles/index.md)**:
   These are my deeper dives into core concepts,
   fundamental principles, and detailed "how-it-works"
   explanations.

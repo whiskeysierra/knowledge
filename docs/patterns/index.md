@@ -1,3 +1,7 @@
+---
+title: Patterns
+---
+
 Here, I document the recurring solutions
 and established blueprints I encounter
 in software design and architecture.
