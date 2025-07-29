@@ -6,6 +6,7 @@ nav:
       - concepts-and-principles/index.md
       - Composition: concepts-and-principles/composition.md
       - Compile Time vs Runtime: concepts-and-principles/compile-time-runtime.md
+      - Two Sides to Every Coin: concepts-and-principles/two-sides-to-every-coin.md
   - Patterns:
       - patterns/index.md
       - Composite: patterns/composite.md
