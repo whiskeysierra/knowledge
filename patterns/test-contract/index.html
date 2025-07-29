@@ -244,11 +244,11 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../concepts%20and%20principles/" class="md-nav__link ">
+            <a href="../../concepts-and-principles/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
-    Concepts and principles
+    Concepts & Principles
     
   </span>
   
@@ -265,7 +265,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_1">
             <span class="md-nav__icon md-icon"></span>
-            Concepts and principles
+            Concepts & Principles
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -278,11 +278,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../concepts%20and%20principles/compile-time-runtime/" class="md-nav__link">
+      <a href="../../concepts-and-principles/composition/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Compile time > runtime
+    Composition
     
   </span>
   
@@ -300,11 +300,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../concepts%20and%20principles/composition/" class="md-nav__link">
+      <a href="../../concepts-and-principles/compile-time-runtime/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Composition
+    Compile Time vs Runtime
     
   </span>
   
@@ -475,7 +475,7 @@
           
   
   <span class="md-ellipsis">
-    Test contract
+    Test Contract
     
   </span>
   
@@ -487,7 +487,7 @@
         
   
   <span class="md-ellipsis">
-    Test contract
+    Test Contract
     
   </span>
   
@@ -629,7 +629,7 @@
         
   
   <span class="md-ellipsis">
-    Time-dependent
+    Time Dependent
     
   </span>
   
@@ -717,7 +717,7 @@
         
   
   <span class="md-ellipsis">
-    Hand-roll test doubles
+    Hand Roll Test Doubles
     
   </span>
   
@@ -896,7 +896,7 @@
   
 
 
-  <h1>Test contract</h1>
+  <h1>Test Contract</h1>
 
 <h2 id="intent">💬 Intent<a class="headerlink" href="#intent" title="Permanent link">&para;</a></h2>
 <p><strong>Test contract</strong> or <em>Contract-style unit test</em> is a structural test design pattern that lets you define a contract for an interface and enforce
@@ -1035,7 +1035,7 @@ In other words, it&rsquo;s a way to verify the <a href="https://en.wikipedia.org
 <h3 id="abstract-test-class">Abstract test class<a class="headerlink" href="#abstract-test-class" title="Permanent link">&para;</a></h3>
 <p>While it works, it&rsquo;s not ideal. You can only have one base class and e.g. some database testing
 libraries/frameworks require you to use class inheritance which is then no longer possible.
-Also, I&rsquo;m not a big fan of inheritance and favor <a href="../../concepts%20and%20principles/composition/">composition</a> whenever I can.</p>
+Also, I&rsquo;m not a big fan of inheritance and favor <a href="../../concepts-and-principles/composition/">composition</a> whenever I can.</p>
 <h3 id="parameterizedtest"><code>@ParameterizedTest</code><a class="headerlink" href="#parameterizedtest" title="Permanent link">&para;</a></h3>
 <p>&hellip; using instances of all implementations as the parameters.
 Technically doable, but it would also require to have all setup and teardown logic for all implementations

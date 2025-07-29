@@ -244,11 +244,11 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../concepts%20and%20principles/" class="md-nav__link ">
+            <a href="../../concepts-and-principles/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
-    Concepts and principles
+    Concepts & Principles
     
   </span>
   
@@ -265,7 +265,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_1">
             <span class="md-nav__icon md-icon"></span>
-            Concepts and principles
+            Concepts & Principles
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -278,11 +278,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../concepts%20and%20principles/compile-time-runtime/" class="md-nav__link">
+      <a href="../../concepts-and-principles/composition/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Compile time > runtime
+    Composition
     
   </span>
   
@@ -300,11 +300,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../concepts%20and%20principles/composition/" class="md-nav__link">
+      <a href="../../concepts-and-principles/compile-time-runtime/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Composition
+    Compile Time vs Runtime
     
   </span>
   
@@ -514,7 +514,7 @@
         
   
   <span class="md-ellipsis">
-    Test contract
+    Test Contract
     
   </span>
   
@@ -536,7 +536,7 @@
         
   
   <span class="md-ellipsis">
-    Time-dependent
+    Time Dependent
     
   </span>
   
@@ -624,7 +624,7 @@
         
   
   <span class="md-ellipsis">
-    Hand-roll test doubles
+    Hand Roll Test Doubles
     
   </span>
   
@@ -724,7 +724,7 @@
 </blockquote>
 <p>Another pattern that I like to use a lot is <em>Staged Builder</em>.
 The traditional implementation of the <a href="https://en.wikipedia.org/wiki/Builder_pattern">Builder pattern</a> is usually not very safe against misuse.</p>
-<p>It&rsquo;s a pattern that helps with <a href="../../concepts%20and%20principles/compile-time-runtime/">Compile time &gt; runtime</a> because it shifts validation from runtime to compile time.</p>
+<p>It&rsquo;s a pattern that helps with <a href="../../concepts-and-principles/compile-time-runtime/">Compile time &gt; runtime</a> because it shifts validation from runtime to compile time.</p>
 <p>Let&rsquo;s say there is a builder that produces a User.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">final</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">UserBuilder</span><span class="p">()</span>
 <span class="w">    </span><span class="c1">// misses first name, which is required</span>
