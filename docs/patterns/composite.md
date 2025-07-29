@@ -1,3 +1,8 @@
+---
+tags:
+  - Single responsibility
+---
+
 ## 💬 Intent
 
 See [Refactoring Guru: Composite](https://refactoring.guru/design-patterns/composite)

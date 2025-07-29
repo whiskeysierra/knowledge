@@ -1,5 +1,9 @@
 ---
 title: Hand-roll test doubles
+tags:
+  - Testing
+  - Mocks
+  - Least Astonishment
 ---
 
 > _"I'm long past on record that I think the use of auto-mockers [...] is bad policy."_  

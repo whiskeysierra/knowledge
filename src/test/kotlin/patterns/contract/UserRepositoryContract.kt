@@ -2,6 +2,8 @@ package patterns.contract
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import java.util.UUID
+import java.util.UUID.randomUUID
 
 //
 interface UserRepositoryContract {
@@ -17,7 +19,7 @@ interface UserRepositoryContract {
 
     @Test
     fun `won't find absent user`() {
-        val user = unit.create(randomUser())
+        val user = unit.find(UserId(randomUUID().toString()))
         assertThat(user).isNull()
     }
 }

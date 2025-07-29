@@ -1,5 +1,9 @@
 ---
-title:  Staged Builders
+title: Staged Builders
+tags:
+  - Immutability
+  - Interface segregation
+  - Least Astonishment
 ---
 
 ![](../img/mark-516279_1280.jpg)

@@ -1,5 +1,8 @@
 ---
 title: Test contract
+tags:
+  - Testing
+  - Liskov substitution
 ---
 
 ## 💬 Intent

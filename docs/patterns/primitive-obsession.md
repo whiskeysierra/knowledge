@@ -1,5 +1,7 @@
 ---
-title:  Primitive Obsession
+title: Primitive Obsession
+tags:
+  - Immutability
 ---
 
 ![](img/tool-1314070_1280.jpg)

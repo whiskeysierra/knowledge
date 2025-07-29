@@ -1,5 +1,8 @@
 ---
 title: Compile time > runtime
+tags:
+  - Immutability
+  - Least Astonishment
 ---
 
 ![](img/programming_code_screen_java_of_technology_developer_computer_design-1165593.jpg)

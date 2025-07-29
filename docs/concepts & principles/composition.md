@@ -1,5 +1,5 @@
 ---
-title:  Composition
+title: Composition
 ---
 
 ![](img/puzzle-1713170_1280.jpg)
@@ -56,7 +56,7 @@ I often try to manage expectations by stating early on, that we should expect N+
 It's also important to push back on the notion that a design with N (+1) components is more complex than the original design with just one.
 Complexity is not determined by the number of parts, but the number of connections.
 The original one-size-fits-all component had those connections already, but they were implicit and hidden.
-Yet they still hurt, because I need to understand them in order to successfully work with said component.
+Yet they still hurt, because I need to understand them to successfully work with said component.
 
 ## References
 

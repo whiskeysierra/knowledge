@@ -1,5 +1,10 @@
 ---
-title:  Time-dependent
+title: Time-dependent
+tags:
+  - Testing
+  - Open/Closed
+  - Liskov substitution
+  - Dependency inversion
 ---
 
 ![](../img/clock-1274699_1280.jpg)

@@ -13,6 +13,11 @@ theme:
   features:
     - navigation.instant
     - navigation.sections
+    - navigation.indexes
+
+not_in_nav: |
+  /index.md
+  /tags.md
 
 markdown_extensions:
   - abbr
@@ -53,3 +58,4 @@ plugins:
   - include-markdown:
       start: "//"
   - search
+  - tags
