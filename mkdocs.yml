@@ -10,14 +10,14 @@ nav:
   - Patterns:
       - patterns/index.md
       - Aggregates, Not Tables: patterns/aggregates-not-tables.md
-      - Composite: patterns/composite.md
+      - From Loop to Composite and Decorators: patterns/from-loop-to-composite-and-decorators.md
       - Primitive Obsession: patterns/primitive-obsession.md
       - Staged Builders: patterns/staged-builders.md
       - Test Contract: patterns/test-contract.md
       - Time Dependent: patterns/time-dependent.md
   - Practices:
       - practices/index.md
-      - Hand Roll Test Doubles: practices/hand-roll-test-doubles.md
+      - Hand-Roll Test Doubles: practices/hand-roll-test-doubles.md
 
 repo_url: https://github.com/whiskeysierra/knowledge
 repo_name: Edit on Github
@@ -73,5 +73,10 @@ plugins:
   - git-revision-date-localized
   - include-markdown:
       start: "//"
+  - redirects:
+      redirect_maps:
+        compile-time-runtime.md: concepts-and-principles/compile-time-runtime.md
+        composition.md: concepts-and-principles/composition.md
+        patterns/composite.md: patterns/from-loop-to-composite-and-decorators.md
   - search
   - tags

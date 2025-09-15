@@ -1,50 +1,60 @@
 ---
 tags:
-  - Testing
-  - Hexagonal Architecture
-  - Liskov substitution
+- Testing
+- Hexagonal Architecture
+- Liskov substitution
 ---
 
 ![](../img/contract-6872046_1280.png)
 
-## 💬 Intent
+## Introduction
 
-**Test contract** or _Contract-style unit test_ is a structural test design pattern that lets you define a contract for an interface and enforce
+Test contract or _Contract-style unit test_ is a structural test design
+pattern that lets you define a contract for an interface and enforce
 it for every concrete implementation.
 
-## ☹️ Problem
+## Problem
 
-Whenever you have an interface, you usually end up with multiple implementations.
-While these implementations have distinct characteristics that make them different,
-they should also share a common behavior as specified by the interface.
-This specification is normally expressed just by the required method signatures and types.
-But, of course, there are aspects of the specification you can't describe using the type system alone.
+Whenever you have an interface, you usually end up with multiple
+implementations.
+While these implementations have distinct characteristics that make them
+different, they should also share a common behavior as specified by the
+interface.
+This specification is normally expressed just by the required method
+signatures and types.
+But, of course, there are aspects of the specification you can't describe
+using the type system alone.
 
 That's when tests come in.
-A set of tests provides as an executable verification and acts as a guarantee that the system under test
-actually adheres to the specification or _contract_.
+A set of tests provides as an executable verification and acts as a
+guarantee that the system under test actually adheres to the
+specification or _contract_.
 
-The problem is though, that with multiple implementations, how do you ensure that they all adhere
-to the same specification?
+The problem is though, that with multiple implementations, how do you
+ensure that they all adhere to the same specification?
 
-## 😊 Solution
+## Solution
 
-The solution is to formulate the specification as a set of tests, coded against the interface itself,
-in a single place, to be reused for each and every single implementation.
+The solution is to formulate the specification as a set of tests, coded
+against the interface itself, in a single place, to be reused for each
+and every single implementation.
 
-The approach that I like to use is based on test interfaces using default methods:
+The approach that I like to use is based on test interfaces using default
+methods:
 
-> JUnit Jupiter allows `@Test`, `@RepeatedTest`, ... to be declared on interface default methods.
+> JUnit Jupiter allows `@Test`, `@RepeatedTest`, ... to be declared on
+> interface default methods.
 >
 > [JUnit 5 User Guide: 2.13. Test Interfaces and Default Methods][JUnit]
 
-You basically create an interface with all the tests you need, defined as default methods.
-That interface is the *test contract* and can now be easily re-used for different concrete tests for your
-different implementations.
+You basically create an interface with all the tests you need, defined as
+default methods.
+That interface is the *test contract* and can now be easily re-used for
+different concrete tests for your different implementations.
 
 ## Structure
 
-```plantuml width="60%"
+```plantuml
 hide empty members
 
 interface Thing {
@@ -66,9 +76,9 @@ RealThingTest -up-> RealThing : tests
 
 ## Pseudocode
 
-This example uses a `UserRepository` interface and two implementations, 
-`InMemoryUserRepository` (a [hand-rolled](../practices/hand-roll-test-doubles.md) fake) and
-`PostgresUserRepository`:
+This example uses a `UserRepository` interface and two implementations,
+`InMemoryUserRepository` (a [hand-rolled](../practices/hand-roll-test-doubles.md)
+fake) and `PostgresUserRepository`:
 
 ```plantuml
 hide empty members
@@ -115,15 +125,16 @@ In addition, there is no setup or teardown logic.
 
 ### Transfer of confidence
 
-You have two implementations,
-one for production that is too slow for tests
+You have two implementations, one for production that is too slow for tests
 and one that isn't for production but is fast.
 
 The test for your production variant gives you confidence for production.
 Since a test contract executes and verifies the same tests against your fake,
-you can now be confident that you can use the fake whenever you'd usually need the production variant.
+you can now be confident that you can use the fake whenever you'd usually
+need the production variant.
 
-The test contract allows you to transfer the trust from one implementation to another.
+The test contract allows you to transfer the trust from one implementation
+to another.
 In other words, it's a way to verify the [Liskov substitution principle][Liskov].
 
 ## Alternatives
@@ -132,18 +143,33 @@ There are some options you could use:
 
 ### Abstract test class
 
-While it works, it's not ideal. You can only have one base class and e.g. some database testing
-libraries/frameworks require you to use class inheritance which is then no longer possible.
-Also, I'm not a big fan of inheritance and favor [composition](../concepts-and-principles/composition.md) whenever I can.
+While it works, it's not ideal.
+You can only have one base class and e.g. some database testing
+libraries/frameworks require you to use class inheritance which is then no
+longer possible.
+Also, I'm not a big fan of inheritance and favor [composition](../concepts-and-principles/composition.md)
+whenever I can.
 
 ### `@ParameterizedTest`
 
 ... using instances of all implementations as the parameters.
-Technically doable, but it would also require to have all setup and teardown logic for all implementations
-in a single test - which will quickly become a maintenance nightmare.
+Technically doable, but it would also require to have all setup and
+teardown logic for all implementations in a single test - which will
+quickly become a maintenance nightmare.
 
-Both of these also share the downside that one can't easily split the tests up into smaller test classes,
-because one would need to repeat itself - a lot.
+Both of these also share the downside that one can't easily split the
+tests up into smaller test classes, because one would need to repeat
+itself - a lot.
+
+## Conclusion
+
+Test contracts offer a powerful and elegant solution for ensuring
+consistent behavior across multiple implementations of an interface.
+By centralizing common tests against the interface itself, they
+significantly improve maintainability, enforce behavioral contracts,
+and facilitate the transfer of confidence between production code
+and test doubles.
+Embracing this pattern leads to more robust and reliable software systems.
 
 ## References
 
