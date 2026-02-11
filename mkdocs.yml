@@ -11,6 +11,7 @@ nav:
       - patterns/index.md
       - Adapter Isolation: patterns/adapter-isolation.md
       - Aggregates, Not Tables: patterns/aggregates-not-tables.md
+      # TODO - Natural Breakpoints: patterns/natural-breakpoints.md
       - Composite: patterns/composite.md
       - Primitive Obsession: patterns/primitive-obsession.md
       - Staged Builders: patterns/staged-builders.md
